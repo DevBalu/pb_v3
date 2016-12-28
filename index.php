@@ -1,5 +1,4 @@
 <!DOCTYPE HTML>
-
 <html>
 	<head>
 		<?php include "components/head.php"; ?>
@@ -9,15 +8,15 @@
 	<!-- Header -->
 		<?php include "components/navbar.php"; ?>
 	<!-- Header -->
-		
+
 	<!-- Banner -->
 		<?php include "components/banner.php"; ?>
 	<!-- /Banner -->
 
-	<!-- Main -->
+	<!-- Page -->
 		<div id="page">
 
-				
+
 			<!-- Main -->
 			<div id="main" class="container indexsidebar">
 				<div class="row">
@@ -55,7 +54,7 @@
 									<a href="#"><img src="images/pics10.jpg" alt=""></a>
 									<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
 								</li>
-							</ul>						
+							</ul>
 						</section>
 					</div>
 					<div class="3u">
@@ -86,10 +85,10 @@
 					</div>
 				</div>
 			</div>
-			<!-- Main -->
+			<!-- /Main -->
 
 		</div>
-	<!-- /Main -->
+	<!-- /Pge -->
 
 	<!-- Featured -->
 		<div id="featured">

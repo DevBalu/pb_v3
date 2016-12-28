@@ -1,3 +1,10 @@
+<?php 
+	session_start();
+	if(!empty($_SESSION['auth'])){
+		header('Location: /pb/index.php');
+	}
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,21 +20,21 @@
 <body><br><br>
 	<div class="container">
 		<div class="row">
-			<form action="#" method="POST" >
+			<form action="php/log.php" method="POST" >
 				<div class="col s12 m6 l6 offset-l3" >
 					<img src="images/logo.jpg" style="width: 100%"><br><br>
 					<div style="border:3px solid #ccc; padding: 20px">
 						<h4 class="center" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">INTRODUCETI DATE PENTRU AUTORIZARE.</h4>
 				        <div class="input-field">
-		          			<input id="first_name" type="text" class="validate" name="log">
+		          			<input id="first_name" type="text" class="validate" name="username">
 		          			<label for="first_name">LOGIN</label>
 		          		</div>
 		  		        <div class="input-field">
-		          			<input id="last_name" type="text" class="validate" name="pass">
+		          			<input id="last_name" type="text" class="validate" name="password">
 		         			<label for="last_name">PASSWORD</label>
 		       			 </div><br>
 		       			 <button class="btn right" type="submit" style="background:#e95d3c">LOG IN</button><br><br>
-					</div>				
+					</div>
 				</div>
 			</form>
 		</div>

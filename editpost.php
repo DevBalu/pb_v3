@@ -49,7 +49,7 @@
 	<meta charset="UTF-8">
 	<!--Let browser know website is optimized for mobile-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<title>Adaugarea Postului</title>
+	<title>Editarea Postului</title>
 	<!--Import Google Icon Font-->
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!-- Compiled and minified CSS -->
@@ -65,7 +65,7 @@
 			<form action="php/addcontent.php" method="POST" enctype="multipart/form-data">
 				<div class="col s12 m8 l8 offset-m2 offset-l2">
 
-					<h4 class="left" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">Adaugarea Postuui</h4><br><br><br>
+					<h4 class="left" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">Editarea Postuui</h4><br><br><br>
 
 				  	<div class="input-field col s12">
 				    	<select name="group">

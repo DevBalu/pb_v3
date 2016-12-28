@@ -1,10 +1,14 @@
+<?php 
+	if(!isset($_GET['id'])){
+		header('Location: /pb/index.php');
+	}
+ ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
 		<?php include "components/head.php"; ?>			
 	</head>
 	<body class="right-sidebar">
-
 	<!-- Header -->
 		<?php include"components/navbar.php"; ?>
 	<!-- Header -->
@@ -13,7 +17,7 @@
 		<?php include"components/banner.php"; ?>
 	<!-- /Banner -->
 
-	<!-- Main -->
+<!-- Main -->
 		<div id="page">
 				
 			<!-- Main -->
@@ -22,8 +26,8 @@
 
 					<div class="categories 12u">
 						<!-- db request -->
-						<?php include"php/consiliulreq.php" ?>
-						<!-- / db request -->
+						<?php include"php/categories.php"; ?>
+						<!-- END db request -->
 					</div>
 
 				</div>
