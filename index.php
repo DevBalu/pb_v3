@@ -57,8 +57,9 @@
 							while ($row = $resimp->fetch_object()) {
 									?>
 									<header>
-										<h2><?php print $row->title ?></h2>
-										<span class="byline"><?php print $row->subtitle ?></span>
+										<h2 style="text-align:center;"><?php print $row->title ?></h2>
+										<span class="byline" style="text-align:center;"><?php print $row->subtitle ?></span>
+										<img src="<?php print $row->image_url; ?>" style="width: 80%; margin-left:25px;">
 									</header>
 									<p><?php print $row->content ?></p>
 									<?php  
@@ -91,7 +92,7 @@
 												print '
 													<li>
 														<a href="/pb/post.php?id=' . $row->id .'">
-															<img src="images/pics05.jpg" width="50%">
+															<img src="'. $row->image_url .'" width="50%">
 														</a>
 														<p>'. $row->title.'</p>
 													</li>

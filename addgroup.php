@@ -65,7 +65,7 @@
 		<div class="row">
 		<br>
 			<div class="col m3 offset-m4">
-				<img src="images/logo.jpg" style="width: 100%">
+				<a href="index.php"><img src="images/logo.jpg" style="width: 100%"></a>
 			</div>
 			<form action="php/addcontent.php" method="POST" enctype="multipart/form-data">
 				<div class="col s12 m8 l8 offset-m2 offset-l2"><br>

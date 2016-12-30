@@ -28,7 +28,10 @@
 			<div class="col s12 m8 l8 offset-l2" >
 				<a href="index.php"><img src="images/logo.jpg" style="width: 100%"><br><br></a>
 				<div style="border:3px solid #ccc; padding: 20px">
-	       			 <a href="/pb/index.php" class="btn right" style="background:#e95d3c">VIZUALIZEAZA SITE-UL</a><br><br>
+	       			<div class="row">
+	       			 	<a href="/pb/admin.php" class="btn left" style="background:#e95d3c">ADMIN</a>
+	       			 	<a href="/pb/index.php" class="btn right" style="background:#e95d3c">VIZUALIZEAZA SITE-UL</a>
+       			 	</div>
 					<ul class="collapsible" data-collapsible="expandable" style="box-shadow: none;">
 						<?php 
 							if($query_message){

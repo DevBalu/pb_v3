@@ -38,8 +38,8 @@
 					<div class="12u">
 						<section>
 							<header>
-								<h2><?php print $post->title; ?></h2>
-								<span class="byline"><?php print $post->subtitle; ?></span>
+								<h2 style="text-align:center; line-height: 50px;"><?php print $post->title; ?></h2>
+								<span class="byline" style="text-align:center;"><?php print $post->subtitle; ?></span>
 								<img src="<?php print $post->image_url; ?>">
 							</header>
 							<h3><?php print $post->content; ?></h3>
