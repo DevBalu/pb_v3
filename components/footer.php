@@ -42,12 +42,13 @@
 
 			<div class="6u">
 		    	<h2>Scrieți-ne un mesaj</h2>
-			    <form id="am"><!--access message-->
+			    <form id="am" class="message"  action="php/messagereq.php" method="POST"><!--access message-->
 			        <div>
-			          <input type="text" placeholder="Nume Prenume"><br>
-			          <input type="text" placeholder="Email"><br>
+			          <input name="fname" type="text" placeholder="Nume"><br>
+			          <input name="lname" type="text" placeholder="Prenume"><br>
+			          <input name="email" type="text" placeholder="Email"><br>
 			          <textarea name="message" placeholder="Mesaj"></textarea>
-			          <a href="#" class="button">TRIMITE</a>
+			          <button class="button" type="submit">TRIMITE</button>
 			        </div>
 			    </form>
 			  </div>

@@ -1,4 +1,8 @@
-<?php 
+<?php
+	session_start();
+	if(!$_SESSION['auth']){
+		header('Location: /pb/index.php');
+	}
 	require_once('php/connect.php');
 
 	if (!empty($con)) {
@@ -49,7 +53,7 @@
 	<meta charset="UTF-8">
 	<!--Let browser know website is optimized for mobile-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<title>Editarea Postului</title>
+	<title>Adaugarea Postului</title>
 	<!--Import Google Icon Font-->
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!-- Compiled and minified CSS -->
@@ -59,58 +63,35 @@
 
 	<div class="container">
 		<div class="row">
+		<br>
 			<div class="col m3 offset-m4">
 				<img src="images/logo.jpg" style="width: 100%">
 			</div>
 			<form action="php/addcontent.php" method="POST" enctype="multipart/form-data">
-				<div class="col s12 m8 l8 offset-m2 offset-l2">
+				<div class="col s12 m8 l8 offset-m2 offset-l2"><br>
 
-					<h4 class="left" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">Editarea Postuui</h4><br><br><br>
+					<h4 class="left" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">ADAUGATI GRUPA</h4><br><br><br>
 
-				  	<div class="input-field col s12">
-				    	<select name="group">
-				      		<option value="" disabled selected>GROUP</option>
-				      		<?php print $group_options; ?>
-				    	</select>
-				  	</div><br><br><br><br>
-				  	<div class="input-field col s12">
-				    	<select name="category">
-				      		<option value="" disabled selected>CATEGORY</option>
-				      		<?php print $categories_options; ?>
-				    	</select>
-				  	</div><br><br><br><br>
-
-			        <div class="file-field input-field">
-				      <div class="btn">
+	  		        <div class="input-field">
+	          			<input id="content" type="text" name="name"/>
+	         			<label for="content">NUME</label>
+	       			 </div><br>
+          			<div class="file-field input-field">
+				      <div class="btn" style="background:#e95d3c">
 				        <span>File</span>
 				        <input type="file" name="image">
 				      </div>
 				      <div class="file-path-wrapper">
-				        <input class="file-path validate" type="text" placeholder="Alege-ti imaginea">
+				        <input class="file-path validate" type="text" placeholder="Alege Imaginea">
 				      </div>
 				    </div>
-
-			        <div class="input-field">
-	          			<textarea id="title" type="text" class="materialize-textarea" name="title"></textarea>
-	          			<label for="title">Titlu</label>
-	          		</div>
-
-	  		        <div class="input-field">
-	          			<textarea id="subtit" type="text" class="materialize-textarea" name="subtitle"></textarea>
-	         			<label for="subtit">Subtitlu</label>
-	       			 </div><br>
-
-	  		        <div class="input-field">
-	          			<textarea id="content1" type="text" class="materialize-textarea" name="content"></textarea>
-	         			<label for="content1">Content</label>
-	       			 </div><br>
-	       			 <button class="btn right" type="submit" style="background:#e95d3c">SAVE</button>
+          			<input value="1" type="hidden" name="addgroup"/>
+   					<a class="btn left" href="/pb/admin.php" style="background:#e95d3c">PAGINA ADMIN</a>	
+   					<button class="btn right" type="submit" style="background:#e95d3c">SALVEAZA</button>
 				</div>
 			</form>
 		</div>
 	</div>
-
-
 
 	<!--Import jQuery before materialize.js-->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

@@ -1,7 +1,30 @@
-<?php 
+<?php
 	session_start();
-	if(!empty($_SESSION['auth'])){
+	if(!$_SESSION['auth']){
 		header('Location: /pb/index.php');
+	}
+	include('php/connect.php');
+
+	$query_groups = mysqli_query($con, "SELECT * FROM groups") ;
+	$query_categories = mysqli_query($con, "SELECT * FROM categories") ;
+	$groups = $query_groups->fetch_all();
+	$categories = $query_categories->fetch_all();
+
+	$groups_operations = '';
+	if ($groups) {
+		foreach ($groups as $group) {
+			$groups_operations .= '<p>' . $group[1] . ':</p>
+			<a href="/pb/editcontent.php?id_group=' . $group[0] . '" class="btn left" style="background:#e95d3c">EDITEAZA</a>
+			<a href="/pb/editcontent.php?id_group=' . $group[0] . '&delete=1" class="btn right" style="background:#e95d3c">STERGE</a><br><br>';
+		}
+	}
+	$categories_operations = '';
+	if ($categories) {
+		foreach ($categories as $category) {
+			$categories_operations .= '<p>' . $category[2] . ':</p>
+			<a href="/pb/editcontent.php?id_category=' . $category[0] . '" class="btn left" style="background:#e95d3c">EDITEAZA</a>
+			<a href="/pb/editcontent.php?id_category=' . $category[0] . '&delete=1" class="btn right" style="background:#e95d3c">STERGE</a><br><br>';
+		}
 	}
  ?>
 
@@ -20,28 +43,39 @@
 <body><br><br>
 	<div class="container">
 		<div class="row">
-			<form action="php/log.php" method="POST" >
-				<div class="col s12 m6 l6 offset-l3" >
-					<img src="images/logo.jpg" style="width: 100%"><br><br>
-					<div style="border:3px solid #ccc; padding: 20px">
-						<h4 class="center" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">INTRODUCETI DATE PENTRU AUTORIZARE.</h4>
-				        <div class="input-field">
-		          			<input id="first_name" type="text" class="validate" name="username">
-		          			<label for="first_name">LOGIN</label>
-		          		</div>
-		  		        <div class="input-field">
-		          			<input id="last_name" type="text" class="validate" name="password">
-		         			<label for="last_name">PASSWORD</label>
-		       			 </div><br>
-		       			 <button class="btn right" type="submit" style="background:#e95d3c">LOG IN</button><br><br>
+			<div class="col s12 m8 l8 offset-l2" >
+				<a href="index.php"><img src="images/logo.jpg" style="width: 100%"><br><br></a>
+				<div style="border:3px solid #ccc; padding: 20px">
+					
+					<h4 class="center" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">VIZUALIZEAZA:</h4>
+					<div class="row">
+		       			<a href="/pb/index.php" class="btn right col m4" style="background:#e95d3c">SITE-UL</a>
+		       			<a href="/pb/message.php" class="btn left col m4" style="background:#e95d3c">MESSAJE</a>
 					</div>
+					<div class="divider"></div>
+					
+					<h4 class="center" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">ADAUGA:</h4>
+	       			<a href="/pb/addpost.php" class="btn left" style="background:#e95d3c">POST</a><br><br>
+	       			<a href="/pb/addgroup.php" class="btn left" style="background:#e95d3c">GRUPA</a><br><br>
+	       			<a href="/pb/addcategory.php" class="btn left" style="background:#e95d3c">CATEGORIE</a><br><br>
+					<!-- <div class="divider"></div> -->
+
+					<ul class="collapsible" data-collapsible="expandable" style="box-shadow: none; border-left:none; border-right: none;">
+						<li style="padding: 20px;">
+							<div class="collapsible-header"><h4 class="center" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">OPERATII GRUPE:</h4></div>
+							<div class="collapsible-body"><?php print $groups_operations; ?></div>
+						</li>
+						<li style="padding: 20px;">
+							<div class="collapsible-header"><h4 class="center" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">OPERATII CATEGORII:</h4></div>
+							<div class="collapsible-body"><?php print $categories_operations; ?></div>
+						</li>
+					</ul>
+					
+					
 				</div>
-			</form>
+			</div>
 		</div>
 	</div>
-
-
-
 
 	<!--Import jQuery before materialize.js-->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

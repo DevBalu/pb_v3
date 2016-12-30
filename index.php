@@ -4,6 +4,29 @@
 		<?php include "components/head.php"; ?>
 	</head>
 	<body class="homepage">
+	<?php 
+		session_start();
+		if(!empty($_SESSION['auth'])){
+		print '
+			<div class="container">
+				<div class="row">
+					<div class="3u" style="float:right">			
+							<a href="admin.php" class="button" style="margin-right:20px;">ADMIN</a>
+							<a href="logout.php" class="button">LOG OUT</a>
+					 </div>
+				</div>
+			</div>';
+	 	}else{
+	 		print '
+			<div class="container">
+				<div class="row">
+					<div style="float:right">			
+							<a href="auth.php" class="button">LOG IN</a>
+					 </div>
+				</div>
+			</div>';
+	 	}
+	 ?>
 
 	<!-- Header -->
 		<?php include "components/navbar.php"; ?>
@@ -12,7 +35,6 @@
 	<!-- Banner -->
 		<?php include "components/banner.php"; ?>
 	<!-- /Banner -->
-
 	<!-- Page -->
 		<div id="page">
 
@@ -22,15 +44,32 @@
 				<div class="row">
 					<div class="6u">
 						<section>
-							<header>
-								<h2>Anunturi importante</h2>
-								<span class="byline">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas.</span>
-							</header>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur voluptate saepe pariatur, expedita doloribus iusto. Quia deserunt, accusantium maiores tempore.</p>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, nobis. Dolore dignissimos, fugiat suscipit adipisci quidem eveniet esse, magni consequuntur mollitia amet error! Fugit quae tempore, voluptates explicabo quo nostrum aut ab rerum in modi esse eum quidem odit hic, ex voluptatem sed earum dignissimos! Iste et consequuntur, rerum ut quam, illum magni eos culpa expedita. Facilis expedita tempore obcaecati? Laborum tenetur provident corporis maxime expedita dolore minus, illum dolorem.</p>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, ullam ab ipsa provident, vitae tempore explicabo id quasi est, delectus similique! Excepturi quaerat temporibus quibusdam repellat, nemo suscipit officia consectetur nisi cupiditate, doloremque repudiandae blanditiis provident, voluptates vel? Optio veritatis facilis sint eum iure minima aperiam obcaecati, repellat, harum excepturi fugiat distinctio molestias, sit in vitae. Minima aperiam consequatur fuga ad facere, quam delectus ab modi explicabo rem. Beatae, dolor!</p>
-							<a href="#" class="button">More Details</a>
+						<?php 
+
+						$resimp = mysqli_query($con, "
+							SELECT p.* FROM posts p
+							WHERE important = 1
+							ORDER BY id DESC
+							LIMIT 1
+							");
+
+						if ($resimp) {
+							while ($row = $resimp->fetch_object()) {
+									?>
+									<header>
+										<h2><?php print $row->title ?></h2>
+										<span class="byline"><?php print $row->subtitle ?></span>
+									</header>
+									<p><?php print $row->content ?></p>
+									<?php  
+										print '<a class="button" href="/pb/post.php?id=' . $row->id .'">Mai multe</a>';
+									?>
+
 						</section>
+								<?php
+								;}
+							$resimp->close();
+						} ?>
 					</div>
 					<div class="3u">
 						<section class="sidebar">
@@ -38,22 +77,29 @@
 								<h2>ultimile știri</h2>
 							</header>
 							<ul class="style2">
-								<li>
-									<a href="#"><img src="images/pics07.jpg" alt=""></a>
-									<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
-								</li>
-								<li>
-									<a href="#"><img src="images/pics08.jpg" alt=""></a>
-									<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
-								</li>
-								<li>
-									<a href="#"><img src="images/pics09.jpg" alt=""></a>
-									<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
-								</li>
-								<li>
-									<a href="#"><img src="images/pics10.jpg" alt=""></a>
-									<p>Donec leo, vivamus fermentum augue praesent a lacus at urna rutrum.</p>
-								</li>
+								<?php 
+									include "php/connect.php";
+
+										$result = mysqli_query($con, "
+											SELECT p.* FROM posts p
+											ORDER BY id DESC
+											LIMIT 5
+											");
+
+										if ($result) {
+											while ($row = $result->fetch_object()) {
+												print '
+													<li>
+														<a href="/pb/post.php?id=' . $row->id .'">
+															<img src="images/pics05.jpg" width="50%">
+														</a>
+														<p>'. $row->title.'</p>
+													</li>
+												';
+											}
+											$result->close();
+										}
+								?>
 							</ul>
 						</section>
 					</div>
@@ -93,33 +139,37 @@
 	<!-- Featured -->
 		<div id="featured">
 			<div class="container">
+				<p style="text-align:center; color:#fff; font-size:35px;">ULTIMILE STIRI IMPORTANTE</p>
 				<div class="row">
-					<section class="4u">
-						<div class="box">
-							<a href="#" class="image left"><img src="images/pics04.jpg" alt=""></a>
-							<h3>Etiam posuere augue</h3>
-							<p>Donec nonummy magna quis risus eleifend. </p>
-							<a href="#" class="button">More</a>
-						</div>
-					</section>
-					<section class="4u">
-						<div class="box">
-							<a href="#" class="image left"><img src="images/pics05.jpg" alt=""></a>
-							<h3>Etiam posuere augue</h3>
-							<p>Donec nonummy magna quis risus eleifend. </p>
-							<a href="#" class="button">More</a>
-						</div>
-					</section>
-					<section class="4u">
-						<div class="box">
-							<a href="#" class="image left"><img src="images/pics06.jpg" alt=""></a>
-							<h3>Etiam posuere augue</h3>
-							<p>Donec nonummy magna quis risus eleifend. </p>
-							<a href="#" class="button">More</a>
-						</div>
-					</section>
+				<?php 
+						$resultimp = mysqli_query($con, "
+							SELECT p.* FROM posts p
+							WHERE important = 1
+							ORDER BY id DESC
+							LIMIT 3
+							");
+
+						if ($resultimp) {
+							while ($row = $resultimp->fetch_object()) {
+								$row->id = 1;
+								print '
+									<section class="4u">
+										<div class="box" style="min-height: 150px; padding: 5px; border-radius: 5px;">
+												<a href="/pb/post.php?id=' . $row->id .'" style="color: #000; text-decoration:none;">
+													<p style="text-align:center; font-size: 20px">'.$row->title.'</p>
+													<p>'.$row->subtitle.'</p>
+												</a>
+												<a href="/pb/post.php?id=' . $row->id . '" class="button" style="margin-right:0; padding:2px 5px;">Mai multe</a>
+										</div>
+									</section>
+								';
+							}
+							$resultimp->close();
+						}
+
+				 ?>
 				</div>
-				<div class="divider"></div>
+				<!-- <div class="divider"></div> -->
 			</div>
 		</div>
 	<!-- /Featured -->

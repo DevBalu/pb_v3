@@ -1,5 +1,6 @@
   $(document).ready(function() {
     $('select').material_select();
+    $('.collapsible').collapsible();
 
     $('select[name="group"]').change(function() {
     	insertParam('group', $(this).val());
