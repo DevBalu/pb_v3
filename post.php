@@ -9,7 +9,6 @@
 	}
 	$post = $result->fetch_object();
 
-	$con->close();
  ?>
 
 <!DOCTYPE HTML>
@@ -40,7 +39,8 @@
 							<header>
 								<h2 style="text-align:center; line-height: 50px;"><?php print $post->title; ?></h2>
 								<span class="byline" style="text-align:center;"><?php print $post->subtitle; ?></span>
-								<img src="<?php print $post->image_url; ?>">
+								<!-- <img src="<?php //print $post->image_url; ?>"> -->
+								<img src="post_images/orange.jpg" style="width: 50%; margin-left:100px;">
 							</header>
 							<h3><?php print $post->content; ?></h3>
 						</section>
@@ -74,7 +74,6 @@
 
 						if ($resultimp) {
 							while ($row = $resultimp->fetch_object()) {
-								$row->id = -1;
 								print '
 									<section class="4u">
 										<div class="box">
@@ -83,7 +82,7 @@
 											</a>
 											<h3>'.$row->title.'</h3>
 											<p>'.$row->subtitle.'</p>
-											<a href="/pb/post.php?id=' . $row->id . '" class="button">More</a>
+											<a href="/pb/post.php?id=' . $row->id . '&important" class="button">More</a>
 										</div>
 									</section>
 								';

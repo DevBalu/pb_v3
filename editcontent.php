@@ -191,12 +191,6 @@
 					?>
 					<h4 class="left" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">Editarea Postuui</h4><br><br><br>
 
-				  <!-- 	<div class="input-field col s12">
-				    	<select name="group">
-				      		<option value="" disabled selected>GROUP</option>
-				      		<?php //print $group_options; ?>
-				    	</select>
-				  	</div><br><br><br><br> -->
 				  	<div class="input-field col s12">
 				    	<select name="category">
 				      		<option value="" disabled selected>CATEGORY</option>

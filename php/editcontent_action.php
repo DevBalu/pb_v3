@@ -23,6 +23,16 @@
 		}
 	}
 
+	// Remove message logic.
+	if (!empty($_POST['delmessage'])) {
+		$id = $_POST['delmessage'];
+		if (mysqli_query($con, "DELETE m.* FROM message m WHERE m.id = '$id'")) {
+			header('Location: /pb/message.php');
+		}
+
+	}
+
+	
 	// Remove group logic.
 	if (!empty($_POST['deletegroup'])) {
 		$id = $_POST['deletegroup'];

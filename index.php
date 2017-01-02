@@ -59,7 +59,7 @@
 									<header>
 										<h2 style="text-align:center;"><?php print $row->title ?></h2>
 										<span class="byline" style="text-align:center;"><?php print $row->subtitle ?></span>
-										<img src="<?php print $row->image_url; ?>" style="width: 80%; margin-left:25px;">
+										<img src="post_images/orange.jpg" style="width: 80%; margin-left:25px;">
 									</header>
 									<p><?php print $row->content ?></p>
 									<?php  
@@ -92,7 +92,7 @@
 												print '
 													<li>
 														<a href="/pb/post.php?id=' . $row->id .'">
-															<img src="'. $row->image_url .'" width="50%">
+															<img src="post_images/pics05.jpg" style="width: 50%;">
 														</a>
 														<p>'. $row->title.'</p>
 													</li>
@@ -152,15 +152,15 @@
 
 						if ($resultimp) {
 							while ($row = $resultimp->fetch_object()) {
-								$row->id = 1;
 								print '
 									<section class="4u">
 										<div class="box" style="min-height: 150px; padding: 5px; border-radius: 5px;">
 												<a href="/pb/post.php?id=' . $row->id .'" style="color: #000; text-decoration:none;">
-													<p style="text-align:center; font-size: 20px">'.$row->title.'</p>
-													<p>'.$row->subtitle.'</p>
+													<img src="images/children.jpg" width="50%" style="width: 50%; margin-left: 20%;">
 												</a>
-												<a href="/pb/post.php?id=' . $row->id . '" class="button" style="margin-right:0; padding:2px 5px;">Mai multe</a>
+												<p style="text-align:center; font-size: 20px">'.$row->title.'</p>
+												<p>'.$row->subtitle.'</p>
+												<a href="/pb/post.php?id=' . $row->id . '&important" class="button" style="margin-right:0; padding:2px 5px;">Mai multe</a>
 										</div>
 									</section>
 								';
