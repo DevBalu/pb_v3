@@ -14,7 +14,7 @@
 						$result = mysqli_query($con, "SELECT g.* FROM groups g");
 						if ($result) {
 							while ($row = $result->fetch_object()) {
-								print '<li><a href="/pb/group.php?id=' . $row->id .'">'. $row->name .'</a></li>';
+								print '<li><a href="group.php?id=' . $row->id .'">'. $row->name .'</a></li>';
 							}
 							$result->close();
 						}

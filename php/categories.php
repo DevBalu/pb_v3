@@ -28,7 +28,7 @@
 				<ul class="style1">
 					<?php 
 						foreach ($posts['posts'] as $post) {
-							print '<li><a href="/pb/post.php?id=' . $post['post_id'] . '">' . $post['title'] . '</a></li>';
+							print '<li><a href="post.php?id=' . $post['post_id'] . '">' . $post['title'] . '</a></li>';
 						}
 					?>
 					
@@ -37,6 +37,6 @@
 <?php 		
 	}
 
-	$con->close();
+	// $con->close();
 
  ?>

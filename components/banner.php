@@ -11,7 +11,7 @@
 			while ($row = $result->fetch_object()) {
 				print '<div class="box 3u">
 					<div class="menu">
-						<a href="/pb/group.php?id=' . $row->id .'">
+						<a href="group.php?id=' . $row->id .'">
 							<div class="sectop">
 								<img src="'. $row->thumbnail . '">
 							</div>

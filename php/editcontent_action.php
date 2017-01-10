@@ -83,12 +83,12 @@
 		$important = !empty($_POST['important']) ? 1 : 0;
 
 		if (!empty($_FILES['image']['name'])) {
-			$image_name = '../post_images/' . $_FILES['image']['name'];
+			$image_name = '../pb/post_images/' . $_FILES['image']['name'];
 			if (file_exists($image_name)) {
 				unlink($image_name);
 			}
 			move_uploaded_file($_FILES['image']['tmp_name'], $image_name);
-			$image_url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/post_images/' . $_FILES['image']['name'];
+			$image_url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/pb/post_images/' . $_FILES['image']['name'];
 		}
 
 		$update_string = "UPDATE posts p SET p.id_category=$category, p.title='$title', p.subtitle='$subtitle', p.content='$content', p.image_url='$image_url', important='$important' WHERE id = '$id'";

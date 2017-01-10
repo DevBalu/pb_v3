@@ -107,14 +107,15 @@
 			</div>
 			<form action="php/editcontent_action.php" method="POST" enctype="multipart/form-data">
 				<div class="col s12 m8 l8 offset-m2 offset-l2">
+					<!-- edit category -->
 					<?php 
 					if (!empty($_GET['id_category'])) {
-
+						// confirmation for delete category
 						if (!empty($_GET['delete'])) {
 							print '
 							<h2 class="center">Sunteti sigur ?</h2>
 							<input value="' . $_GET['id_category'] .'" type="hidden" name="deletecategory"/>
-	   						<a href="/pb/admin.php" class="btn left" style="background:#e95d3c">PAGINA ADMIN</a>
+	   						<a href="admin.php" class="btn left" style="background:#e95d3c">PAGINA ADMIN</a>
 	   						<button class="btn right" type="submit" style="background:#e95d3c">STERGE</button>';
 	   						return;
 						}
@@ -133,20 +134,22 @@
 		         			<label for="content">NUME</label>
 		       			 </div><br>
 		       			<input value="<?php print $_GET['id_category'];?>" type="hidden" name="category"/>
-	   					<a class="btn left" href="/pb/admin.php" style="background:#e95d3c">PAGINA ADMIN</a>	
+	   					<a class="btn left" href="admin.php" style="background:#e95d3c">PAGINA ADMIN</a>	
 	   					<button class="btn right" type="submit" style="background:#e95d3c">SALVEAZA</button>	
 					<?php 
 					}
 					?>
+					<!-- END edit category -->
 
+					<!-- edit group -->
 					<?php 
 					if (!empty($_GET['id_group'])) {
-
+						// confirmation for delete category
 						if (!empty($_GET['delete'])) {
 							print '
 							<h2 class="center">Sunteti sigur ?</h2>
 							<input value="' . $_GET['id_group'] .'" type="hidden" name="deletegroup"/>
-	   						<a href="/pb/admin.php" class="btn left" style="background:#e95d3c">PAGINA ADMIN</a>
+	   						<a href="admin.php" class="btn left" style="background:#e95d3c">PAGINA ADMIN</a>
 	   						<button class="btn right" type="submit" style="background:#e95d3c">STERGE</button>';
 	   						return;
 						}
@@ -172,19 +175,21 @@
 					      </div>
 					    </div>
 	          			<input value="<?php print $_GET['id_group']; ?>" type="hidden" name="group"/>
-	   					<a href="/pb/admin.php" class="btn left" style="background:#e95d3c">PAGINA ADMIN</a>
+	   					<a href="admin.php" class="btn left" style="background:#e95d3c">PAGINA ADMIN</a>
 	   					<button class="btn right" type="submit" style="background:#e95d3c">SALVEAZA</button>
 					<?php 
 					}
 					?>
+					<!-- END edit group -->
 
+					<!-- edit content -->
 					<?php 
 					if (!empty($_GET['id_post'])) {
 						if (!empty($_GET['delete'])) {
 							print '
 							<h2 class="center">Sunteti sigur ?</h2>
 							<input value="' . $_GET['id_post'] .'" type="hidden" name="deletepost"/>
-	   						<a href="/pb/editcontent.php?id_post=' . $_GET['id_post'] . '" class="btn left" style="background:#e95d3c">EDITARE POST</a>
+	   						<a href="editcontent.php?id_post=' . $_GET['id_post'] . '" class="btn left" style="background:#e95d3c">EDITARE POST</a>
 	   						<button class="btn right" type="submit" style="background:#e95d3c">STERGE</button>';
 	   						return;
 						}
@@ -201,7 +206,7 @@
 					<?php 
 						if ($post['image_url']) {
 							print '
-							<img src="' . $post['image_url'] . '"/>
+							<img src="' . $post['image_url'] . '" style="width: 15%;"/>
 							<input type="hidden" value="' . $post['image_url'] . '" name="image_url"/>
 							';
 						}
@@ -237,11 +242,12 @@
 	   				 	</div>
 	   				 </div>
 	   				 <input type="hidden" value="<?php print $_GET['id_post'] ?>" name="post" />
-	       			 <a class="btn left" href="/pb/editcontent.php?id_post=<?php print $_GET['id_post']; ?>&delete=1" style="background:#e95d3c" >STERGE POSTUL</a>
+	       			 <a class="btn left" href="editcontent.php?id_post=<?php print $_GET['id_post']; ?>&delete=1" style="background:#e95d3c" >STERGE POSTUL</a>
 	       			 <button class="btn right" type="submit" name="save" style="background:#e95d3c">SALVEAZA</button>
 	       			<?php 
 					}
 					?>
+					<!-- END edit content -->
 				</div>
 			</form>
 		</div>

@@ -14,16 +14,16 @@
 	if ($groups) {
 		foreach ($groups as $group) {
 			$groups_operations .= '<p>' . $group[1] . ':</p>
-			<a href="/pb/editcontent.php?id_group=' . $group[0] . '" class="btn left" style="background:#e95d3c">EDITEAZA</a>
-			<a href="/pb/editcontent.php?id_group=' . $group[0] . '&delete=1" class="btn right" style="background:#e95d3c">STERGE</a><br><br>';
+			<a href="editcontent.php?id_group=' . $group[0] . '" class="btn left" style="background:#e95d3c">EDITEAZA</a>
+			<a href="editcontent.php?id_group=' . $group[0] . '&delete=1" class="btn right" style="background:#e95d3c">STERGE</a><br><br>';
 		}
 	}
 	$categories_operations = '';
 	if ($categories) {
 		foreach ($categories as $category) {
 			$categories_operations .= '<p>' . $category[2] . ':</p>
-			<a href="/pb/editcontent.php?id_category=' . $category[0] . '" class="btn left" style="background:#e95d3c">EDITEAZA</a>
-			<a href="/pb/editcontent.php?id_category=' . $category[0] . '&delete=1" class="btn right" style="background:#e95d3c">STERGE</a><br><br>';
+			<a href="editcontent.php?id_category=' . $category[0] . '" class="btn left" style="background:#e95d3c">EDITEAZA</a>
+			<a href="editcontent.php?id_category=' . $category[0] . '&delete=1" class="btn right" style="background:#e95d3c">STERGE</a><br><br>';
 		}
 	}
  ?>
@@ -49,15 +49,15 @@
 					
 					<h4 class="center" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">VIZUALIZEAZA:</h4>
 					<div class="row">
-		       			<a href="/pb/index.php" class="btn right col m4" style="background:#e95d3c">SITE-UL</a>
-		       			<a href="/pb/message.php" class="btn left col m4" style="background:#e95d3c">MESSAJE</a>
+		       			<a href="index.php" class="btn right col m4" style="background:#e95d3c">SITE-UL</a>
+		       			<a href="message.php" class="btn left col m4" style="background:#e95d3c">MESSAJE</a>
 					</div>
 					<div class="divider"></div>
 					
 					<h4 class="center" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">ADAUGA:</h4>
-	       			<a href="/pb/addpost.php" class="btn left" style="background:#e95d3c">POST</a><br><br>
-	       			<a href="/pb/addgroup.php" class="btn left" style="background:#e95d3c">GRUPA</a><br><br>
-	       			<a href="/pb/addcategory.php" class="btn left" style="background:#e95d3c">CATEGORIE</a><br><br>
+	       			<a href="addpost.php" class="btn left" style="background:#e95d3c">POST</a><br><br>
+	       			<a href="addgroup.php" class="btn left" style="background:#e95d3c">GRUPA</a><br><br>
+	       			<a href="addcategory.php" class="btn left" style="background:#e95d3c">CATEGORIE</a><br><br>
 					<!-- <div class="divider"></div> -->
 
 					<ul class="collapsible" data-collapsible="expandable" style="box-shadow: none; border-left:none; border-right: none;">

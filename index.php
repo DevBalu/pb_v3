@@ -6,6 +6,7 @@
 	<body class="homepage">
 	<?php 
 		session_start();
+		// authorization how administrator
 		if(!empty($_SESSION['auth'])){
 		print '
 			<div class="container">
@@ -17,6 +18,7 @@
 				</div>
 			</div>';
 	 	}else{
+			// authorization how guest
 	 		print '
 			<div class="container">
 				<div class="row">
@@ -30,11 +32,12 @@
 
 	<!-- Header -->
 		<?php include "components/navbar.php"; ?>
-	<!-- Header -->
+	<!-- END Header -->
 
 	<!-- Banner -->
 		<?php include "components/banner.php"; ?>
-	<!-- /Banner -->
+	<!-- END Banner -->
+
 	<!-- Page -->
 		<div id="page">
 
@@ -42,6 +45,8 @@
 			<!-- Main -->
 			<div id="main" class="container indexsidebar">
 				<div class="row">
+				<!-- info section -->
+					<!-- section important post  -->
 					<div class="6u">
 						<section>
 						<?php 
@@ -59,11 +64,11 @@
 									<header>
 										<h2 style="text-align:center;"><?php print $row->title ?></h2>
 										<span class="byline" style="text-align:center;"><?php print $row->subtitle ?></span>
-										<img src="post_images/orange.jpg" style="width: 80%; margin-left:25px;">
+										<img src="<?php print $row->image_url ?>" style="width: 80%; margin-left:25px;">
 									</header>
 									<p><?php print $row->content ?></p>
 									<?php  
-										print '<a class="button" href="/pb/post.php?id=' . $row->id .'">Mai multe</a>';
+										print '<a class="button" href="post.php?id=' . $row->id .'">Mai multe</a>';
 									?>
 
 						</section>
@@ -72,6 +77,9 @@
 							$resimp->close();
 						} ?>
 					</div>
+					<!-- END section important post  -->
+
+					<!-- section last post -->
 					<div class="3u">
 						<section class="sidebar">
 							<header>
@@ -91,8 +99,8 @@
 											while ($row = $result->fetch_object()) {
 												print '
 													<li>
-														<a href="/pb/post.php?id=' . $row->id .'">
-															<img src="post_images/pics05.jpg" style="width: 50%;">
+														<a href="post.php?id=' . $row->id .'">
+															<img src="'. $row->image_url .'" style="width: 50%;">
 														</a>
 														<p>'. $row->title.'</p>
 													</li>
@@ -104,6 +112,8 @@
 							</ul>
 						</section>
 					</div>
+					<!-- END section last post -->
+					
 					<div class="3u">
 						<section class="sidebar">
 							<header>
@@ -132,15 +142,15 @@
 					</div>
 				</div>
 			</div>
-			<!-- /Main -->
+			<!-- END Main -->
 
 		</div>
-	<!-- /Pge -->
+	<!-- END Pge -->
 
 	<!-- Featured -->
 		<div id="featured">
 			<div class="container">
-				<p style="text-align:center; color:#fff; font-size:35px;">ULTIMILE STIRI IMPORTANTE</p>
+				<p style="text-align:center; color:#fff; font-size:35px; line-height: 2rem;">ULTIMILE STIRI IMPORTANTE</p>
 				<div class="row">
 				<?php 
 						$resultimp = mysqli_query($con, "
@@ -154,13 +164,15 @@
 							while ($row = $resultimp->fetch_object()) {
 								print '
 									<section class="4u">
-										<div class="box" style="min-height: 150px; padding: 5px; border-radius: 5px;">
-												<a href="/pb/post.php?id=' . $row->id .'" style="color: #000; text-decoration:none;">
-													<img src="images/children.jpg" width="50%" style="width: 50%; margin-left: 20%;">
-												</a>
-												<p style="text-align:center; font-size: 20px">'.$row->title.'</p>
-												<p>'.$row->subtitle.'</p>
-												<a href="/pb/post.php?id=' . $row->id . '&important" class="button" style="margin-right:0; padding:2px 5px;">Mai multe</a>
+										<div class="box" style="height: 300px; padding: 5px; border-radius: 5px;">
+												<div style="height: 250px; overflow: hidden">
+													<a href="post.php?id=' . $row->id .'" style="color: #000; text-decoration:none;">
+														<img src="'. $row->image_url .'" width="50%" style="width: 50%; margin-left: 20%;">
+													</a>
+													<p style="text-align:center; font-size: 20px">'.$row->title.'</p>
+													<p>'.$row->subtitle.'</p>
+												</div>
+												<a href="post.php?id=' . $row->id . '&important" class="button" style="margin-right:0; padding:2px 5px;">Mai multe</a>
 										</div>
 									</section>
 								';
@@ -173,7 +185,7 @@
 				<!-- <div class="divider"></div> -->
 			</div>
 		</div>
-	<!-- /Featured -->
+	<!-- END Featured -->
 
 	<!-- Footer -->
 		<?php include "components/footer.php"; ?>

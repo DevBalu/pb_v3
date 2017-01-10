@@ -44,13 +44,13 @@
 		$content = $_POST['content'];
 		$important = $_POST['important'] ? 1 : 0;
 		$created = $updated = time();
-		$image_name = '../post_images/' . $_FILES['image']['name'];
+		$image_name = '../pb/post_images/' . $_FILES['image']['name'];
 		if (file_exists($image_name)) {
 			unlink($image_name);
 		}
 		if(!empty($_FILES['image']['name'])){
 			move_uploaded_file($_FILES['image']['tmp_name'], $image_name);
-			$image_url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/post_images/' . $_FILES['image']['name'];
+			$image_url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/pb/post_images/' . $_FILES['image']['name'];
 		}else{
 			$image_url = "";
 		}
@@ -59,7 +59,7 @@
 			INSERT INTO posts (id_group, id_category, image_url, title, subtitle, content, created, updated, important)
 			VALUES ('$group', '$category', '$image_url', '$title', '$subtitle', '$content', '$created', '$updated', '$important')");
 
-		header('Location: /pb/addpost.php');
+		// header('Location: /pb/addpost.php');
 	}
 	else {
 		print "Cimpurile sunt goale.";

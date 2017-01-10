@@ -59,7 +59,7 @@
 	         			<label for="content">NUME</label>
 	       			 </div><br>
 	       			<input value="1" type="hidden" name="addcategory"/>
-   					<a class="btn left" href="/pb/admin.php" style="background:#e95d3c">PAGINA ADMIN</a>	
+   					<a class="btn left" href="admin.php" style="background:#e95d3c">PAGINA ADMIN</a>	
    					<button class="btn right" type="submit" style="background:#e95d3c">SALVEAZA</button>
 				</div>
 			</form>

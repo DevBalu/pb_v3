@@ -17,18 +17,43 @@
 		<?php include"components/head.php";?>
 	</head>
 	<body class="no-sidebar">
+	<?php 
+		session_start();
+		// authorization how administrator
+		if(!empty($_SESSION['auth'])){
+		print '
+			<div class="container">
+				<div class="row">
+					<div class="3u" style="float:right">			
+							<a href="admin.php" class="button" style="margin-right:20px;">ADMIN</a>
+							<a href="logout.php" class="button">LOG OUT</a>
+					 </div>
+				</div>
+			</div>';
+	 	}else{
+			// authorization how guest
+	 		print '
+			<div class="container">
+				<div class="row">
+					<div style="float:right">			
+							<a href="auth.php" class="button">LOG IN</a>
+					 </div>
+				</div>
+			</div>';
+	 	}
+	 ?>
 	<!-- Header -->
 		<?php include "components/navbar.php"; ?>
-	<!-- Header -->
+	<!-- END Header -->
 		
 	<!-- Banner -->
 		<div id="banner2">
 			<div class="container">
 			</div>
 		</div>
-	<!-- /Banner -->
+	<!-- END Banner -->
 
-	<!-- Main -->
+	<!-- Page -->
 		<div id="page">
 				
 			<!-- Main -->
@@ -39,30 +64,53 @@
 							<header>
 								<h2 style="text-align:center; line-height: 50px;"><?php print $post->title; ?></h2>
 								<span class="byline" style="text-align:center;"><?php print $post->subtitle; ?></span>
-								<!-- <img src="<?php //print $post->image_url; ?>"> -->
-								<img src="post_images/orange.jpg" style="width: 50%; margin-left:100px;">
+								<img src="<?php print $post->image_url ?>" style="width: 50%; margin-left:100px;">
 							</header>
 							<h3><?php print $post->content; ?></h3>
+							<div class="wrapper">
+								<div class="video">
+									<iframe id="postVideo" src="https://www.youtube.com/watch?v=aHFZkPumniI" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+								</div>
+							</div>
+							<style>
+								.wrapper {
+									position: relative;
+									perspective: 500px;
+									width: 400px;
+									height: 200px;
+								}
+								.video {
+									position: absolute;
+									width: 300px;
+									height: 200px;
+									/*margin: 400px 0 0 100px; */
+								}
+								#postVideo{
+									width: 100%;
+									height: 100%;
+								}
+									
+							</style>
 						</section>
 						<?php 
 							session_start();
 							if(!empty($_SESSION['auth'])){
-								print '<a href="/pb/editcontent.php?id_post='.$_GET['id'].'" class="button">EDITEAZA</a>';
+								print '<a href="editcontent.php?id_post='.$_GET['id'].'" class="button">EDITEAZA</a>';
 						 	}
 						 ?>
 					</div>
 
 				</div>
 			</div>
-			<!-- Main -->
+			<!-- END Main -->
 
 		</div>
-	<!-- /Main -->
+	<!-- END Page -->
 
 	<!-- Featured -->
 		<div id="featured">
 			<div class="container">
-				<p style="text-align:center; color:#fff; font-size:35px;">ULTIMILE STIRI IMPORTANTE</p>
+				<p style="text-align:center; color:#fff; font-size:35px; line-height: 2rem;">ULTIMILE STIRI IMPORTANTE</p>
 				<div class="row">
 				<?php 
 						$resultimp = mysqli_query($con, "
@@ -76,13 +124,15 @@
 							while ($row = $resultimp->fetch_object()) {
 								print '
 									<section class="4u">
-										<div class="box">
-											<a href="/pb/post.php?id=' . $row->id .'">
-												<img src="images/children.jpg" width="50%">
-											</a>
-											<h3>'.$row->title.'</h3>
-											<p>'.$row->subtitle.'</p>
-											<a href="/pb/post.php?id=' . $row->id . '&important" class="button">More</a>
+										<div class="box" style="height: 300px; padding: 5px; border-radius: 5px;">
+												<div style="height: 250px; overflow: hidden">
+													<a href="post.php?id=' . $row->id .'" style="color: #000; text-decoration:none;">
+														<img src="'. $row->image_url .'" width="50%" style="width: 50%; margin-left: 20%;">
+													</a>
+													<p style="text-align:center; font-size: 20px">'.$row->title.'</p>
+													<p>'.$row->subtitle.'</p>
+												</div>
+												<a href="post.php?id=' . $row->id . '&important" class="button" style="margin-right:0; padding:2px 5px;">Mai multe</a>
 										</div>
 									</section>
 								';
@@ -92,14 +142,13 @@
 
 				 ?>
 				</div>
-				<!-- <div class="divider"></div> -->
 			</div>
 		</div>
-	<!-- /Featured -->
+	<!-- END Featured -->
 
 	<!-- Footer -->
 		<?php include"components/footer.php"; ?> 
-	<!-- /Footer -->
+	<!-- END Footer -->
 
 	<!-- Copyright -->
 		<div id="copyright" >
@@ -107,7 +156,7 @@
 				Design: <a href="#">DevBalu</a>
 			</div>
 		</div>
-	<!-- /Copyright -->
+	<!-- END Copyright -->
 
 
 	</body>

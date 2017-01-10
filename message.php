@@ -33,7 +33,7 @@
 							<h2 class="center">Sunteti sigur ?</h2>
 							<form action="php/editcontent_action.php" method="POST">
 								<input value="' . $_GET['id_message'] .'" type="hidden" name="delmessage"/>
-		   						<a href="/pb/admin.php" class="btn left" style="background:#e95d3c">PAGINA ADMIN</a>
+		   						<a href="admin.php" class="btn left" style="background:#e95d3c">PAGINA ADMIN</a>
 		   						<button class="btn right" type="submit" style="background:#e95d3c">STERGE</button>
 	   						</form>';
 	   						return;
@@ -46,8 +46,8 @@
 				<a href="index.php"><img src="images/logo.jpg" style="width: 100%"><br><br></a>
 				<div style="border:3px solid #ccc; padding: 20px">
 	       			<div class="row">
-	       			 	<a href="/pb/admin.php" class="btn left" style="background:#e95d3c">ADMIN</a>
-	       			 	<a href="/pb/index.php" class="btn right" style="background:#e95d3c">VIZUALIZEAZA SITE-UL</a>
+	       			 	<a href="admin.php" class="btn left" style="background:#e95d3c">ADMIN</a>
+	       			 	<a href="index.php" class="btn right" style="background:#e95d3c">VIZUALIZEAZA SITE-UL</a>
        			 	</div>
 					<ul class="collapsible" data-collapsible="expandable" style="box-shadow: none;">
 						<?php 
@@ -61,7 +61,7 @@
 											<div class="collapsible-body">
 												<h5>' . $message['email'] . '</h5>
 												<p>' . $message['message'] . '</p>
-	       			 						<a class="btn" href="/pb/message.php?id_message=' . $message['id'] . '&delete=1" style="background:#e95d3c" >STERGE MESSAJUL</a>
+	       			 						<a class="btn" href="message.php?id_message=' . $message['id'] . '&delete=1" style="background:#e95d3c" >STERGE MESSAJUL</a>
 											</div>
 										</li>
 									';
