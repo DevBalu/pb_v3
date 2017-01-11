@@ -1,5 +1,5 @@
 <div id="copyright" >
 	<div class="container">
-		Design: <a href="#">DevBalu</a>
+		Developer: <a href="#">DevBalu</a>
 	</div>
 </div>

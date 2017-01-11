@@ -14,11 +14,11 @@
 		$groups = array();
 		if ($result) {
 			while ($row = $result->fetch_object()) {
-        		$groups[$row->id]['group_name'] = $row->group_name;
-        		$groups[$row->id]['categories'][] = array('category_name' => $row->category_name,
-        			'category_id' => $row->category_id);
-    		}
-    		$result->close();
+				$groups[$row->id]['group_name'] = $row->group_name;
+				$groups[$row->id]['categories'][] = array('category_name' => $row->category_name,
+				'category_id' => $row->category_id);
+			}
+			$result->close();
 		}
 
 		if (!empty($groups)) {
@@ -46,7 +46,7 @@
 	}
 
 	$con->close();
- ?>
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +58,7 @@
 	<!--Import Google Icon Font-->
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!-- Compiled and minified CSS -->
-  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 </head>
 <body>
 
@@ -73,50 +73,54 @@
 
 					<h4 class="left" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">Adaugare Post</h4><br><br><br>
 
-				  	<div class="input-field col s12">
-				    	<select name="group">
-				      		<option value="" disabled selected>GROUP</option>
-				      		<?php print $group_options; ?>
-				    	</select>
-				  	</div><br><br><br><br>
-				  	<div class="input-field col s12">
-				    	<select name="category">
-				      		<option value="" disabled selected>CATEGORY</option>
-				      		<?php print $categories_options; ?>
-				    	</select>
-				  	</div><br><br>
+					<div class="input-field col s12">
+						<select name="group">
+							<option value="" disabled selected>GROUP</option>
+							<?php print $group_options; ?>
+						</select>
+					</div><br><br><br><br>
+					<div class="input-field col s12">
+						<select name="category">
+							<option value="" disabled selected>CATEGORY</option>
+							<?php print $categories_options; ?>
+						</select>
+					</div><br><br>
 
-       			 	<div class="input-field col s12">
-	       			  	<input name="important" type="checkbox" class="filled-in" id="filled-in-box"/>
-      					<label for="filled-in-box">IMPORTANT</label>
-   				 	</div><br><br><br><br><br>
-			        <div class="file-field input-field">
-				      <div class="btn" style="background:#e95d3c">
-				        <span>File</span>
-				        <input type="file" name="image">
-				      </div>
-				      <div class="file-path-wrapper">
-				        <input class="file-path validate" type="text" placeholder="Alege Imaginea">
-				      </div>
-				    </div>
+					<div class="input-field col s12">
+						<input name="important" type="checkbox" class="filled-in" id="filled-in-box"/>
+						<label for="filled-in-box">IMPORTANT</label>
+					</div><br><br><br><br><br>
+					<div class="file-field input-field">
+						<div class="btn" style="background:#e95d3c">
+							<span>File</span>
+							<input type="file" name="image">
+						</div>
+						<div class="file-path-wrapper">
+							<input class="file-path validate" type="text" placeholder="Alege Imaginea">
+						</div>
+					</div>
 
-			        <div class="input-field">
-	          			<textarea id="title" type="text" class="materialize-textarea" name="title"></textarea>
-	          			<label for="title">Titlu</label>
-	          		</div>
+					<div class="input-field">
+						<textarea id="title" type="text" class="materialize-textarea" name="title"></textarea>
+						<label for="title">Titlu</label>
+					</div>
 
-	  		        <div class="input-field">
-	          			<textarea id="subtit" type="text" class="materialize-textarea" name="subtitle"></textarea>
-	         			<label for="subtit">Subtitlu</label>
-	       			 </div><br>
+					<div class="input-field">
+						<textarea id="subtit" type="text" class="materialize-textarea" name="subtitle"></textarea>
+						<label for="subtit">Subtitlu</label>
+					 </div><br>
 
-	  		        <div class="input-field">
-	          			<textarea id="content1" type="text" class="materialize-textarea" name="content"></textarea>
-	         			<label for="content1">Content</label>
-	       			 </div><br>
-	       			 <input value="1" type="hidden" name="addpost"/>
-   					 <a class="btn left" href="admin.php" style="background:#e95d3c">PAGINA ADMIN</a>
-   					 <button class="btn right" type="submit" style="background:#e95d3c">SALVEAZA</button>
+					<div class="input-field">
+						<textarea id="content1" type="text" class="materialize-textarea" name="content"></textarea>
+						<label for="content1">Content</label>
+					</div><br>
+					<div class="input-field">
+						<input id="video" type="text" name="video"></input>
+						<label for="video">Video : "YouTube"</label>
+					</div><br>
+					<input value="1" type="hidden" name="addpost"/>
+					<a class="btn left" href="admin.php" style="background:#e95d3c">PAGINA ADMIN</a>
+					<button class="btn right" type="submit" style="background:#e95d3c">SALVEAZA</button>
 				</div>
 			</form>
 		</div>
@@ -125,8 +129,8 @@
 	<!--Import jQuery before materialize.js-->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<!-- Compiled and minified JavaScript -->
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-  	<!-- Main custum file js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+	<!-- Main custum file js -->
 	<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>

@@ -4,6 +4,7 @@
 		header('Location: /pb/index.php');
 	}
 	include "connect.php";
+	include "videoexists.php";
 	
 	// Edit category logic.
 	if (!empty($_POST['category']) && !empty($_POST['name']) && !empty($_POST['select_group'])) {
@@ -32,7 +33,6 @@
 
 	}
 
-	
 	// Remove group logic.
 	if (!empty($_POST['deletegroup'])) {
 		$id = $_POST['deletegroup'];
@@ -71,7 +71,7 @@
 			header('Location: /pb/index.php');
 		}
 	}
-	
+
 	// Edit post logic.
 	if (!empty($_POST['post'])&& !empty($_POST['category']) && !empty($_POST['title']) && !empty($_POST['subtitle']) && !empty($_POST['content'])) {
 		$id = $_POST['post'];
@@ -79,20 +79,38 @@
 		$title = $_POST['title'];
 		$subtitle = $_POST['subtitle'];
 		$content = $_POST['content'];
-		$image_url = $_POST['image_url'];
+
+		// get res from video field
+		$editvideo = $_POST['editvideo'];
+		$href = '';
+		if (!empty($editvideo)) {
+			$pos = strpos($editvideo, 'embed');
+			if($pos !== false){
+				$v_id = substr($editvideo, 30);
+				$href = videoExist($v_id);
+			} else {
+				$v_id = substr($editvideo, 32);
+				$href = videoExist($v_id);
+			}
+		}
+		// END get res from video field
+
 		$important = !empty($_POST['important']) ? 1 : 0;
 
+		//get res from image field
+		$image_url = $_POST['image_url'];
 		if (!empty($_FILES['image']['name'])) {
-			$image_name = '../pb/post_images/' . $_FILES['image']['name'];
+			$image_name = '../post_images/' . $_FILES['image']['name'];
 			if (file_exists($image_name)) {
 				unlink($image_name);
 			}
 			move_uploaded_file($_FILES['image']['tmp_name'], $image_name);
 			$image_url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/pb/post_images/' . $_FILES['image']['name'];
 		}
+		//END get res from image field
 
-		$update_string = "UPDATE posts p SET p.id_category=$category, p.title='$title', p.subtitle='$subtitle', p.content='$content', p.image_url='$image_url', important='$important' WHERE id = '$id'";
-		
+		$update_string = "UPDATE posts p SET p.id_category=$category, p.title='$title', p.subtitle='$subtitle', p.content='$content', p.video='$href', p.image_url='$image_url', important='$important' WHERE id = '$id'";
+
 		mysqli_query($con, $update_string);
 		header('Location: /pb/editcontent.php?id_post=' . $id);
 	}

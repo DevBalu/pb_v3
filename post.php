@@ -1,6 +1,6 @@
 <?php
-	include "php/connect.php";
-	
+	//logic for post field
+	require_once('php/connect.php');
 	if (!empty($_GET['id'])) {
 		$id = $_GET['id'];
 		$result = mysqli_query($con, "SELECT p.* FROM posts p WHERE p.id = '$id'");
@@ -8,8 +8,52 @@
 		header('Location: /pb/index.php');
 	}
 	$post = $result->fetch_object();
+	//END logic for post field
+	
+	//logic for FEUTERED post.php
+	$id_cat = $post->id_category;
+	if(!empty($con)){
+		// query for last three posts from this category
+		$lastCatPost = mysqli_query($con, "
+			SELECT p.id, p.image_url, p.title, p.subtitle FROM posts  p
+			WHERE p.id_category = '$id_cat' 
+			ORDER BY p.id DESC
+			LIMIT 3
+			");
+		//query for getting category name for section last posts
+		$secTitLasPos = mysqli_query($con, "SELECT c.name FROM categories c WHERE c.id = '$id_cat'");
+		$titleLP = $secTitLasPos->fetch_assoc();
+	
 
- ?>
+		// show query result in required field 
+		$lastCatPostForm = '';
+		if(!empty($lastCatPost)){
+			while($row = $lastCatPost->fetch_assoc()){
+				$lastCatPostForm .= '
+				<section class="4u">
+					<div class="box" style="height: 300px; padding: 5px; border-radius: 5px;">
+							<div style="height: 250px; overflow: hidden">
+								<a href="post.php?id='.$row['id'].'" style="color: #000; text-decoration:none;">
+									<img src="'.$row['image_url'].'" width="50%" style="width: 50%; margin-left: 20%;">
+								</a>
+								<p style="text-align:center; font-size: 20px">'.$row['title'].'</p>
+								<p>'.$row['subtitle'].'</p>
+							</div>
+							<a href="post.php?id='.$row['id'].'&important" class="button" style="margin-right:0; padding:2px 5px;">Mai multe</a>
+					</div>
+				</section>';
+			}//end while
+		}//end if
+
+		if (!empty($lastCatPostForm)) {
+			$secTit = 'ULTIMILE STIRI DIN CATEGORIE : '.$titleLP['name'];
+		}else{
+			$secTit= '';
+		}
+	}
+	$con->close();
+	//END logic for FEUTERED post.php  
+?>
 
 <!DOCTYPE HTML>
 <html>
@@ -30,9 +74,9 @@
 					 </div>
 				</div>
 			</div>';
-	 	}else{
+		}else{
 			// authorization how guest
-	 		print '
+			print '
 			<div class="container">
 				<div class="row">
 					<div style="float:right">			
@@ -40,123 +84,111 @@
 					 </div>
 				</div>
 			</div>';
-	 	}
-	 ?>
-	<!-- Header -->
+		}
+	?>
+	<!-- HEADER -->
 		<?php include "components/navbar.php"; ?>
-	<!-- END Header -->
+	<!-- /HEADER -->
 		
-	<!-- Banner -->
+	<!-- BANNER -->
 		<div id="banner2">
 			<div class="container">
 			</div>
 		</div>
-	<!-- END Banner -->
+	<!--  /BANNER -->
 
-	<!-- Page -->
+	<!-- PAGE -->
 		<div id="page">
 				
-			<!-- Main -->
+			<!-- MAIN -->
 			<div id="main" class="container">
 				<div class="row">
 					<div class="12u">
 						<section>
 							<header>
+								<!-- divider -->
+								<div class="divider" style="width: 100%; border-bottom: 1px solid #ddd; margin: 20px 0px;"></div>
+								<!--  /divider -->
+
+								<!-- title -->
 								<h2 style="text-align:center; line-height: 50px;"><?php print $post->title; ?></h2>
-								<span class="byline" style="text-align:center;"><?php print $post->subtitle; ?></span>
-								<img src="<?php print $post->image_url ?>" style="width: 50%; margin-left:100px;">
-							</header>
-							<h3><?php print $post->content; ?></h3>
-							<div class="wrapper">
-								<div class="video">
-									<iframe id="postVideo" src="https://www.youtube.com/watch?v=aHFZkPumniI" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+								<!--  /title -->
+
+								<!-- subtitle -->
+								<span class="byline" style="text-align:center;"><?php print $post->subtitle; ?></span><br>
+								<!--  /subtitle -->
+
+								<!-- image -->
+								<div style="width: 50%;">
+									<img src="<?php print $post->image_url ?>" style="max-height: 550px;">
 								</div>
-							</div>
-							<style>
-								.wrapper {
-									position: relative;
-									perspective: 500px;
-									width: 400px;
-									height: 200px;
-								}
-								.video {
-									position: absolute;
-									width: 300px;
-									height: 200px;
-									/*margin: 400px 0 0 100px; */
-								}
-								#postVideo{
-									width: 100%;
-									height: 100%;
-								}
-									
-							</style>
+								<!--  /image -->
+							</header>
+							<!-- content -->
+							<h3><?php print $post->content; ?></h3>
+							<!--  /content -->
+
+							<!-- divider -->
+							<div class="divider" style="width: 100%; border-bottom: 1px solid #ddd; margin: 20px 0px;"></div>
+							<!--  /divider -->
+
+							<!-- video -->
+							<?php 
+								$video = $post->video;
+								if(!empty($video)){
+								?>
+									<div style="width: 50%;">
+										<iframe width="100%" height="315" src="<?php print $post->video;?>" allowfullscreen="allowfullscreen"></iframe>
+									</div>
+									<!-- divider -->
+									<div class="divider" style="width: 100%; border-bottom: 1px solid #ddd; margin: 20px 0px;"></div>
+									<!--  /divider -->
+								<?php
+								} 
+							 ?>
+							<!--  /video -->
+
 						</section>
 						<?php 
-							session_start();
 							if(!empty($_SESSION['auth'])){
-								print '<a href="editcontent.php?id_post='.$_GET['id'].'" class="button">EDITEAZA</a>';
-						 	}
-						 ?>
+								print '<a href="editcontent.php?id_post='.$_GET['id'].'" class="button" style="margin-right:0px;"">EDITEAZA</a>';
+							}
+						?>
 					</div>
 
 				</div>
 			</div>
-			<!-- END Main -->
+			<!--  /MAIN -->
 
 		</div>
-	<!-- END Page -->
+	<!--  /PAGE -->
 
-	<!-- Featured -->
+	<!-- FEATURED -->
 		<div id="featured">
 			<div class="container">
-				<p style="text-align:center; color:#fff; font-size:35px; line-height: 2rem;">ULTIMILE STIRI IMPORTANTE</p>
+				<p style="text-align:center; color:#fff; font-size:35px; line-height: 2rem;"><?php print $secTit;?></p>
 				<div class="row">
-				<?php 
-						$resultimp = mysqli_query($con, "
-							SELECT p.* FROM posts p
-							WHERE important = 1
-							ORDER BY id DESC
-							LIMIT 3
-							");
-
-						if ($resultimp) {
-							while ($row = $resultimp->fetch_object()) {
-								print '
-									<section class="4u">
-										<div class="box" style="height: 300px; padding: 5px; border-radius: 5px;">
-												<div style="height: 250px; overflow: hidden">
-													<a href="post.php?id=' . $row->id .'" style="color: #000; text-decoration:none;">
-														<img src="'. $row->image_url .'" width="50%" style="width: 50%; margin-left: 20%;">
-													</a>
-													<p style="text-align:center; font-size: 20px">'.$row->title.'</p>
-													<p>'.$row->subtitle.'</p>
-												</div>
-												<a href="post.php?id=' . $row->id . '&important" class="button" style="margin-right:0; padding:2px 5px;">Mai multe</a>
-										</div>
-									</section>
-								';
-							}
-							$resultimp->close();
-						}
-
-				 ?>
+				<!-- last posts from category -->
+					<?php print $lastCatPostForm;?>
+				<!--  /last posts from category -->
 				</div>
+				<!--  /row -->
 			</div>
+			<!--  /container -->
 		</div>
-	<!-- END Featured -->
+	<!--  /FEATURED -->
 
-	<!-- Footer -->
+	<!-- FOOTER -->
 		<?php include"components/footer.php"; ?> 
-	<!-- END Footer -->
+	<!--  /FOOTER -->
 
-	<!-- Copyright -->
+	<!-- COPYRIGHT -->
 		<div id="copyright" >
 			<div class="container">
-				Design: <a href="#">DevBalu</a>
+				Developer: <a href="#">DevBalu</a>
 			</div>
 		</div>
-	<!-- END Copyright -->
+	<!--  /COPYRIGHT -->
 
 
 	</body>

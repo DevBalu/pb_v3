@@ -38,7 +38,7 @@
 	<!--Import Google Icon Font-->
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!-- Compiled and minified CSS -->
-  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 </head>
 <body><br><br>
 	<div class="container">
@@ -49,15 +49,15 @@
 					
 					<h4 class="center" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">VIZUALIZEAZA:</h4>
 					<div class="row">
-		       			<a href="index.php" class="btn right col m4" style="background:#e95d3c">SITE-UL</a>
-		       			<a href="message.php" class="btn left col m4" style="background:#e95d3c">MESSAJE</a>
+						<a href="index.php" class="btn right col m4" style="background:#e95d3c">SITE-UL</a>
+						<a href="message.php" class="btn left col m4" style="background:#e95d3c">MESSAJE</a>
 					</div>
 					<div class="divider"></div>
 					
 					<h4 class="center" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">ADAUGA:</h4>
-	       			<a href="addpost.php" class="btn left" style="background:#e95d3c">POST</a><br><br>
-	       			<a href="addgroup.php" class="btn left" style="background:#e95d3c">GRUPA</a><br><br>
-	       			<a href="addcategory.php" class="btn left" style="background:#e95d3c">CATEGORIE</a><br><br>
+					<a href="addpost.php" class="btn left" style="background:#e95d3c">POST</a><br><br>
+					<a href="addgroup.php" class="btn left" style="background:#e95d3c">GRUPA</a><br><br>
+					<a href="addcategory.php" class="btn left" style="background:#e95d3c">CATEGORIE</a><br><br>
 					<!-- <div class="divider"></div> -->
 
 					<ul class="collapsible" data-collapsible="expandable" style="box-shadow: none; border-left:none; border-right: none;">
@@ -80,6 +80,6 @@
 	<!--Import jQuery before materialize.js-->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<!-- Compiled and minified JavaScript -->
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 </body>
 </html>

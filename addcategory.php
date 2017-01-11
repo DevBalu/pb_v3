@@ -7,9 +7,9 @@
 		$groups = array();
 		if ($result) {
 			while ($row = $result->fetch_object()) {
-        		$groups[$row->id] = $row->name;
-    		}
-    		$result->close();
+				$groups[$row->id] = $row->name;
+			}
+			$result->close();
 		}
 
 		if (!empty($groups)) {
@@ -32,7 +32,7 @@
 	<!--Import Google Icon Font-->
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!-- Compiled and minified CSS -->
-  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 </head>
 <body>
 
@@ -47,20 +47,20 @@
 
 					<h4 class="left" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">ADAUGATI CATEGORIE</h4><br><br><br>
 
- 				  	<div class="input-field col s12">
-				    	<select name="select_group">
-				      		<option value="" disabled selected>GROUP</option>
-				      		<?php print $group_options; ?>
-				    	</select>
-				  	</div><br><br><br><br>
+					<div class="input-field col s12">
+						<select name="select_group">
+							<option value="" disabled selected>GROUP</option>
+							<?php print $group_options; ?>
+						</select>
+					</div><br><br><br><br>
 
-	  		        <div class="input-field">
-	          			<input id="content" type="text" name="name"/>
-	         			<label for="content">NUME</label>
-	       			 </div><br>
-	       			<input value="1" type="hidden" name="addcategory"/>
-   					<a class="btn left" href="admin.php" style="background:#e95d3c">PAGINA ADMIN</a>	
-   					<button class="btn right" type="submit" style="background:#e95d3c">SALVEAZA</button>
+					<div class="input-field">
+						<input id="content" type="text" name="name"/>
+						<label for="content">NUME</label>
+					 </div><br>
+					<input value="1" type="hidden" name="addcategory"/>
+					<a class="btn left" href="admin.php" style="background:#e95d3c">PAGINA ADMIN</a>	
+					<button class="btn right" type="submit" style="background:#e95d3c">SALVEAZA</button>
 				</div>
 			</form>
 		</div>
@@ -69,8 +69,8 @@
 	<!--Import jQuery before materialize.js-->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<!-- Compiled and minified JavaScript -->
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-  	<!-- Main custum file js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+	<!-- Main custum file js -->
 	<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>

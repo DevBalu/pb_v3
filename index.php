@@ -64,7 +64,9 @@
 									<header>
 										<h2 style="text-align:center;"><?php print $row->title ?></h2>
 										<span class="byline" style="text-align:center;"><?php print $row->subtitle ?></span>
-										<img src="<?php print $row->image_url ?>" style="width: 80%; margin-left:25px;">
+									<div style="width: 60%; margin:auto;">
+										<img src="<?php print $row->image_url ?>" style="width: 100%;">
+									</div>
 									</header>
 									<p><?php print $row->content ?></p>
 									<?php  
@@ -167,7 +169,9 @@
 										<div class="box" style="height: 300px; padding: 5px; border-radius: 5px;">
 												<div style="height: 250px; overflow: hidden">
 													<a href="post.php?id=' . $row->id .'" style="color: #000; text-decoration:none;">
-														<img src="'. $row->image_url .'" width="50%" style="width: 50%; margin-left: 20%;">
+													<div style="width: 70%; margin:auto;">
+														<img src="'. $row->image_url .'" style="width: 100%; max-height: 247px;">
+													</div>
 													</a>
 													<p style="text-align:center; font-size: 20px">'.$row->title.'</p>
 													<p>'.$row->subtitle.'</p>

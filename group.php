@@ -1,9 +1,56 @@
 <?php 
+	//verification, if exists post show page else redirect at index page
 	if(!isset($_GET['id'])){
 		header('Location: /pb/index.php');
 	}
- ?>
+	//logic for FEUTERED group.php 
+	require_once('php/connect.php');
+	if(!empty($con)){
+	 	//get group id 
+		$id = $_GET['id'];
 
+		// query for last three posts from this group 
+		$lastGroupPost = mysqli_query($con, "
+			SELECT p.id, p.image_url, p.title, p.subtitle FROM categories c 
+			JOIN posts p ON p.id_category = c.id
+			WHERE c.id_group = '$id' 
+			ORDER BY p.id DESC
+			LIMIT 3
+			");
+		//query for getting group name for section last posts
+		$secTitLasPos = mysqli_query($con, "SELECT g.name FROM groups g WHERE g.id = '$id'");
+		$titleLP = $secTitLasPos->fetch_assoc();
+
+		// show query result in required field 
+		$lastGroupPostForm = '';
+		if(!empty($lastGroupPost)){
+			while($row = $lastGroupPost->fetch_assoc()){
+				$lastGroupPostForm .= '
+				<section class="4u">
+					<div class="box" style="height: 300px; padding: 5px; border-radius: 5px;">
+							<div style="height: 250px; overflow: hidden">
+								<a href="post.php?id='.$row['id'].'" style="color: #000; text-decoration:none;">
+									<img src="'.$row['image_url'].'" width="50%" style="width: 50%; margin-left: 20%;">
+								</a>
+								<p style="text-align:center; font-size: 20px">'.$row['title'].'</p>
+								<p>'.$row['subtitle'].'</p>
+							</div>
+							<a href="post.php?id='.$row['id'].'&important" class="button" style="margin-right:0; padding:2px 5px;">Mai multe</a>
+					</div>
+				</section>';
+			}//end while
+		}//end if
+
+		if (!empty($lastGroupPostForm)) {
+			$secTit = 'ULTIMILE STIRI DIN GRUPA : '.$titleLP['name'];
+		}else{
+			$secTit= '';
+		}
+	}
+	$con->close();
+	//END logic for FEUTERED  
+
+ ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -64,55 +111,10 @@
 	<!-- Featured -->
 		<div id="featured">
 			<div class="container">
-				<?php 
-					if (!empty($con)) {
-						//get group id 
-						$id = $_GET['id'];
-						//query for getting group name for section last posts
-						$titleLastPost = mysqli_query($con, "SELECT g.name FROM groups g WHERE g.id = '$id'");
-						$titleLP = $titleLastPost->fetch_assoc();
-				 ?>
-				<p style="text-align:center; color:#fff; font-size:35px; line-height: 2rem;">
-					<?php 
-						if(!empty($lastGroupPost)){
-							print 'ULTIMILE STIRI DIN GRUPA :'.$titleLP['name'];
-						}
-					?>
-				</p>
+				<p style="text-align:center; color:#fff; font-size:35px; line-height: 2rem;"><?php print $secTit;?></p>
 				<div class="row">
 				<!-- last posts from group -->
-					<?php 
-						// query for last three posts from this group 
-						$lastGroupPost = mysqli_query($con, "
-							SELECT p.id, p.image_url, p.title, p.subtitle FROM categories c 
-							JOIN posts p ON p.id_category = c.id
-							WHERE c.id_group = '$id' 
-							ORDER BY p.id DESC
-							LIMIT 3
-							");
-						// show query result in required field 
-						if(!empty($lastGroupPost)){
-							while($row = $lastGroupPost->fetch_assoc()){
-								?>
-									<section class="4u">
-										<div class="box" style="height: 300px; padding: 5px; border-radius: 5px;">
-												<div style="height: 250px; overflow: hidden">
-													<a href="post.php?id=<?php print $row['id'];?>" style="color: #000; text-decoration:none;">
-														<img src="<?php $row['image_url'];?>" width="50%" style="width: 50%; margin-left: 20%;">
-													</a>
-													<p style="text-align:center; font-size: 20px"><?php print $row['title'];?></p>
-													<p><?php print $row['subtitle'];?></p>
-												</div>
-												<a href="post.php?id=<?php print $row['id'];?>&important" class="button" style="margin-right:0; padding:2px 5px;">Mai multe</a>
-										</div>
-									</section>
-								<?php
-							}//end while
-						}//end if
-					} else {
-						print 'Connection error';
-					}
-				 ?>
+					<?php print $lastGroupPostForm;?>
 				<!-- END last posts from group -->
 				</div>
 				<!-- END row -->

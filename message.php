@@ -19,7 +19,7 @@
 	<!--Import Google Icon Font-->
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!-- Compiled and minified CSS -->
-  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 </head>
 <body><br><br>
 	<div class="container">
@@ -33,10 +33,10 @@
 							<h2 class="center">Sunteti sigur ?</h2>
 							<form action="php/editcontent_action.php" method="POST">
 								<input value="' . $_GET['id_message'] .'" type="hidden" name="delmessage"/>
-		   						<a href="admin.php" class="btn left" style="background:#e95d3c">PAGINA ADMIN</a>
-		   						<button class="btn right" type="submit" style="background:#e95d3c">STERGE</button>
-	   						</form>';
-	   						return;
+								<a href="admin.php" class="btn left" style="background:#e95d3c">PAGINA ADMIN</a>
+								<button class="btn right" type="submit" style="background:#e95d3c">STERGE</button>
+							</form>';
+							return;
 						}
 					}
 					// print'<pre>';
@@ -45,10 +45,10 @@
 				 ?>
 				<a href="index.php"><img src="images/logo.jpg" style="width: 100%"><br><br></a>
 				<div style="border:3px solid #ccc; padding: 20px">
-	       			<div class="row">
-	       			 	<a href="admin.php" class="btn left" style="background:#e95d3c">ADMIN</a>
-	       			 	<a href="index.php" class="btn right" style="background:#e95d3c">VIZUALIZEAZA SITE-UL</a>
-       			 	</div>
+					<div class="row">
+						<a href="admin.php" class="btn left" style="background:#e95d3c">ADMIN</a>
+						<a href="index.php" class="btn right" style="background:#e95d3c">VIZUALIZEAZA SITE-UL</a>
+					</div>
 					<ul class="collapsible" data-collapsible="expandable" style="box-shadow: none;">
 						<?php 
 							if($query_message){
@@ -61,7 +61,7 @@
 											<div class="collapsible-body">
 												<h5>' . $message['email'] . '</h5>
 												<p>' . $message['message'] . '</p>
-	       			 						<a class="btn" href="message.php?id_message=' . $message['id'] . '&delete=1" style="background:#e95d3c" >STERGE MESSAJUL</a>
+											<a class="btn" href="message.php?id_message=' . $message['id'] . '&delete=1" style="background:#e95d3c" >STERGE MESSAJUL</a>
 											</div>
 										</li>
 									';
@@ -78,6 +78,6 @@
 	<!--Import jQuery before materialize.js-->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<!-- Compiled and minified JavaScript -->
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 </body>
 </html>

@@ -3,6 +3,11 @@
 	if(!$_SESSION['auth']){
 		header('Location: /pb/index.php');
 	}
+	// 
+	// 
+	include "videoexists.php";
+	// 
+	// 
 	include "connect.php";
 	
 	// Add category logic.
@@ -39,27 +44,46 @@
 	if (!empty($_POST['addpost']) &&!empty($_POST['group']) && !empty($_POST['category']) && !empty($_POST['title']) && !empty($_POST['content'])) {
 		$group = $_POST['group'];
 		$category = $_POST['category'];
-		$title = $_POST['title'];
-		$subtitle = $_POST['subtitle'];
-		$content = $_POST['content'];
 		$important = $_POST['important'] ? 1 : 0;
-		$created = $updated = time();
-		$image_name = '../pb/post_images/' . $_FILES['image']['name'];
+		
+		// get res from image field
+		$image_name = '../post_images/' . $_FILES['image']['name'];
 		if (file_exists($image_name)) {
 			unlink($image_name);
 		}
 		if(!empty($_FILES['image']['name'])){
+			print $image_name;
 			move_uploaded_file($_FILES['image']['tmp_name'], $image_name);
 			$image_url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/pb/post_images/' . $_FILES['image']['name'];
 		}else{
 			$image_url = "";
 		}
+		// END get res from image field
+		
+		$title = $_POST['title'];
+		$subtitle = $_POST['subtitle'];
+		$content = $_POST['content'];
+		
+		// get res from video field
+		$video = $_POST['video'];
+		$href = '';
+		if (!empty($video)) {
+			$v_id = substr($video, 32);
+			$href = videoExist($v_id);
+			// $youtube = 'https://www.youtube.com';
+			// $pos = strpos($video, $youtube);
+			// if($pos !== false){
+			// 	$href = substr($video, 0, 24) . 'embed/' . substr($video, 32);
+			// }
+		}
+		// END get res from video field
 
+		$created = $updated = time();
 		mysqli_query($con, "
-			INSERT INTO posts (id_group, id_category, image_url, title, subtitle, content, created, updated, important)
-			VALUES ('$group', '$category', '$image_url', '$title', '$subtitle', '$content', '$created', '$updated', '$important')");
+			INSERT INTO posts (id_group, id_category, image_url, title, subtitle, content, video, created, updated, important)
+			VALUES ('$group', '$category', '$image_url', '$title', '$subtitle', '$content', '$href', '$created', '$updated', '$important')");
 
-		// header('Location: /pb/addpost.php');
+		header('Location: /pb/addpost.php');
 	}
 	else {
 		print "Cimpurile sunt goale.";
