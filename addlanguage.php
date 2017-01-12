@@ -28,22 +28,17 @@
 			<form action="php/addcontent.php" method="POST" enctype="multipart/form-data">
 				<div class="col s12 m8 l8 offset-m2 offset-l2"><br>
 
-					<h4 class="left" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">ADAUGATI GRUPA</h4><br><br><br>
+					<h4 class="left" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">ADAUGATI LIMBA</h4><br><br><br>
 
 	  		        <div class="input-field">
 	          			<input id="content" type="text" name="name"/>
 	         			<label for="content">NUME</label>
 	       			 </div><br>
-          			<div class="file-field input-field">
-				      <div class="btn" style="background:#e95d3c">
-				        <span>File</span>
-				        <input type="file" name="image">
-				      </div>
-				      <div class="file-path-wrapper">
-				        <input class="file-path validate" type="text" placeholder="Alege Imaginea">
-				      </div>
-				    </div>
-          			<input value="1" type="hidden" name="addgroup"/>
+	       			 <div class="input-field">
+	          			<input id="content" type="text" name="prefix"/>
+	         			<label for="content">PREFIX</label>
+	       			 </div><br>
+          			<input value="1" type="hidden" name="addlanguage"/>
    					<a class="btn left" href="admin.php" style="background:#e95d3c">PAGINA ADMIN</a>	
    					<button class="btn right" type="submit" style="background:#e95d3c">SALVEAZA</button>
 				</div>

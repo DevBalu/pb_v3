@@ -54,6 +54,23 @@
 		$query_post = mysqli_query($con, "SELECT p.* FROM posts p WHERE p.id = '$id'");
 		$post = $query_post->fetch_assoc();
 
+		// Get post's language.
+		$res = mysqli_query($con, "SELECT t.language FROM translations t WHERE t.id_post = '$id'");
+		$language = $res->fetch_object();
+		$language = $language->language;
+
+		// Get post translations.
+
+		// Get languages list.
+		$query_languages = mysqli_query($con, "SELECT * FROM languages l WHERE l.prefix <> '$language'");
+		$languages_list = $query_languages->fetch_all();
+		$languages = '';
+		if ($languages_list) {
+			foreach ($languages_list as $language) {
+				$languages .= '<option value="' . $language[2] . '">' . $language[1] . '</option>';
+			}
+		}
+
 		$id_group = $post['id_group'];
 		
 		$query_categories = mysqli_query($con, "
@@ -185,6 +202,12 @@
 					?>
 					<h4 class="left" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">Editarea Postuui</h4><br><br><br>
 
+					<div class="input-field col s12">
+						<select name="category">
+							<option value="" disabled selected>TRADUCERE</option>
+							<?php print $languages; ?>
+						</select>
+					</div><br><br><br><br>
 					<div class="input-field col s12">
 						<select name="category">
 							<option value="" disabled selected>CATEGORY</option>

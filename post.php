@@ -8,11 +8,21 @@
 		header('Location: /pb/index.php');
 	}
 	$post = $result->fetch_object();
+	if (!$post) {
+		header('Location: /pb/index.php');
+	}
 	//END logic for post field
 	
 	//logic for FEUTERED post.php
 	$id_cat = $post->id_category;
 	if(!empty($con)){
+		$res = mysqli_query($con, "SELECT t.language FROM translations t WHERE t.id_post = '$id'");
+		$language = $res->fetch_object();
+		$language = $language->language;
+		if (!isset($_GET['language']) || $language != $_GET['language']) {
+			header('Location: /pb/post.php?id=' . $id . '&language=' . $language);
+		}
+		
 		// query for last three posts from this category
 		$lastCatPost = mysqli_query($con, "
 			SELECT p.id, p.image_url, p.title, p.subtitle FROM posts  p

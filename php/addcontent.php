@@ -83,5 +83,18 @@
 	else {
 		print "Cimpurile sunt goale.";
 	}
+
+	// Add language logic.
+	if (!empty($_POST['addlanguage']) && !empty($_POST['name']) && !empty($_POST['prefix'])) {
+		$name = $_POST['name'];
+		$prefix = $_POST['prefix'];
+		
+		mysqli_query($con, "INSERT INTO languages (name, prefix) VALUES ('$name', '$prefix')");
+		header('Location: /pb/addlanguage.php');
+	}
+	else {
+		echo 'Cimpurile sunt goale!';
+	}
+
 	$con->close();
  ?>

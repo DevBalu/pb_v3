@@ -5,9 +5,11 @@
 	}
 	include('php/connect.php');
 
-	$query_groups = mysqli_query($con, "SELECT * FROM groups") ;
-	$query_categories = mysqli_query($con, "SELECT * FROM categories") ;
+	$query_languages = mysqli_query($con, "SELECT * FROM languages");
+	$query_groups = mysqli_query($con, "SELECT * FROM groups");
+	$query_categories = mysqli_query($con, "SELECT * FROM categories");
 	$groups = $query_groups->fetch_all();
+	$languages_list = $query_languages->fetch_all();
 	$categories = $query_categories->fetch_all();
 
 	$groups_operations = '';
@@ -16,6 +18,13 @@
 			$groups_operations .= '<p>' . $group[1] . ':</p>
 			<a href="editcontent.php?id_group=' . $group[0] . '" class="btn left" style="background:#e95d3c">EDITEAZA</a>
 			<a href="editcontent.php?id_group=' . $group[0] . '&delete=1" class="btn right" style="background:#e95d3c">STERGE</a><br><br>';
+		}
+	}
+	$languages = '';
+	if ($languages_list) {
+		foreach ($languages_list as $language) {
+			$languages .= '<div><p>' . $language[1] . ', ' . $language[2] . ':</p>
+			<a href="removelanguage.php?id_language=' . $language[0] . '" class="btn left" style="background:#e95d3c">STERGE</a></div>';
 		}
 	}
 	$categories_operations = '';
@@ -49,8 +58,8 @@
 					
 					<h4 class="center" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">VIZUALIZEAZA:</h4>
 					<div class="row">
-						<a href="index.php" class="btn right col m4" style="background:#e95d3c">SITE-UL</a>
-						<a href="message.php" class="btn left col m4" style="background:#e95d3c">MESSAJE</a>
+						<a href="index.php" class="btn right col m3" style="background:#e95d3c">SITE-UL</a>
+						<a href="message.php" class="btn left col m3" style="background:#e95d3c">MESSAJE</a>
 					</div>
 					<div class="divider"></div>
 					
@@ -61,6 +70,10 @@
 					<!-- <div class="divider"></div> -->
 
 					<ul class="collapsible" data-collapsible="expandable" style="box-shadow: none; border-left:none; border-right: none;">
+						<li style="padding: 20px;">
+							<div class="collapsible-header"><h4 class="center" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">OPERATII LIMBI:</h4></div>
+							<div class="collapsible-body"><?php print $languages; ?></div>
+						</li>
 						<li style="padding: 20px;">
 							<div class="collapsible-header"><h4 class="center" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">OPERATII GRUPE:</h4></div>
 							<div class="collapsible-body"><?php print $groups_operations; ?></div>
