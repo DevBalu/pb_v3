@@ -196,16 +196,22 @@
 						if ($post['image_url']) {
 							print '
 							<img src="' . $post['image_url'] . '" style="width: 15%;"/>
-							<input type="hidden" value="' . $post['image_url'] . '" name="image_url"/>';
+							<input type="hidden" value="' . $post['image_url'] . '" name="image_url"/>
+							<div class="row">
+								<div class="col m3"> 	
+									<input name="delimg" type="checkbox" class="filled-in" id="delimg"/>
+									<label for="delimg">Sterge imaginea</label>
+								</div>
+							</div>';
 						}
 					?>
 					<div class="file-field input-field">
 						<div class="btn" style="background:#e95d3c">
 							<span>File</span>
-							<input type="file" name="image" >
+							<input id="uimage" type="file" name="image">
 						</div>
-						<div class="file-path-wrapper">
-							<input class="file-path validate" type="text" placeholder="Alege imaginea">
+						<div class="file-path-wrapper" id="file-wrapper">
+							<input id="uimager" class="file-path validate" type="text" placeholder="Alege imaginea">
 						</div>
 					</div>
 

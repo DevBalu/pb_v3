@@ -120,7 +120,15 @@
 
 								<!-- image -->
 								<div style="width: 50%;">
-									<img src="<?php print $post->image_url ?>" style="max-height: 550px;">
+									<?php 
+										$img = $post->image_url;
+										if(!empty($img)){
+											$imageteg = '<img src="'. $img .'" style="max-height: 550px;">';
+										}else{
+											$imageteg = '';
+										}
+										print $imageteg;
+									 ?>
 								</div>
 								<!--  /image -->
 							</header>

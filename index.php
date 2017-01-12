@@ -1,3 +1,74 @@
+<?php 
+	// last  5 posts
+	include "php/connect.php";
+
+	$result = mysqli_query($con, "
+		SELECT p.* FROM posts p
+		ORDER BY id DESC
+		LIMIT 5
+		");
+
+	if ($result) {
+		$image = '';
+		while ($row = $result->fetch_object()) {
+			$img = $row->image_url;
+			if(!empty($img)){
+				$imageteg = '<img src="'. $img .'" style="width: 50%;">';
+			}else{
+				$imageteg = '';
+			}
+			
+			$image .= '
+				<li>
+					<a href="post.php?id=' . $row->id .'">' .
+						$imageteg . '
+					<p>'. $row->title.'</p>
+					</a>
+				</li>
+			';
+		}
+		$result->close();
+	}
+	// END last 5 posts
+
+	// last 3 posts important
+	$resultimp = mysqli_query($con, "
+		SELECT p.* FROM posts p
+		WHERE important = 1
+		ORDER BY id DESC
+		LIMIT 3
+		");
+
+	$posimp = '';
+	if ($resultimp) {
+		while ($row = $resultimp->fetch_object()) {
+			$img = $row->image_url;
+			if(!empty($img)){
+				$imageteg = '<img src="'. $img .'"  style="width: 100%; max-height: 247px;">';
+			}else{
+				$imageteg = '';
+			}
+			$posimp .= '
+				<section class="4u">
+					<div class="box" style="height: 300px; padding: 5px; border-radius: 5px;">
+							<div style="height: 250px; overflow: hidden">
+								<a href="post.php?id=' . $row->id .'" style="color: #000; text-decoration:none;">
+								<div style="width: 70%; margin:auto;">
+									' . $imageteg. '
+								</div>
+								</a>
+								<p style="text-align:center; font-size: 20px">'.$row->title.'</p>
+								<p>'.$row->subtitle.'</p>
+							</div>
+							<a href="post.php?id=' . $row->id . '&important" class="button" style="margin-right:0; padding:2px 5px;">Mai multe</a>
+					</div>
+				</section>
+			';
+		}
+		$resultimp->close();
+	}
+
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -60,12 +131,18 @@
 
 						if ($resimp) {
 							while ($row = $resimp->fetch_object()) {
+							$img = $row->image_url;
+							if(!empty($img)){
+								$imageteg = '<img src="'. $img .'"  style="width: 100%;">';
+							}else{
+								$imageteg = '';
+							}
 									?>
 									<header>
 										<h2 style="text-align:center;"><?php print $row->title ?></h2>
 										<span class="byline" style="text-align:center;"><?php print $row->subtitle ?></span>
 									<div style="width: 60%; margin:auto;">
-										<img src="<?php print $row->image_url ?>" style="width: 100%;">
+										<?php print $imageteg;?>
 									</div>
 									</header>
 									<p><?php print $row->content ?></p>
@@ -88,29 +165,7 @@
 								<h2>ultimile știri</h2>
 							</header>
 							<ul class="style2">
-								<?php 
-									include "php/connect.php";
-
-										$result = mysqli_query($con, "
-											SELECT p.* FROM posts p
-											ORDER BY id DESC
-											LIMIT 5
-											");
-
-										if ($result) {
-											while ($row = $result->fetch_object()) {
-												print '
-													<li>
-														<a href="post.php?id=' . $row->id .'">
-															<img src="'. $row->image_url .'" style="width: 50%;">
-														</a>
-														<p>'. $row->title.'</p>
-													</li>
-												';
-											}
-											$result->close();
-										}
-								?>
+							<?php print $image; ?>
 							</ul>
 						</section>
 					</div>
@@ -154,37 +209,7 @@
 			<div class="container">
 				<p style="text-align:center; color:#fff; font-size:35px; line-height: 2rem;">ULTIMILE STIRI IMPORTANTE</p>
 				<div class="row">
-				<?php 
-						$resultimp = mysqli_query($con, "
-							SELECT p.* FROM posts p
-							WHERE important = 1
-							ORDER BY id DESC
-							LIMIT 3
-							");
-
-						if ($resultimp) {
-							while ($row = $resultimp->fetch_object()) {
-								print '
-									<section class="4u">
-										<div class="box" style="height: 300px; padding: 5px; border-radius: 5px;">
-												<div style="height: 250px; overflow: hidden">
-													<a href="post.php?id=' . $row->id .'" style="color: #000; text-decoration:none;">
-													<div style="width: 70%; margin:auto;">
-														<img src="'. $row->image_url .'" style="width: 100%; max-height: 247px;">
-													</div>
-													</a>
-													<p style="text-align:center; font-size: 20px">'.$row->title.'</p>
-													<p>'.$row->subtitle.'</p>
-												</div>
-												<a href="post.php?id=' . $row->id . '&important" class="button" style="margin-right:0; padding:2px 5px;">Mai multe</a>
-										</div>
-									</section>
-								';
-							}
-							$resultimp->close();
-						}
-
-				 ?>
+				<?php print $posimp; ?>
 				</div>
 				<!-- <div class="divider"></div> -->
 			</div>

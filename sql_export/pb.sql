@@ -2,10 +2,10 @@
 -- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Хост: 127.0.0.1
--- Время создания: Янв 02 2017 г., 12:05
--- Версия сервера: 10.1.19-MariaDB
--- Версия PHP: 7.0.13
+-- Host: 127.0.0.1
+-- Generation Time: Jan 12, 2017 at 12:01 PM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 7.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `pb`
+-- Database: `pb`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -32,7 +32,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `admin`
+-- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`username`, `password`) VALUES
@@ -41,7 +41,7 @@ INSERT INTO `admin` (`username`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `categories`
+-- Table structure for table `categories`
 --
 
 CREATE TABLE `categories` (
@@ -51,7 +51,7 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `categories`
+-- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`id`, `id_group`, `name`) VALUES
@@ -80,7 +80,7 @@ INSERT INTO `categories` (`id`, `id_group`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `groups`
+-- Table structure for table `groups`
 --
 
 CREATE TABLE `groups` (
@@ -90,7 +90,7 @@ CREATE TABLE `groups` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `groups`
+-- Dumping data for table `groups`
 --
 
 INSERT INTO `groups` (`id`, `name`, `thumbnail`) VALUES
@@ -102,7 +102,7 @@ INSERT INTO `groups` (`id`, `name`, `thumbnail`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `message`
+-- Table structure for table `message`
 --
 
 CREATE TABLE `message` (
@@ -114,7 +114,7 @@ CREATE TABLE `message` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `message`
+-- Dumping data for table `message`
 --
 
 INSERT INTO `message` (`fname`, `lname`, `email`, `message`, `id`) VALUES
@@ -124,7 +124,7 @@ INSERT INTO `message` (`fname`, `lname`, `email`, `message`, `id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `posts`
+-- Table structure for table `posts`
 --
 
 CREATE TABLE `posts` (
@@ -135,6 +135,7 @@ CREATE TABLE `posts` (
   `title` varchar(255) NOT NULL,
   `subtitle` varchar(255) NOT NULL,
   `content` text NOT NULL,
+  `video` varchar(255) NOT NULL,
   `file_attach_url` varchar(255) NOT NULL,
   `created` int(11) NOT NULL,
   `updated` int(11) NOT NULL,
@@ -142,66 +143,66 @@ CREATE TABLE `posts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `posts`
+-- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`id`, `id_group`, `id_category`, `image_url`, `title`, `subtitle`, `content`, `file_attach_url`, `created`, `updated`, `important`) VALUES
-(2, 2, 5, '../post_images/DSC_2948.JPG', 'Autorizația pentru unități comerciale', 'p[lp[lp[', 'p[lp[lsfpokrdgpodkhpofkpohkhkhpoophkopf', '', 0, 0, 1),
-(3, 2, 18, 'http://localhost/post_images/oferta-revelion-2014-salon-evenimente.jpg', 'Autorizatia de constructie', 'test 1124', 'Donec condimentum, urna non molestie semper, ligula enim ornare nibh, quis laoreet eros quam eget ante. Aliquam libero. Vivamus nisl nibh, iaculis vitae, viverra sit amet, ullamcorper vitae, turpis. Aliquam erat volutpat. Vestibulum dui sem, pulvinar sed, imperdiet nec, iaculis nec, leo. Fusce odio. Etiam arcu dui, faucibus eget, placerat vel, sodales eget, orci. Donec ornare neque ac sem. Mauris aliquet. Aliquam sem leo, vulputate sed, convallis at, ultricies quis, justo. Donec nonummy magna quis risus. Quisque eleifend. Phasellus tempor vehicula justo. Aliquam lacinia metus ut elit. Suspendisse iaculis mauris nec lorem. Donec leo. Vivamus fermentum nibh in augue. Praesent a lacus at urna congue rutrum. Nulla enim eros, porttitor eu, tempus id, varius non, nibh. Duis enim nulla, luctus eu, dapibus lacinia, venenatis id, quam. Vestibulum imperdiet, magna nec eleifend rutrum, nunc lectus vestibulum velit, euismod lacinia quam nisl id lorem. Quisque erat. Vestibulum pellentesque, justo mollis pretium suscipit, justo nulla blandit libero, in blandit augue justo quis nisl. Fusce mattis viverra elit. Fusce quis tortor. In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat. Pellentesque tristique ante ut risus. Quisque dictum. Integer nisl risus, sagittis convallis, rutrum id, elementum congue, nibh. Sed etiam vestibulum velit, euismod lacinia quam nisl id lorem. Quisque erat. Vestibulum pellentesque, justo mollis pretium suscipit.\r\n\r\nSed etiam vestibulum velit, euismod lacinia quam nisl id lorem. Quisque erat. Vestibulum pellentesque, justo mollis pretium suscipit, justo nulla blandit libero, in blandit augue justo quis nisl. Fusce mattis viverra elit. Fusce quis tortor. Consectetuer adipiscing elit. Nam pede erat, porta eu, lobortis eget lorem ipsum dolor. Donec placerat odio vel elit. Nullam ante orci, pellentesque eget, tempus quis, ultrices in, est. Curabitur sit amet nulla. Nam in massa. Sed vel tellus. Curabitur sem urna, consequat. Sed etiam vestibulum velit, euismod lacinia quam nisl id lorem. Quisque erat. Suspendisse dictum porta lectus. Donec placerat odio vel elit. Nullam ante orci, pellentesque eget, tempus quis, ultrices in, est. Curabitur sit amet nulla. Nam in massa. Sed vel tellus. Curabitur sem urna, consequat vel, suscipit in, mattis placerat, nulla. Sed etiam vestibulum velit, euismod lacinia quam nisl id lorem. Quisque erat. Vestibulum pellentesque, justo mollis pretium suscipit, justo nulla blandit libero, in blandit augue justo quis nisl. Fusce mattis viverra elit. Fusce quis tortor. Consectetuer adipiscing elit. Nam pede erat, porta eu, lobortis eget lorem ipsum dolor. Donec placerat odio vel elit.\r\n\r\nDonec condimentum, urna non molestie semper, ligula enim ornare nibh, quis laoreet eros quam eget ante. Aliquam libero. Vivamus nisl nibh, iaculis vitae, viverra sit amet, ullamcorper vitae, turpis. Aliquam erat volutpat. Vestibulum dui sem, pulvinar sed, imperdiet nec, iaculis nec, leo. Fusce odio. Etiam arcu dui, faucibus eget, placerat vel, sodales eget, orci. Donec ornare neque ac sem. Mauris aliquet. Aliquam sem leo, vulputate sed, convallis at, ultricies quis, justo. Donec nonummy magna quis risus. Quisque eleifend. Phasellus tempor vehicula justo. Aliquam lacinia metus ut elit. Suspendisse iaculis mauris nec lorem. Donec leo. Vivamus fermentum nibh in augue. Praesent a lacus at urna congue rutrum. Nulla enim eros, porttitor eu, tempus id, varius non, nibh. Duis enim nulla, luctus eu, dapibus lacinia, venenatis id, quam. Vestibulum imperdiet, magna nec eleifend rutrum, nunc lectus vestibulum velit, euismod lacinia quam nisl id lorem. Quisque erat. Vestibulum pellentesque, justo mollis pretium suscipit, justo nulla blandit libero, in blandit augue justo quis nisl. Fusce mattis viverra elit. Fusce quis tortor. In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat. Pellentesque tristique ante ut risus. Quisque dictum. Integer nisl risus, sagittis convallis, rutrum id, elementum congue, nibh.', '', 0, 0, 0),
-(4, 2, 18, 'http://localhost/post_images/DSC_2948.JPG', 'Cum sa  nregistrezi o societate comercial?', 'p[lp[lp[', 'p[lp[lsfpokrdgpodkhpofkpohkhkhpoophkopf', '', 0, 0, 0),
-(5, 2, 7, 'http://localhost/post_images/DSC_2948.JPG', 'Comitetele de cartier / de stradă', 'p[lp[lp[', 'p[lp[lsfpokrdgpodkhpofkpohkhkhpoophkopf', '', 0, 0, NULL),
-(7, 2, 11, 'http://localhost/post_images/DSC_2948.JPG', 'Orarul audierilor', 'p[lp[lp[', 'p[lp[lsfpokrdgpodkhpofkpohkhkhpoophkopf', '', 0, 0, NULL),
-(36, 4, 26, 'http://localhost/post_images/oferta-revelion-2014-salon-evenimente.jpg', 'FELICITARI ', 'Stimati bricenieni!', 'Cu prilejul luminoaselor SÄƒrbÄƒtori de IarnÄƒ, \r\nVÄƒ adresez cele mai calde È™i sincere felicitÄƒri\r\n cu urÄƒri de sÄƒnÄƒtate È™i voie bunÄƒ!\r\nFie ca magia colindelor È™i feeria Sfintelor SÄƒrbÄƒtori\r\nsÄƒ VÄƒ gÄƒseascÄƒ Ã®n familie, alÄƒturi de cei dragi sufletului vostru,\r\niar Noul An 2017 pe care Ã®l Ã®ntÃ¢mpinÄƒm Ã®mpreunÄƒ\r\n sÄƒ vÄƒ aducÄƒ bunÄƒstare Ã®n casÄƒ, zÃ®mbete voioase È™i fericire, liniÅŸte È™i pace Ã®n suflet, puterea de a vÄƒ bucura de fiecare clipÄƒ, realizarea celor mai nobile intenÈ›ii, prosperitate, vise Ã®mplinite È™i armonie deplinÄƒ!\r\nSÄƒ avem Ã®ncredere Ã®n bunul Dumnezeu È™i speranÈ›a Ã®ntr-un viitor mult mai bun!\r\nCrÄƒciun fericit È™i La MulÈ›i Ani!', '', 1483101682, 1483101682, 1);
+INSERT INTO `posts` (`id`, `id_group`, `id_category`, `image_url`, `title`, `subtitle`, `content`, `video`, `file_attach_url`, `created`, `updated`, `important`) VALUES
+(2, 2, 5, '', 'Autorizația pentru unități comerciale', 'p[lp[lp[', 'p[lp[lsfpokrdgpodkhpofkpohkhkhpoophkopf', '', '', 0, 0, 1),
+(3, 2, 18, '', 'Autorizatia de constructie', 'test 1124', 'Donec condimentum, urna non molestie semper, ligula enim ornare nibh, quis laoreet eros quam eget ante. Aliquam libero. Vivamus nisl nibh, iaculis vitae, viverra sit amet, ullamcorper vitae, turpis. Aliquam erat volutpat. Vestibulum dui sem, pulvinar sed, imperdiet nec, iaculis nec, leo. Fusce odio. Etiam arcu dui, faucibus eget, placerat vel, sodales eget, orci. Donec ornare neque ac sem. Mauris aliquet. Aliquam sem leo, vulputate sed, convallis at, ultricies quis, justo. Donec nonummy magna quis risus. Quisque eleifend. Phasellus tempor vehicula justo. Aliquam lacinia metus ut elit. Suspendisse iaculis mauris nec lorem. Donec leo. Vivamus fermentum nibh in augue. Praesent a lacus at urna congue rutrum. Nulla enim eros, porttitor eu, tempus id, varius non, nibh. Duis enim nulla, luctus eu, dapibus lacinia, venenatis id, quam. Vestibulum imperdiet, magna nec eleifend rutrum, nunc lectus vestibulum velit, euismod lacinia quam nisl id lorem. Quisque erat. Vestibulum pellentesque, justo mollis pretium suscipit, justo nulla blandit libero, in blandit augue justo quis nisl. Fusce mattis viverra elit. Fusce quis tortor. In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat. Pellentesque tristique ante ut risus. Quisque dictum. Integer nisl risus, sagittis convallis, rutrum id, elementum congue, nibh. Sed etiam vestibulum velit, euismod lacinia quam nisl id lorem. Quisque erat. Vestibulum pellentesque, justo mollis pretium suscipit.\r\n\r\nSed etiam vestibulum velit, euismod lacinia quam nisl id lorem. Quisque erat. Vestibulum pellentesque, justo mollis pretium suscipit, justo nulla blandit libero, in blandit augue justo quis nisl. Fusce mattis viverra elit. Fusce quis tortor. Consectetuer adipiscing elit. Nam pede erat, porta eu, lobortis eget lorem ipsum dolor. Donec placerat odio vel elit. Nullam ante orci, pellentesque eget, tempus quis, ultrices in, est. Curabitur sit amet nulla. Nam in massa. Sed vel tellus. Curabitur sem urna, consequat. Sed etiam vestibulum velit, euismod lacinia quam nisl id lorem. Quisque erat. Suspendisse dictum porta lectus. Donec placerat odio vel elit. Nullam ante orci, pellentesque eget, tempus quis, ultrices in, est. Curabitur sit amet nulla. Nam in massa. Sed vel tellus. Curabitur sem urna, consequat vel, suscipit in, mattis placerat, nulla. Sed etiam vestibulum velit, euismod lacinia quam nisl id lorem. Quisque erat. Vestibulum pellentesque, justo mollis pretium suscipit, justo nulla blandit libero, in blandit augue justo quis nisl. Fusce mattis viverra elit. Fusce quis tortor. Consectetuer adipiscing elit. Nam pede erat, porta eu, lobortis eget lorem ipsum dolor. Donec placerat odio vel elit.\r\n\r\nDonec condimentum, urna non molestie semper, ligula enim ornare nibh, quis laoreet eros quam eget ante. Aliquam libero. Vivamus nisl nibh, iaculis vitae, viverra sit amet, ullamcorper vitae, turpis. Aliquam erat volutpat. Vestibulum dui sem, pulvinar sed, imperdiet nec, iaculis nec, leo. Fusce odio. Etiam arcu dui, faucibus eget, placerat vel, sodales eget, orci. Donec ornare neque ac sem. Mauris aliquet. Aliquam sem leo, vulputate sed, convallis at, ultricies quis, justo. Donec nonummy magna quis risus. Quisque eleifend. Phasellus tempor vehicula justo. Aliquam lacinia metus ut elit. Suspendisse iaculis mauris nec lorem. Donec leo. Vivamus fermentum nibh in augue. Praesent a lacus at urna congue rutrum. Nulla enim eros, porttitor eu, tempus id, varius non, nibh. Duis enim nulla, luctus eu, dapibus lacinia, venenatis id, quam. Vestibulum imperdiet, magna nec eleifend rutrum, nunc lectus vestibulum velit, euismod lacinia quam nisl id lorem. Quisque erat. Vestibulum pellentesque, justo mollis pretium suscipit, justo nulla blandit libero, in blandit augue justo quis nisl. Fusce mattis viverra elit. Fusce quis tortor. In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat. Pellentesque tristique ante ut risus. Quisque dictum. Integer nisl risus, sagittis convallis, rutrum id, elementum congue, nibh.', '', '', 0, 0, 0),
+(4, 2, 18, '', 'Cum sa  nregistrezi o societate comercial?', 'p[lp[lp[', 'p[lp[lsfpokrdgpodkhpofkpohkhkhpoophkopf', '', '', 0, 0, 0),
+(5, 2, 7, '', 'Comitetele de cartier / de stradă', 'p[lp[lp[', 'p[lp[lsfpokrdgpodkhpofkpohkhkhpoophkopf', '', '', 0, 0, NULL),
+(7, 2, 11, '', 'Orarul audierilor', 'p[lp[lp[', 'p[lp[lsfpokrdgpodkhpofkpohkhkhpoophkopf', '', '', 0, 0, NULL),
+(36, 4, 26, 'http://localhost/pb/post_images/wallpaper-nature-3d-hd.jpg', 'FELICITARI ', 'Stimati bricenieni!', 'Cu prilejul luminoaselor SÄƒrbÄƒtori de IarnÄƒ, \r\nVÄƒ adresez cele mai calde È™i sincere felicitÄƒri\r\n cu urÄƒri de sÄƒnÄƒtate È™i voie bunÄƒ!\r\nFie ca magia colindelor È™i feeria Sfintelor SÄƒrbÄƒtori\r\nsÄƒ VÄƒ gÄƒseascÄƒ Ã®n familie, alÄƒturi de cei dragi sufletului vostru,\r\niar Noul An 2017 pe care Ã®l Ã®ntÃ¢mpinÄƒm Ã®mpreunÄƒ\r\n sÄƒ vÄƒ aducÄƒ bunÄƒstare Ã®n casÄƒ, zÃ®mbete voioase È™i fericire, liniÅŸte È™i pace Ã®n suflet, puterea de a vÄƒ bucura de fiecare clipÄƒ, realizarea celor mai nobile intenÈ›ii, prosperitate, vise Ã®mplinite È™i armonie deplinÄƒ!\r\nSÄƒ avem Ã®ncredere Ã®n bunul Dumnezeu È™i speranÈ›a Ã®ntr-un viitor mult mai bun!\r\nCrÄƒciun fericit È™i La MulÈ›i Ani!', 'https://www.youtube.com/embed/r2glgXj5WHg', '', 1483101682, 1483101682, 1);
 
 --
--- Индексы сохранённых таблиц
+-- Indexes for dumped tables
 --
 
 --
--- Индексы таблицы `categories`
+-- Indexes for table `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `groups`
+-- Indexes for table `groups`
 --
 ALTER TABLE `groups`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `message`
+-- Indexes for table `message`
 --
 ALTER TABLE `message`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `posts`
+-- Indexes for table `posts`
 --
 ALTER TABLE `posts`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT для сохранённых таблиц
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT для таблицы `categories`
+-- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
--- AUTO_INCREMENT для таблицы `groups`
+-- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT для таблицы `message`
+-- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT для таблицы `posts`
+-- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;

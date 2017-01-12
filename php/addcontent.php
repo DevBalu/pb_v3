@@ -52,7 +52,7 @@
 			unlink($image_name);
 		}
 		if(!empty($_FILES['image']['name'])){
-			print $image_name;
+			// print $image_name;
 			move_uploaded_file($_FILES['image']['tmp_name'], $image_name);
 			$image_url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/pb/post_images/' . $_FILES['image']['name'];
 		}else{
@@ -70,11 +70,6 @@
 		if (!empty($video)) {
 			$v_id = substr($video, 32);
 			$href = videoExist($v_id);
-			// $youtube = 'https://www.youtube.com';
-			// $pos = strpos($video, $youtube);
-			// if($pos !== false){
-			// 	$href = substr($video, 0, 24) . 'embed/' . substr($video, 32);
-			// }
 		}
 		// END get res from video field
 

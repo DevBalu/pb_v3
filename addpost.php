@@ -90,13 +90,14 @@
 						<input name="important" type="checkbox" class="filled-in" id="filled-in-box"/>
 						<label for="filled-in-box">IMPORTANT</label>
 					</div><br><br><br><br><br>
+					
 					<div class="file-field input-field">
 						<div class="btn" style="background:#e95d3c">
 							<span>File</span>
-							<input type="file" name="image">
+							<input id="uimage" type="file" name="image">
 						</div>
-						<div class="file-path-wrapper">
-							<input class="file-path validate" type="text" placeholder="Alege Imaginea">
+						<div class="file-path-wrapper" id="file-wrapper">
+							<input id="uimager" class="file-path validate" type="text" placeholder="Alege Imaginea">
 						</div>
 					</div>
 
