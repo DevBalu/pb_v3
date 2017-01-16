@@ -247,17 +247,18 @@
 
 			ul.style2 li
 			{
-				padding: 1.90em 0em 1.60em 0em;
+				padding: 0.4em 0em 0.4em 0em;
 				border-top: 1px solid;
 				border-color: rgba(0,0,0,.1);
-				min-height: 150px;
+				min-height: 135px;
+				margin-bottom: 10px;
 			}
 			
 			ul.style2 li:first-child
 			{
-				padding-top: 0;
+				padding: 0.4em 0em 0.4em 0em;
 				border-top: 0;
-				min-height: 150px;
+				min-height: 135px;
 
 			}
 
@@ -903,7 +904,6 @@
 	{
 		color: #e95d3c;
 		font-size: 1.1rem;
-
 	}
 
 	#footer h2
@@ -961,15 +961,15 @@
 	#marketing
 	{
 		position: relative;
+		width: 98%;
 	}
-	
 	#marketing h2
 	{
 		font-size: 1.6em;
 		text-decoration: none;
 	}
 	.menu {
-		/*margin-bottom: 10px !important;*/
+	/*position: absolute;*/
 	}
 	.menu a 
 	{
@@ -988,17 +988,17 @@
 		-ms-align-items: center;
 		align-items: center;
 		justify-content: center;
-		height: 100px;
+		height: 130px;
 	}
 	.menu .secbottom {
 		width: 100%;
-		height: 100px;
+		height: 112px;
 		color: #fff;
 		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d3d3d3+0,d3d3d3+2,afafaf+38,afafaf+68,d3d3d3+95 */
 		background: rgb(211,211,211); /* Old browsers */
-		background: -moz-linear-gradient(top, rgba(211,211,211,1) 0%, rgba(211,211,211,1) 2%, rgba(175,175,175,1) 38%, rgba(175,175,175,1) 68%, rgba(211,211,211,1) 95%); /* FF3.6-15 */
-		background: -webkit-linear-gradient(top, rgba(211,211,211,1) 0%,rgba(211,211,211,1) 2%,rgba(175,175,175,1) 38%,rgba(175,175,175,1) 68%,rgba(211,211,211,1) 95%); /* Chrome10-25,Safari5.1-6 */
-		background: linear-gradient(to bottom, rgba(211,211,211,1) 0%,rgba(211,211,211,1) 2%,rgba(175,175,175,1) 38%,rgba(175,175,175,1) 68%,rgba(211,211,211,1) 95%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		background: -moz-linear-gradient(top, rgba(211,211,211,1) 1%, rgba(211,211,211,1) 2%, rgba(175,175,175,1) 38%, rgba(175,175,175,1) 68%, rgba(211,211,211,1) 95%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, rgba(211,211,211,1) 1%,rgba(211,211,211,1) 2%,rgba(175,175,175,1) 38%,rgba(175,175,175,1) 68%,rgba(211,211,211,1) 95%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, rgba(211,211,211,1) 1%,rgba(211,211,211,1) 2%,rgba(175,175,175,1) 38%,rgba(175,175,175,1) 68%,rgba(211,211,211,1) 95%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d3d3d3', endColorstr='#d3d3d3',GradientType=0 ); /* IE6-9 */
 		display: -webkit-flex;
 		display: -moz-flex;
@@ -1011,9 +1011,9 @@
 	.menu .secbottom:hover {
 		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d3d3d3+0,e5d2ce+2,e59989+38,e59989+68,e5d2ce+95 */
 		background: rgb(211,211,211); /* Old browsers */
-		background: -moz-linear-gradient(top, rgba(211,211,211,1) 0%, rgba(229,210,206,1) 2%, rgba(229,153,137,1) 38%, rgba(229,153,137,1) 68%, rgba(229,210,206,1) 95%); /* FF3.6-15 */
-		background: -webkit-linear-gradient(top, rgba(211,211,211,1) 0%,rgba(229,210,206,1) 2%,rgba(229,153,137,1) 38%,rgba(229,153,137,1) 68%,rgba(229,210,206,1) 95%); /* Chrome10-25,Safari5.1-6 */
-		background: linear-gradient(to bottom, rgba(211,211,211,1) 0%,rgba(229,210,206,1) 2%,rgba(229,153,137,1) 38%,rgba(229,153,137,1) 68%,rgba(229,210,206,1) 95%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		background: -moz-linear-gradient(top, rgba(211,211,211,1) 1%, rgba(229,210,206,1) 2%, rgba(229,153,137,1) 38%, rgba(229,153,137,1) 68%, rgba(229,210,206,1) 95%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, rgba(211,211,211,1) 1%,rgba(229,210,206,1) 2%,rgba(229,153,137,1) 38%,rgba(229,153,137,1) 68%,rgba(229,210,206,1) 95%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, rgba(211,211,211,1) 1%,rgba(229,210,206,1) 2%,rgba(229,153,137,1) 38%,rgba(229,153,137,1) 68%,rgba(229,210,206,1) 95%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d3d3d3', endColorstr='#e5d2ce',GradientType=0 ); /* IE6-9 */
 	}
 

@@ -2,10 +2,10 @@
 -- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 12, 2017 at 12:01 PM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 7.0.13
+-- Хост: 127.0.0.1
+-- Время создания: Янв 13 2017 г., 00:01
+-- Версия сервера: 10.1.19-MariaDB
+-- Версия PHP: 7.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `pb`
+-- База данных: `pb`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Структура таблицы `admin`
 --
 
 CREATE TABLE `admin` (
@@ -32,7 +32,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `admin`
+-- Дамп данных таблицы `admin`
 --
 
 INSERT INTO `admin` (`username`, `password`) VALUES
@@ -41,7 +41,7 @@ INSERT INTO `admin` (`username`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Структура таблицы `categories`
 --
 
 CREATE TABLE `categories` (
@@ -51,7 +51,7 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `categories`
+-- Дамп данных таблицы `categories`
 --
 
 INSERT INTO `categories` (`id`, `id_group`, `name`) VALUES
@@ -80,7 +80,7 @@ INSERT INTO `categories` (`id`, `id_group`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `groups`
+-- Структура таблицы `groups`
 --
 
 CREATE TABLE `groups` (
@@ -90,7 +90,7 @@ CREATE TABLE `groups` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `groups`
+-- Дамп данных таблицы `groups`
 --
 
 INSERT INTO `groups` (`id`, `name`, `thumbnail`) VALUES
@@ -102,7 +102,27 @@ INSERT INTO `groups` (`id`, `name`, `thumbnail`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `message`
+-- Структура таблицы `languages`
+--
+
+CREATE TABLE `languages` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `prefix` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `languages`
+--
+
+INSERT INTO `languages` (`id`, `name`, `prefix`) VALUES
+(2, 'Rusa', 'ru'),
+(3, 'Engleza', 'en');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `message`
 --
 
 CREATE TABLE `message` (
@@ -114,7 +134,7 @@ CREATE TABLE `message` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `message`
+-- Дамп данных таблицы `message`
 --
 
 INSERT INTO `message` (`fname`, `lname`, `email`, `message`, `id`) VALUES
@@ -124,7 +144,7 @@ INSERT INTO `message` (`fname`, `lname`, `email`, `message`, `id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `posts`
+-- Структура таблицы `posts`
 --
 
 CREATE TABLE `posts` (
@@ -143,7 +163,7 @@ CREATE TABLE `posts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `posts`
+-- Дамп данных таблицы `posts`
 --
 
 INSERT INTO `posts` (`id`, `id_group`, `id_category`, `image_url`, `title`, `subtitle`, `content`, `video`, `file_attach_url`, `created`, `updated`, `important`) VALUES
@@ -152,60 +172,107 @@ INSERT INTO `posts` (`id`, `id_group`, `id_category`, `image_url`, `title`, `sub
 (4, 2, 18, '', 'Cum sa  nregistrezi o societate comercial?', 'p[lp[lp[', 'p[lp[lsfpokrdgpodkhpofkpohkhkhpoophkopf', '', '', 0, 0, 0),
 (5, 2, 7, '', 'Comitetele de cartier / de stradă', 'p[lp[lp[', 'p[lp[lsfpokrdgpodkhpofkpohkhkhpoophkopf', '', '', 0, 0, NULL),
 (7, 2, 11, '', 'Orarul audierilor', 'p[lp[lp[', 'p[lp[lsfpokrdgpodkhpofkpohkhkhpoophkopf', '', '', 0, 0, NULL),
-(36, 4, 26, 'http://localhost/pb/post_images/wallpaper-nature-3d-hd.jpg', 'FELICITARI ', 'Stimati bricenieni!', 'Cu prilejul luminoaselor SÄƒrbÄƒtori de IarnÄƒ, \r\nVÄƒ adresez cele mai calde È™i sincere felicitÄƒri\r\n cu urÄƒri de sÄƒnÄƒtate È™i voie bunÄƒ!\r\nFie ca magia colindelor È™i feeria Sfintelor SÄƒrbÄƒtori\r\nsÄƒ VÄƒ gÄƒseascÄƒ Ã®n familie, alÄƒturi de cei dragi sufletului vostru,\r\niar Noul An 2017 pe care Ã®l Ã®ntÃ¢mpinÄƒm Ã®mpreunÄƒ\r\n sÄƒ vÄƒ aducÄƒ bunÄƒstare Ã®n casÄƒ, zÃ®mbete voioase È™i fericire, liniÅŸte È™i pace Ã®n suflet, puterea de a vÄƒ bucura de fiecare clipÄƒ, realizarea celor mai nobile intenÈ›ii, prosperitate, vise Ã®mplinite È™i armonie deplinÄƒ!\r\nSÄƒ avem Ã®ncredere Ã®n bunul Dumnezeu È™i speranÈ›a Ã®ntr-un viitor mult mai bun!\r\nCrÄƒciun fericit È™i La MulÈ›i Ani!', 'https://www.youtube.com/embed/r2glgXj5WHg', '', 1483101682, 1483101682, 1);
+(36, 4, 26, 'http://localhost/pb/post_images/DSC_2948.JPG', 'FELICITARI ', 'Stimati bricenieni!', 'Cu prilejul luminoaselor SÄƒrbÄƒtori de IarnÄƒ, \r\nVÄƒ adresez cele mai calde È™i sincere felicitÄƒri\r\n cu urÄƒri de sÄƒnÄƒtate È™i voie bunÄƒ!\r\nFie ca magia colindelor È™i feeria Sfintelor SÄƒrbÄƒtori\r\nsÄƒ VÄƒ gÄƒseascÄƒ Ã®n familie, alÄƒturi de cei dragi sufletului vostru,\r\niar Noul An 2017 pe care Ã®l Ã®ntÃ¢mpinÄƒm Ã®mpreunÄƒ\r\n sÄƒ vÄƒ aducÄƒ bunÄƒstare Ã®n casÄƒ, zÃ®mbete voioase È™i fericire, liniÅŸte È™i pace Ã®n suflet, puterea de a vÄƒ bucura de fiecare clipÄƒ, realizarea celor mai nobile intenÈ›ii, prosperitate, vise Ã®mplinite È™i armonie deplinÄƒ!\r\nSÄƒ avem Ã®ncredere Ã®n bunul Dumnezeu È™i speranÈ›a Ã®ntr-un viitor mult mai bun!\r\nCrÄƒciun fericit È™i La MulÈ›i Ani!', 'https://www.youtube.com/embed/N1kpeRhqVzI', '', 1483101682, 1483101682, 1);
+
+-- --------------------------------------------------------
 
 --
--- Indexes for dumped tables
+-- Структура таблицы `translations`
+--
+
+CREATE TABLE `translations` (
+  `id` int(11) NOT NULL,
+  `id_translation_set` int(11) NOT NULL,
+  `id_post` int(11) NOT NULL,
+  `language` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `translations`
+--
+
+INSERT INTO `translations` (`id`, `id_translation_set`, `id_post`, `language`) VALUES
+(1, 1, 2, 'en'),
+(2, 1, 3, 'ro'),
+(3, 1, 4, 'ru'),
+(4, 2, 5, 'en'),
+(5, 2, 7, 'ro'),
+(6, 2, 36, 'ru');
+
+--
+-- Индексы сохранённых таблиц
 --
 
 --
--- Indexes for table `categories`
+-- Индексы таблицы `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `groups`
+-- Индексы таблицы `groups`
 --
 ALTER TABLE `groups`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `message`
+-- Индексы таблицы `languages`
+--
+ALTER TABLE `languages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `message`
 --
 ALTER TABLE `message`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `posts`
+-- Индексы таблицы `posts`
 --
 ALTER TABLE `posts`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Индексы таблицы `translations`
+--
+ALTER TABLE `translations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT для сохранённых таблиц
 --
 
 --
--- AUTO_INCREMENT for table `categories`
+-- AUTO_INCREMENT для таблицы `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
--- AUTO_INCREMENT for table `groups`
+-- AUTO_INCREMENT для таблицы `groups`
 --
 ALTER TABLE `groups`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `message`
+-- AUTO_INCREMENT для таблицы `languages`
+--
+ALTER TABLE `languages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT для таблицы `message`
 --
 ALTER TABLE `message`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `posts`
+-- AUTO_INCREMENT для таблицы `posts`
 --
 ALTER TABLE `posts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+--
+-- AUTO_INCREMENT для таблицы `translations`
+--
+ALTER TABLE `translations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

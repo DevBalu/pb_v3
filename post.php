@@ -8,11 +8,21 @@
 		header('Location: /pb/index.php');
 	}
 	$post = $result->fetch_object();
+	if (!$post) {
+		header('Location: /pb/index.php');
+	}
 	//END logic for post field
 	
 	//logic for FEUTERED post.php
 	$id_cat = $post->id_category;
 	if(!empty($con)){
+		$res = mysqli_query($con, "SELECT t.language FROM translations t WHERE t.id_post = '$id'");
+		$language = $res->fetch_object();
+		$language = $language->language;
+		if (!isset($_GET['language']) || $language != $_GET['language']) {
+			header('Location: /pb/post.php?id=' . $id . '&language=' . $language);
+		}
+		
 		// query for last three posts from this category
 		$lastCatPost = mysqli_query($con, "
 			SELECT p.id, p.image_url, p.title, p.subtitle FROM posts  p
@@ -34,7 +44,9 @@
 					<div class="box" style="height: 300px; padding: 5px; border-radius: 5px;">
 							<div style="height: 250px; overflow: hidden">
 								<a href="post.php?id='.$row['id'].'" style="color: #000; text-decoration:none;">
-									<img src="'.$row['image_url'].'" width="50%" style="width: 50%; margin-left: 20%;">
+									<div style="width: 75%; height: 60%; margin:auto; display:flex; justify-content: center;">
+										<img src="'.$row['image_url'].'" style="height:100%;" >
+									</div>
 								</a>
 								<p style="text-align:center; font-size: 20px">'.$row['title'].'</p>
 								<p>'.$row['subtitle'].'</p>

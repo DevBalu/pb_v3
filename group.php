@@ -30,7 +30,9 @@
 					<div class="box" style="height: 300px; padding: 5px; border-radius: 5px;">
 							<div style="height: 250px; overflow: hidden">
 								<a href="post.php?id='.$row['id'].'" style="color: #000; text-decoration:none;">
-									<img src="'.$row['image_url'].'" width="50%" style="width: 50%; margin-left: 20%;">
+									<div style="width: 75%; height: 60%; margin:auto; display:flex; justify-content: center;">
+										<img src="'.$row['image_url'].'" style="height:100%;" >
+									</div>
 								</a>
 								<p style="text-align:center; font-size: 20px">'.$row['title'].'</p>
 								<p>'.$row['subtitle'].'</p>
@@ -54,9 +56,9 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<?php include "components/head.php"; ?>			
+		<?php include "components/head.php"; ?>
 	</head>
-	<body class="right-sidebar">
+	<body class="right-sidebar" onload="changeColor()">
 	<?php 
 		session_start();
 		if(!empty($_SESSION['auth'])){
@@ -132,4 +134,5 @@
 	<!-- /Copyright -->
 
 	</body>
+	<script type="text/javascript" src="js/groups.js"></script>
 </html>

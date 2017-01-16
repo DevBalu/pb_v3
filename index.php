@@ -13,7 +13,7 @@
 		while ($row = $result->fetch_object()) {
 			$img = $row->image_url;
 			if(!empty($img)){
-				$imageteg = '<img src="'. $img .'" style="width: 50%;">';
+				$imageteg = '<img src="'. $img .'" style="max-height: 128px;">';
 			}else{
 				$imageteg = '';
 			}
@@ -22,7 +22,7 @@
 				<li>
 					<a href="post.php?id=' . $row->id .'">' .
 						$imageteg . '
-					<p>'. $row->title.'</p>
+					<p style="margin-bottom: 0.3rem;">'. $row->title.'</p>
 					</a>
 				</li>
 			';
@@ -44,7 +44,7 @@
 		while ($row = $resultimp->fetch_object()) {
 			$img = $row->image_url;
 			if(!empty($img)){
-				$imageteg = '<img src="'. $img .'"  style="width: 100%; max-height: 247px;">';
+				$imageteg = '<img src="'. $img .'" style="height:100%;">';
 			}else{
 				$imageteg = '';
 			}
@@ -53,7 +53,7 @@
 					<div class="box" style="height: 300px; padding: 5px; border-radius: 5px;">
 							<div style="height: 250px; overflow: hidden">
 								<a href="post.php?id=' . $row->id .'" style="color: #000; text-decoration:none;">
-								<div style="width: 70%; margin:auto;">
+								<div style="width: 75%; height: 60%; margin:auto; display:flex; justify-content: center;"> 
 									' . $imageteg. '
 								</div>
 								</a>

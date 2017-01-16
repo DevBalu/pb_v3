@@ -54,6 +54,23 @@
 		$query_post = mysqli_query($con, "SELECT p.* FROM posts p WHERE p.id = '$id'");
 		$post = $query_post->fetch_assoc();
 
+		// Get post's language.
+		$res = mysqli_query($con, "SELECT t.language FROM translations t WHERE t.id_post = '$id'");
+		$language = $res->fetch_object();
+		$language = $language->language;
+
+		// Get post translations.
+
+		// Get languages list.
+		$query_languages = mysqli_query($con, "SELECT * FROM languages l WHERE l.prefix <> '$language'");
+		$languages_list = $query_languages->fetch_all();
+		$languages = '';
+		if ($languages_list) {
+			foreach ($languages_list as $language) {
+				$languages .= '<option value="' . $language[2] . '">' . $language[1] . '</option>';
+			}
+		}
+
 		$id_group = $post['id_group'];
 		
 		$query_categories = mysqli_query($con, "
@@ -172,6 +189,7 @@
 					<!-- END edit group -->
 
 					<!-- edit content -->
+					<!-- confirmation at deleting post -->
 					<?php 
 					if (!empty($_GET['id_post'])) {
 						if (!empty($_GET['delete'])) {
@@ -183,15 +201,22 @@
 							return;
 						}
 					?>
+					<!-- END confirmation at deleting post -->
 					<h4 class="left" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">Editarea Postuui</h4><br><br><br>
 
+					<div class="input-field col s12">
+						<select name="category">
+							<option value="" disabled selected>TRADUCERE</option>
+							<?php print $languages; ?>
+						</select>
+					</div><br><br><br><br>
 					<div class="input-field col s12">
 						<select name="category">
 							<option value="" disabled selected>CATEGORY</option>
 							<?php print $categories_options; ?>
 						</select>
 					</div><br><br><br><br>
-	
+					<!-- show current post image -->
 					<?php 
 						if ($post['image_url']) {
 							print '
@@ -205,6 +230,7 @@
 							</div>';
 						}
 					?>
+					<!-- END show current post image -->
 					<div class="file-field input-field">
 						<div class="btn" style="background:#e95d3c">
 							<span>File</span>
@@ -229,7 +255,7 @@
 						<textarea id="content1" type="text" class="materialize-textarea" name="content"><?php print $post['content']; ?></textarea>
 						<label for="content1">Content</label>
 					 </div><br>
-					
+					<!-- show current post video -->
 					<?php 
 						if ($post['video']) {
 							print '
@@ -239,20 +265,24 @@
 							';
 						}
 					?>
-					 <div class="input-field">
+					<!-- END show current post video -->
+					<div class="input-field">
 						<input id="video" type="text" value="<?php print $post['video']; ?>" name="editvideo"></input>
 						<label for="video">Video : "YouTube"</label>
 					</div><br>
-					 
-					 <div class="row">
+					
+					<div class="row">
 						<div class="col m3"> 	
 							<input name="important" <?php print $post['important'] ? 'checked=checked' : ''; ?> type="checkbox" class="filled-in" id="important"/>
 							<label for="important">IMPORTANT</label>
 						</div>
-					 </div>
-					 <input type="hidden" value="<?php print $_GET['id_post'] ?>" name="post" />
-					 <a class="btn left" href="editcontent.php?id_post=<?php print $_GET['id_post']; ?>&delete=1" style="background:#e95d3c" >STERGE POSTUL</a>
-					 <button class="btn right" type="submit" name="save" style="background:#e95d3c">SALVEAZA</button>
+					</div>
+					<input type="hidden" value="<?php print $_GET['id_post'] ?>" name="post" />
+					<div class="row">
+						<div class="col m4"><a class="btn" href="editcontent.php?id_post=<?php print $_GET['id_post']; ?>&delete=1" style="background:#e95d3c" >STERGE POSTUL</a></div>
+						<div class="col m4"><a class="btn" href="post.php?id=<?php print $_GET['id_post'] . '&viewpage=1';?>" style="background:#e95d3c;" >VIZUALIZARE POSTULUI</a></div>
+						<div class="col m4"><button class="btn" type="submit" name="save" style="background:#e95d3c">SALVEAZA</button></div>
+					</div>
 					<?php 
 					}
 					?>

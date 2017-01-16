@@ -6,6 +6,11 @@
         insertParam('group', $(this).val());
     });
 
+    $(".secbottom").click(function (e){
+        e.preventDefault();
+        alert("clicked");
+    });
+
   });
 
   function insertParam(key, value) {
@@ -56,3 +61,4 @@ img.addEventListener("change", function() {
     } 
 });
 // END check image size in file addpost.php & editcontent.php  
+
