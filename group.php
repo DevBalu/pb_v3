@@ -39,7 +39,7 @@
 				$lastGroupPostForm .= '
 				<section class="4u">
 					<div class="box" style="height: 300px; padding: 5px; border-radius: 5px;">
-							<div style="height: 250px; overflow: hidden">
+							<div style="height: 250px; overflow: hidden; border-bottom: 1px solid #ddd;">
 								<a href="post.php?id='.$row['id'].'" style="color: #000; text-decoration:none;">
 									<div style="width: 75%; height: 60%; margin:auto; display:flex; justify-content: center;">
 										<img src="'.$row['image_url'].'" style="height:100%;" >

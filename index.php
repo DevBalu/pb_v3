@@ -17,13 +17,25 @@
 			}else{
 				$imageteg = '';
 			}
-			
+
+			$datetimelp = '';
+			$dtlfpc = $row->created;
+			$dtlfpup = $row->updated;
+			if(isset($dtlfpup)){
+				$datetimelp .= date("l j.m / h:i", $dtlfpup);
+			}else{
+				$datetimelp .= date("l j.m / h:i", $dtlfpc);
+			}
+
 			$image .= '
 				<li>
-					<a href="post.php?id=' . $row->id .'">' .
-						$imageteg . '
-					<p style="margin-bottom: 0.3rem;">'. $row->title.'</p>
-					</a>
+					' . $datetimelp . '
+					<div>
+						<a href="post.php?id=' . $row->id .'">' .
+							$imageteg . '
+						<p style="margin-bottom: 0.3rem;">'. $row->title.'</p>
+						</a>
+					</div>
 				</li>
 			';
 		}
@@ -59,15 +71,15 @@
 			$posimp .= '
 				<section class="4u">
 					<div class="box" style="height: 300px; padding: 5px; border-radius: 5px;">
-						<div style="height: 250px; overflow: hidden">
-						<a href="post.php?id=' . $row->id .'" style="color: #000; text-decoration:none;">
-							<div style="width: 75%; height: 60%; margin:auto; display:flex; justify-content: center;"> 
-									' . $imageteg. '
+						<div style="height: 250px; overflow: hidden; border-bottom: 1px solid #ddd;">
+							<a href="post.php?id=' . $row->id .'" style="color: #000; text-decoration:none;">
+								<div style="width: 75%; height: 60%; margin:auto; display:flex; justify-content: center;"> 
+										' . $imageteg. '
 								</div>
-								</a>
-								<p style="text-align:center; font-size: 20px">'.$row->title.'</p>
-								<p>'.$row->subtitle.'</p>
-							</div>
+							</a>
+							<p style="text-align:center; font-size: 20px">'.$row->title.'</p>
+							<p>'.$row->subtitle.'</p>
+						</div>
 						<a href="post.php?id=' . $row->id . '&important" class="button" style="margin-right:0; padding:2px 5px; float: right;">Mai multe</a>
 						<p style="padding-top: 10px;">' . $datetime . '</p>
 					</div>
@@ -150,7 +162,6 @@
 							}
 									?>
 									<header>
-
 										<h2 style="text-align:center; margin-top: 5px;"><?php print $row->title ?></h2>
 										<span class="byline" style="text-align:center;"><?php print $row->subtitle ?></span>
 									<div style="width: 60%; margin:auto;">

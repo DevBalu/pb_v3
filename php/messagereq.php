@@ -3,14 +3,31 @@
 
 	$fname = $_POST['fname'];
 	$lname = $_POST['lname'];
-	$email = $_POST['email'];
 	$message = $_POST['message'];
 
+	//verification of email format is correct
+	$email = '';
+	
+	$emailfield = $_POST['email'];
+	$err = '';
+	$sendsucces = '';
+
+	if(filter_var($emailfield, FILTER_VALIDATE_EMAIL)){
+		$email = $emailfield;
+	}else{
+		$err = 'Formatul la email nu este corect.<br>';
+	}
+	//verification of email format is correct
 
 	if($con &&!empty($fname) && !empty($lname) && !empty($email) && !empty($message)){
 		$message_query = mysqli_query($con, "
 			INSERT INTO message (fname, lname, email, message) VALUES ('$fname', '$lname', '$email', '$message');
 		");
+		$sendsucces = 'Mesajul a fost trimis cu success!';
+	}else{
+		$err .= 'Сompletați corect câmpurile.';
+	}
+	$con->close();
 	?>
 
 <!DOCTYPE html>
@@ -30,16 +47,8 @@
 		<div class="row">
 			<div class="col s12 m8 l8 offset-l2" >
 				<div style="border:3px solid #ccc; padding: 50px">
-					
-					<p class="center" style="color:#ff0000;  font-size: 25px; font-weight: 200; margin-bottom: 30px;"><?php print'MESAJUL DUMNEAVOASTRU A FOST TRIMIS CU SUCCES' ?>!</p>
+					<p class="center" style="color:#ff0000;  font-size: 25px; font-weight: 200; margin-bottom: 30px;"><?php print $err . $sendsucces;?></p>
 					<a class="btn right" style="background-color:#de3d27;" href="../index.php">PAGINA PRINCIPALA</a>
-					<?php
-						}else{
-							print'CIMPURILE SUNT GOALE';
-						}
-						$con->close();
-					 ?>
-					
 				</div>
 			</div>
 		</div>
