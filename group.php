@@ -11,7 +11,7 @@
 
 		// query for last three posts from this group 
 		$lastGroupPost = mysqli_query($con, "
-			SELECT p.id, p.image_url, p.title, p.subtitle FROM categories c 
+			SELECT p.id, p.image_url, p.title, p.subtitle, p.created, p.updated FROM categories c 
 			JOIN posts p ON p.id_category = c.id
 			WHERE c.id_group = '$id' 
 			ORDER BY p.id DESC
@@ -25,6 +25,17 @@
 		$lastGroupPostForm = '';
 		if(!empty($lastGroupPost)){
 			while($row = $lastGroupPost->fetch_assoc()){
+				$dtgrc = $row['created'];
+				$dtgrup = $row['updated'];
+				$datetime = '';
+				// verify if post is has update
+				if(isset($dtgrup)){
+					$datetime .= date("jS \of F Y", $dtgrup);
+				}else{
+					$datetime .= date("jS \of F Y", $dtgrc);
+				}
+				//END  verify if post is has update
+
 				$lastGroupPostForm .= '
 				<section class="4u">
 					<div class="box" style="height: 300px; padding: 5px; border-radius: 5px;">
@@ -37,7 +48,8 @@
 								<p style="text-align:center; font-size: 20px">'.$row['title'].'</p>
 								<p>'.$row['subtitle'].'</p>
 							</div>
-							<a href="post.php?id='.$row['id'].'&important" class="button" style="margin-right:0; padding:2px 5px;">Mai multe</a>
+							<a href="post.php?id='.$row['id'].'&important" class="button" style="margin-right:0; padding:2px 5px; float: right;">Mai multe</a>
+							<p style="padding-top: 10px;">' . $datetime . '</p>
 					</div>
 				</section>';
 			}//end while
@@ -64,26 +76,28 @@
 		if(!empty($_SESSION['auth'])){
 		// authorization how administrator
 			print '
-				<div class="container">
-					<div class="row">
-						<div class="3u" style="float:right">			
-								<a href="admin.php" class="button" style="margin-right:20px;">ADMIN</a>
-								<a href="logout.php" class="button">LOG OUT</a>
-						 </div>
+				<div class="row">
+					<div style="float:left; margin: 30px 0 0 30px;">
+						<p class="tel" style="padding-left: 20px; font-size: 25px; margin-bottom: 0;">(+373) 247 2 24 40</p>
+					</div>
+					<div style="float:right; margin-right:20px;">
+						<a href="admin.php" class="button">ADMIN</a>
+						<a href="logout.php" class="button">LOG OUT</a>
+					 </div>
+				</div>';
+		}else{
+		// authorization how guest
+			print '
+				<div class="row">
+					<div style="float:left; margin: 30px 0 0 30px;">
+							<p class="tel" style="padding-left: 20px; font-size: 25px; margin-bottom: 0;">(+373) 247 2 24 40</p>
+					</div>
+					<div style="float:right; margin-right: 20px;">
+							<a href="auth.php" class="button">LOG IN</a>
 					</div>
 				</div>';
-	 	}else{
- 		// authorization how guest
-	 		print '
-			<div class="container">
-				<div class="row">
-					<div style="float:right">			
-							<a href="auth.php" class="button">LOG IN</a>
-					 </div>
-				</div>
-			</div>';
-	 	}
-	 ?>
+		}
+	?>
 	<!-- Header -->
 		<?php include"components/navbar.php"; ?>
 	<!-- Header -->

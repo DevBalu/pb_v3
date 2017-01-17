@@ -25,7 +25,7 @@
 		
 		// query for last three posts from this category
 		$lastCatPost = mysqli_query($con, "
-			SELECT p.id, p.image_url, p.title, p.subtitle FROM posts  p
+			SELECT p.id, p.image_url, p.title, p.subtitle, p.created, p.updated FROM posts  p
 			WHERE p.id_category = '$id_cat' 
 			ORDER BY p.id DESC
 			LIMIT 3
@@ -39,6 +39,14 @@
 		$lastCatPostForm = '';
 		if(!empty($lastCatPost)){
 			while($row = $lastCatPost->fetch_assoc()){
+				$dtpc = $row['created'];
+				$dtpup = $row['updated'];
+				$datetime = '';
+				if(isset($dtpup)){
+					$datetime .= date("jS \of F Y", $dtpup);
+				}else{
+					$datetime .= date("jS \of F Y", $dtpc) ;
+				}
 				$lastCatPostForm .= '
 				<section class="4u">
 					<div class="box" style="height: 300px; padding: 5px; border-radius: 5px;">
@@ -51,7 +59,8 @@
 								<p style="text-align:center; font-size: 20px">'.$row['title'].'</p>
 								<p>'.$row['subtitle'].'</p>
 							</div>
-							<a href="post.php?id='.$row['id'].'&important" class="button" style="margin-right:0; padding:2px 5px;">Mai multe</a>
+							<a href="post.php?id='.$row['id'].'&important" class="button" style="margin-right:0; padding:2px 5px; float: right;">Mai multe</a>
+							<p style="padding-top: 10px;">' . $datetime . '</p>
 					</div>
 				</section>';
 			}//end while
@@ -78,24 +87,26 @@
 		// authorization how administrator
 		if(!empty($_SESSION['auth'])){
 		print '
-			<div class="container">
-				<div class="row">
-					<div class="3u" style="float:right">			
-							<a href="admin.php" class="button" style="margin-right:20px;">ADMIN</a>
-							<a href="logout.php" class="button">LOG OUT</a>
-					 </div>
+			<div class="row">
+				<div style="float:left; margin: 30px 0 0 30px;">
+					<p class="tel" style="padding-left: 20px; font-size: 25px; margin-bottom: 0;">(+373) 247 2 24 40</p>
 				</div>
+				<div style="float:right; margin-right:20px;">
+					<a href="admin.php" class="button">ADMIN</a>
+					<a href="logout.php" class="button">LOG OUT</a>
+				 </div>
 			</div>';
 		}else{
 			// authorization how guest
 			print '
-			<div class="container">
 				<div class="row">
-					<div style="float:right">			
-							<a href="auth.php" class="button">LOG IN</a>
+					<div style="float:left; margin: 30px 0 0 30px;">
+						<p class="tel" style="padding-left: 20px; font-size: 25px; margin-bottom: 0;">(+373) 247 2 24 40</p>
+					</div>
+					<div style="float:right; margin-right: 20px;">
+						<a href="auth.php" class="button">LOG IN</a>
 					 </div>
-				</div>
-			</div>';
+				</div>';
 		}
 	?>
 	<!-- HEADER -->
@@ -122,6 +133,18 @@
 								<div class="divider" style="width: 100%; border-bottom: 1px solid #ddd; margin: 20px 0px;"></div>
 								<!--  /divider -->
 
+								<!-- date/time created/updated -->
+								<?php
+									$dtpc = $post->created;
+									$dtpup = $post->updated;
+									if(isset($dtpup)){
+										print date("l jS \of F Y h:i:s A", $dtpup);
+									}else{
+										print date("l jS \of F Y h:i:s A", $dtpc);
+									}
+								?>
+								<!-- END date/time created/updated -->
+								
 								<!-- title -->
 								<h2 style="text-align:center; line-height: 50px;"><?php print $post->title; ?></h2>
 								<!--  /title -->

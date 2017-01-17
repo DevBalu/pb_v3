@@ -48,19 +48,28 @@
 			}else{
 				$imageteg = '';
 			}
+			$dtimpc = $row->created;
+			$dtimpup = $row->updated;
+			$datetime = '';
+			if(isset($dtimpup)){
+				$datetime .= date("jS \of F Y", $dtimpup);
+			}else{
+				$datetime .= date("jS \of F Y", $dtimpc) ;
+			}
 			$posimp .= '
 				<section class="4u">
 					<div class="box" style="height: 300px; padding: 5px; border-radius: 5px;">
-							<div style="height: 250px; overflow: hidden">
-								<a href="post.php?id=' . $row->id .'" style="color: #000; text-decoration:none;">
-								<div style="width: 75%; height: 60%; margin:auto; display:flex; justify-content: center;"> 
+						<div style="height: 250px; overflow: hidden">
+						<a href="post.php?id=' . $row->id .'" style="color: #000; text-decoration:none;">
+							<div style="width: 75%; height: 60%; margin:auto; display:flex; justify-content: center;"> 
 									' . $imageteg. '
 								</div>
 								</a>
 								<p style="text-align:center; font-size: 20px">'.$row->title.'</p>
 								<p>'.$row->subtitle.'</p>
 							</div>
-							<a href="post.php?id=' . $row->id . '&important" class="button" style="margin-right:0; padding:2px 5px;">Mai multe</a>
+						<a href="post.php?id=' . $row->id . '&important" class="button" style="margin-right:0; padding:2px 5px; float: right;">Mai multe</a>
+						<p style="padding-top: 10px;">' . $datetime . '</p>
 					</div>
 				</section>
 			';
@@ -80,26 +89,28 @@
 		// authorization how administrator
 		if(!empty($_SESSION['auth'])){
 		print '
-			<div class="container">
-				<div class="row">
-					<div class="3u" style="float:right">			
-							<a href="admin.php" class="button" style="margin-right:20px;">ADMIN</a>
-							<a href="logout.php" class="button">LOG OUT</a>
-					 </div>
+			<div class="row">
+				<div style="float:left; margin: 30px 0 0 30px;">
+					<p class="tel" style="padding-left: 20px; font-size: 25px; margin-bottom: 0;">(+373) 247 2 24 40</p>
 				</div>
+				<div style="float:right; margin-right:20px;">
+					<a href="admin.php" class="button">ADMIN</a>
+					<a href="logout.php" class="button">LOG OUT</a>
+				 </div>
 			</div>';
-	 	}else{
+		}else{
 			// authorization how guest
-	 		print '
-			<div class="container">
+			print '
 				<div class="row">
-					<div style="float:right">			
-							<a href="auth.php" class="button">LOG IN</a>
+					<div style="float:left; margin: 30px 0 0 30px;">
+						<p class="tel" style="padding-left: 20px; font-size: 25px; margin-bottom: 0;">(+373) 247 2 24 40</p>
+					</div>
+					<div style="float:right; margin-right: 20px;">
+						<a href="auth.php" class="button">LOG IN</a>
 					 </div>
-				</div>
-			</div>';
-	 	}
-	 ?>
+				</div>';
+		}
+	?>
 
 	<!-- Header -->
 		<?php include "components/navbar.php"; ?>
@@ -139,15 +150,28 @@
 							}
 									?>
 									<header>
-										<h2 style="text-align:center;"><?php print $row->title ?></h2>
+
+										<h2 style="text-align:center; margin-top: 5px;"><?php print $row->title ?></h2>
 										<span class="byline" style="text-align:center;"><?php print $row->subtitle ?></span>
 									<div style="width: 60%; margin:auto;">
 										<?php print $imageteg;?>
 									</div>
 									</header>
 									<p><?php print $row->content ?></p>
+								<!-- divider -->
+								<div class="divider" style="width: 100%; border-bottom: 1px solid #ddd; margin: 20px 0px;"></div>
+								<!--  /divider -->
 									<?php  
-										print '<a class="button" href="post.php?id=' . $row->id .'">Mai multe</a>';
+										print '<a class="button" style="float:right;" href="post.php?id=' . $row->id .'">Mai multe</a>';
+										//date/time created
+										$dtc = $row->created;
+										$dtup = $row->updated;
+										if(isset($dtup)){
+											print '<p style="padding-top: 10px;">' . date("l jS \of F Y h:i:s A", $dtup) . ' </p>';
+										}else{
+											print '<p style="padding-top: 10px;">' . date("l jS \of F Y h:i:s A", $dtc) . ' </p>';
+										}
+										//END date/time created
 									?>
 
 						</section>

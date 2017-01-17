@@ -54,14 +54,14 @@
 		$query_post = mysqli_query($con, "SELECT p.* FROM posts p WHERE p.id = '$id'");
 		$post = $query_post->fetch_assoc();
 
-		// Get post's language.
+		// get post's language.
 		$res = mysqli_query($con, "SELECT t.language FROM translations t WHERE t.id_post = '$id'");
 		$language = $res->fetch_object();
 		$language = $language->language;
 
-		// Get post translations.
+		// get post translations.
 
-		// Get languages list.
+		// get languages list.
 		$query_languages = mysqli_query($con, "SELECT * FROM languages l WHERE l.prefix <> '$language'");
 		$languages_list = $query_languages->fetch_all();
 		$languages = '';
@@ -70,6 +70,7 @@
 				$languages .= '<option value="' . $language[2] . '">' . $language[1] . '</option>';
 			}
 		}
+		// END get languages list.
 
 		$id_group = $post['id_group'];
 		
