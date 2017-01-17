@@ -18,7 +18,7 @@
 	if(!empty($con)){
 		$res = mysqli_query($con, "SELECT t.language FROM translations t WHERE t.id_post = '$id'");
 		$language = $res->fetch_object();
-		$language = $language->language;
+		$language = $language['language'];
 		if (!isset($_GET['language']) || $language != $_GET['language']) {
 			header('Location: /pb/post.php?id=' . $id . '&language=' . $language);
 		}

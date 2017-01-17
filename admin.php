@@ -27,13 +27,6 @@
 			<a href="editcontent.php?id_group=' . $group[0] . '&delete=1" class="btn right" style="background:#e95d3c">STERGE</a><br><br>';
 		}
 	}
-	$languages = '';
-	if ($languages_list) {
-		foreach ($languages_list as $language) {
-			$languages .= '<div><p>' . $language[1] . ', ' . $language[2] . ':</p>
-			<a href="removelanguage.php?id_language=' . $language[0] . '" class="btn left" style="background:#e95d3c">STERGE</a></div>';
-		}
-	}
 	$categories_operations = '';
 	if ($categories) {
 		foreach ($categories as $category) {
