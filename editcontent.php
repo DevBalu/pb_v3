@@ -57,7 +57,7 @@
 		// get post's language.
 		$res = mysqli_query($con, "SELECT t.language FROM translations t WHERE t.id_post = '$id'");
 		$language = $res->fetch_object();
-		$language = $language['language'];
+		$language = $language->language;
 
 		// get post translations.
 
