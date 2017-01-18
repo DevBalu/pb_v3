@@ -825,9 +825,9 @@
 				border-bottom: 1px solid rgba(233, 93, 60, 0.38);
 			}
 			#nav > ul > li > p {
-			    font-size: 1.2rem;
-			    font-weight: 600;
-			    padding-left: 30px;
+				font-size: 1.2rem;
+				font-weight: 600;
+				padding-left: 30px;
 			}
 	.tel {
 		 background: url(../images/tel.png) no-repeat left center;
@@ -1081,51 +1081,51 @@
 /***********************************************************/
 #am div input
 {
-    margin-left: 3rem;
-    width: 92%;
-    width: calc(100% - 3rem);
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid #9e9e9e;
-    border-radius: 0;
-    outline: none;
-    height: 3rem;
-    width: 100%;
-    font-size: 1rem;
-    margin: 0 0 20px 0;
-    padding: 0;
-    box-shadow: none;
-    box-sizing: content-box;
-     transition: all 0.3s; 
+	margin-left: 3rem;
+	width: 92%;
+	width: calc(100% - 3rem);
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid #9e9e9e;
+	border-radius: 0;
+	outline: none;
+	height: 3rem;
+	width: 100%;
+	font-size: 1rem;
+	margin: 0 0 20px 0;
+	padding: 0;
+	box-shadow: none;
+	box-sizing: content-box;
+	 transition: all 0.3s; 
 }
 #am div input:hover
 {
-    border-bottom: 1px solid #e95d3c;
+	border-bottom: 1px solid #e95d3c;
 }
 
 #am div textarea
 {
-    overflow-y: hidden;
-    padding: .8rem 0 1.6rem 0;
-    resize: none;
-    min-height: 3rem;
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid #9e9e9e;
-    border-radius: 0;
-    outline: none;
-    height: 7rem;
-    width: 100%;
-    font-size: 1rem;
-    margin: 0 0 20px 0;
-    padding: 0;
-    box-shadow: none;
-    box-sizing: content-box;
- 	transition: all 0.3s; 
+	overflow-y: hidden;
+	padding: .8rem 0 1.6rem 0;
+	resize: none;
+	min-height: 3rem;
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid #9e9e9e;
+	border-radius: 0;
+	outline: none;
+	height: 7rem;
+	width: 100%;
+	font-size: 1rem;
+	margin: 0 0 20px 0;
+	padding: 0;
+	box-shadow: none;
+	box-sizing: content-box;
+	transition: all 0.3s; 
 }
 #am div textarea:hover
 {
-    border-bottom: 1px solid #e95d3c;
+	border-bottom: 1px solid #e95d3c;
 }
 #am .button 
 {
@@ -1151,5 +1151,51 @@
 	position: absolute;
 	width: 300px;
 	height: 200px;
-	/*margin: 400px 0 0 100px; */
 	}
+/* ------------------- */
+/* search */
+/* ------------------- */
+#search {
+	float: right;
+	border: 1px solid #9e9e9e;
+	height: 41px;
+	border-radius: 6px;
+	margin: 8px 0 0 0px;
+}
+#search div{
+	float: left;
+}
+#search .cbut {
+	border-radius: 0 6px 6px 0;
+	display: inline-block;
+	border: none;
+	margin-left: 10px;
+	background: url(../images/img/search.png) no-repeat center center;
+	background-color: rgba(0, 0, 0, 0.16);;
+	text-decoration: none;
+	text-transform: uppercase;
+	color: #FFF;
+	-moz-transition: color 0.35s ease-in-out, background-color 0.35s ease-in-out;
+	-webkit-transition: color 0.35s ease-in-out, background-color 0.35s ease-in-out;
+	-o-transition: color 0.35s ease-in-out, background-color 0.35s ease-in-out;
+	-ms-transition: color 0.35s ease-in-out, background-color 0.35s ease-in-out;
+	transition: color 0.35s ease-in-out, background-color 0.35s ease-in-out;
+	cursor: pointer;
+	height: 39px;
+	width: 50px;
+}
+#search div input
+{
+	padding-left: 5px !important;
+	background-color: transparent;
+	border: none;
+	border-radius: 0;
+	outline: none;
+	height: 40px;
+	width: 100%;
+	font-size: 1rem;
+	padding: 0;
+`	box-shadow: none;
+	box-sizing: content-box;
+	transition: all 0.3s; 
+}

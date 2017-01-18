@@ -74,8 +74,7 @@
 
 		$id_group = $post['id_group'];
 		
-		$query_categories = mysqli_query($con, "
-			SELECT c.* FROM categories c WHERE c.id_group = '$id_group'");
+		$query_categories = mysqli_query($con, "SELECT c.* FROM categories c WHERE c.id_group = '$id_group'");
 		$categories = $query_categories->fetch_all();
 
 		if (!empty($categories)) {
@@ -173,13 +172,13 @@
 							}
 						?>
 						<div class="file-field input-field">
-						  <div class="btn" style="background:#e95d3c">
-							<span>File</span>
-							<input type="file" name="image">
-						  </div>
-						  <div class="file-path-wrapper">
-							<input class="file-path validate" type="text" placeholder="Alege Imaginea">
-						  </div>
+							<div class="btn" style="background:#e95d3c">
+								<span>File</span>
+								<input type="file" name="image">
+							</div>
+							<div class="file-path-wrapper">
+								<input class="file-path validate" type="text" placeholder="Alege Imaginea">
+							</div>
 						</div>
 						<input value="<?php print $_GET['id_group']; ?>" type="hidden" name="group"/>
 						<a href="admin.php" class="btn left" style="background:#e95d3c">PAGINA ADMIN</a>
@@ -271,7 +270,12 @@
 						<input id="video" type="text" value="<?php print $post['video']; ?>" name="editvideo"></input>
 						<label for="video">Video : "YouTube"</label>
 					</div><br>
-					
+
+					<div class="input-field">
+						<input id="searchteg" type="text" value="<?php print $post['teg']; ?>" name="searchteg"></input>
+						<label for="searchteg">Video : "YouTube"</label>
+					</div><br>
+
 					<div class="row">
 						<div class="col m3"> 	
 							<input name="important" <?php print $post['important'] ? 'checked=checked' : ''; ?> type="checkbox" class="filled-in" id="important"/>

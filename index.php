@@ -105,10 +105,21 @@
 				<div style="float:left; margin: 30px 0 0 30px;">
 					<p class="tel" style="padding-left: 20px; font-size: 25px; margin-bottom: 0;">(+373) 247 2 24 40</p>
 				</div>
+
 				<div style="float:right; margin-right:20px;">
 					<a href="admin.php" class="button">ADMIN</a>
 					<a href="logout.php" class="button">LOG OUT</a>
-				 </div>
+				</div>
+
+				<div id="search" style="padding-left: 0;">
+					<form action="search.php" method="POST">
+						<div>
+							<input name="search" type="text" placeholder="CAUTARE"><br>
+						</div>
+						<button class="cbut"></button>
+					</form>
+				</div>
+
 			</div>';
 		}else{
 			// authorization how guest
@@ -117,9 +128,20 @@
 					<div style="float:left; margin: 30px 0 0 30px;">
 						<p class="tel" style="padding-left: 20px; font-size: 25px; margin-bottom: 0;">(+373) 247 2 24 40</p>
 					</div>
+				
 					<div style="float:right; margin-right: 20px;">
 						<a href="auth.php" class="button">LOG IN</a>
 					 </div>
+
+					<div id="search" style="padding-left: 0;">
+						<form action="search.php" method="POST">
+							<div>
+								<input name="search" type="text" placeholder="CAUTARE"><br>
+							</div>
+							<button class="cbut"></button>
+						</form>
+					</div>
+				
 				</div>';
 		}
 	?>
@@ -246,7 +268,6 @@
 				<div class="row">
 				<?php print $posimp; ?>
 				</div>
-				<!-- <div class="divider"></div> -->
 			</div>
 		</div>
 	<!-- END Featured -->

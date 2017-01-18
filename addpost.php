@@ -29,7 +29,7 @@
 				if (!empty($_GET['group']) && $id == $_GET['group']) {
 					$selected = 'selected="selected"';
 				}
-				$group_options .= '<option ' . $selected . ' value="' . $id . '">' . $group['group_name'] . '</option>';
+				$group_options .= '<option ' . $selected . ' value="' . $id . '">    ' . $group['group_name'] . '</option>';
 
 			}
 			
@@ -39,7 +39,7 @@
 					if (!empty($_GET['group']) && $id == $_GET['group']) {
 						$selected = 'selected="selected"';
 					}
-					$categories_options .= '<option ' . $selected . ' value="' . $category['category_id'] . '">' . $category['category_name'] . '</option>';
+					$categories_options .= '<option ' . $selected . ' value="' . $category['category_id'] . '">    ' . $category['category_name'] . '</option>';
 				}
 			}
 		}
@@ -74,14 +74,16 @@
 					<h4 class="left" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">Adaugare Post</h4><br><br><br>
 
 					<div class="input-field col s12">
+						<span style="color: red; position: absolute; margin-top: 13px;">*</span> 
 						<select name="group">
-							<option value="" disabled selected>GROUP</option>
+							<option value="" disabled selected>    GROUP</option>
 							<?php print $group_options; ?>
 						</select>
 					</div><br><br><br><br>
 					<div class="input-field col s12">
+						<span style="color: red; position: absolute; margin-top: 13px;">*</span> 
 						<select name="category">
-							<option value="" disabled selected>CATEGORY</option>
+							<option value="" disabled selected>    CATEGORY</option>
 							<?php print $categories_options; ?>
 						</select>
 					</div><br><br>
@@ -103,7 +105,7 @@
 
 					<div class="input-field">
 						<textarea id="title" type="text" class="materialize-textarea" name="title"></textarea>
-						<label for="title">Titlu</label>
+						<label for="title"><span style="color: red;">*</span> Titlu</label>
 					</div>
 
 					<div class="input-field">
@@ -113,11 +115,15 @@
 
 					<div class="input-field">
 						<textarea id="content1" type="text" class="materialize-textarea" name="content"></textarea>
-						<label for="content1">Content</label>
+						<label for="content1"><span style="color: red;">*</span> Content</label>
 					</div><br>
 					<div class="input-field">
 						<input id="video" type="text" name="video"></input>
 						<label for="video">Video : "YouTube"</label>
+					</div><br>
+					<div class="input-field">
+						<input id="searchteg" type="text" name="searchteg"></input>
+						<label for="searchteg"><span style="color: red;">*</span> Cuvinte cheie</label>
 					</div><br>
 					<input value="1" type="hidden" name="addpost"/>
 					<a class="btn left" href="admin.php" style="background:#e95d3c">PAGINA ADMIN</a>

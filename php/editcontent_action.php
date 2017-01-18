@@ -73,13 +73,15 @@
 	}
 
 	// Edit post logic.
-	if (!empty($_POST['post'])&& !empty($_POST['category']) && !empty($_POST['title']) && !empty($_POST['subtitle']) && !empty($_POST['content'])) {
+	if (!empty($_POST['post'])&& !empty($_POST['category']) && !empty($_POST['title']) && !empty($_POST['subtitle']) && !empty($_POST['content']) && $searchteg = $_POST['searchteg']) {
 		$id = $_POST['post'];
 		$category = $_POST['category'];
 		$title = $_POST['title'];
 		$subtitle = $_POST['subtitle'];
 		$content = $_POST['content'];
 		$updated = time();
+		$important = !empty($_POST['important']) ? 1 : 0;
+		$searchteg = $_POST['searchteg'];
 
 		// get res from video field
 		$editvideo = $_POST['editvideo'];
@@ -96,7 +98,6 @@
 		}
 		// END get res from video field
 
-		$important = !empty($_POST['important']) ? 1 : 0;
 
 		//get res from image field
 		$image_url = $_POST['image_url'];
@@ -108,15 +109,17 @@
 			move_uploaded_file($_FILES['image']['tmp_name'], $image_name);
 			$image_url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/pb/post_images/' . $_FILES['image']['name'];
 		}
-			//check at touch checkbox delimg
+
+		//check at touch checkbox delimg
 		$delimg = $_POST['delimg'];
 		if(!empty($delimg)){
 			$image_url = '';
 		}
-			// END check at touch checkbox delimg
+		// END check at touch checkbox delimg
+		
 		//END get res from image field
 
-		$update_string = "UPDATE posts p SET p.id_category=$category, p.title='$title', p.subtitle='$subtitle', p.content='$content', p.video='$href', p.image_url='$image_url', important='$important', p.updated='$updated'  WHERE id = '$id'";
+		$update_string = "UPDATE posts p SET p.id_category=$category, p.title='$title', p.subtitle='$subtitle', p.content='$content', p.video='$href', p.image_url='$image_url', important='$important', p.updated='$updated', p.teg='$searchteg'  WHERE id = '$id'";
 
 		mysqli_query($con, $update_string);
 		header('Location: /pb/editcontent.php?id_post=' . $id);

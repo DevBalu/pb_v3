@@ -41,18 +41,18 @@
 			</div>
 
 			<div class="6u">
-		    	<h2>Scrieți-ne un mesaj</h2>
-			    <form id="am" class="message"  action="php/messagereq.php" method="POST"><!--access message-->
-			        <div>
-			          <input name="fname" type="text" placeholder="Nume"><br>
-			          <input name="lname" type="text" placeholder="Prenume"><br>
-			          <input name="email" type="text" placeholder="Email"><br>
-			          <textarea name="message" placeholder="Mesaj"></textarea>
-			          <button class="button" type="submit">TRIMITE</button>
-			        </div>
-			    </form>
-			  </div>
+				<h2>Scrieți-ne un mesaj</h2>
+				<form id="am" class="message"  action="php/messagereq.php" method="POST"><!--access message-->
+					<div>
+						<input name="fname" type="text" placeholder="Nume"><br>
+						<input name="lname" type="text" placeholder="Prenume"><br>
+						<input name="email" type="text" placeholder="Email"><br>
+						<textarea name="message" placeholder="Mesaj"></textarea>
+						<button class="button" type="submit">TRIMITE</button>
+					</div>
+				</form>
 			</div>
+
 		</div>
 	</div>
 </div>
