@@ -15,8 +15,9 @@
 	
 	//logic for FEUTERED post.php
 	$id_cat = $post->id_category;
+	$id_group = $post->id_group;
 	if(!empty($con)){
-		$res = mysqli_query($con, "SELECT t.language FROM translations t WHERE t.id_post = '$id'");
+		$res = mysqli_query($con, "SELECT g.language FROM groups g WHERE g.id = '$id_group'");
 		$language = $res->fetch_object();
 		$language = $language->language;
 		if (!isset($_GET['language']) || $language != $_GET['language']) {

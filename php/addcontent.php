@@ -23,17 +23,18 @@
 	}
 
 	// Add group logic.
-	if (!empty($_POST['addgroup']) && !empty($_POST['name']) && !empty($_FILES['image'])) {
+	if (!empty($_POST['addgroup']) && !empty($_POST['name']) && !empty($_POST['language']) && !empty($_FILES['image'])) {
 		if ($_FILES['image']['error']) {
 			echo 'Sunt erori in adaugarea imaginii!';
 			return;
 		}
 		$name = $_POST['name'];
+		$language = $_POST['language'];
 		$filename = $_FILES['image']['tmp_name'];
 		$plain = fread(fopen($filename, "r"), filesize($filename));
 		$base64_encoded = 'data:image/' . $_FILES['image']['type'] . ';base64,' . base64_encode($plain);
 		
-		mysqli_query($con, "INSERT INTO groups (name, thumbnail) VALUES ('$name', '$base64_encoded')");
+		mysqli_query($con, "INSERT INTO groups (name, thumbnail, language) VALUES ('$name', '$base64_encoded', '$language')");
 		header('Location: /pb/addgroup.php');
 	}
 	else {
@@ -44,7 +45,7 @@
 	if (!empty($_POST['addpost']) &&!empty($_POST['group']) && !empty($_POST['category']) && !empty($_POST['title']) && !empty($_POST['content']) && !empty($_POST['searchteg'])) {
 		$group = $_POST['group'];
 		$category = $_POST['category'];
-		$important = $_POST['important'] ? 1 : 0;
+		$important = !empty($_POST['important']) ? 1 : 0;
 		
 		// get res from image field
 		$image_name = '../post_images/' . $_FILES['image']['name'];

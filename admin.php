@@ -16,7 +16,8 @@
 	if ($languages_list) {
 		foreach ($languages_list as $language) {
 			$languages .= '<div><p>' . $language[1] . ', ' . $language[2] . ':</p>
-			<a href="removelanguage.php?id_language=' . $language[0] . '" class="btn" style="background:#e95d3c">STERGE</a></div>';
+			<a href="removelanguage.php?id_language=' . $language[0] . '" class="btn" style="background:#e95d3c">STERGE</a>
+			<a href="php/languagedefault.php?id_language=' . $language[0] . '" class="btn" style="background:#e95d3c">SETEAZA IMPLICIT</a></div>';
 		}
 	}
 	$groups_operations = '';

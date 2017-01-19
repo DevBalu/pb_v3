@@ -8,6 +8,17 @@
 	if(!empty($con)){
 	 	//get group id 
 		$id = $_GET['id'];
+		$language_query = mysqli_query($con, "
+			SELECT prefix FROM languages l
+			JOIN groups g ON g.language = l.prefix
+			WHERE g.id = '$id'
+			");
+		$language = $language_query->fetch_object();
+		$language = $language->prefix;
+
+		if (empty($_GET['language']) || $_GET['language'] != $language) {
+			header('Location: /pb/group.php?id=' . $_GET['id'] . '&language=' . $language);
+		}
 
 		// query for last three posts from this group 
 		$lastGroupPost = mysqli_query($con, "

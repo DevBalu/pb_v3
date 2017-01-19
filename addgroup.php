@@ -3,6 +3,17 @@
 	if(!$_SESSION['auth']){
 		header('Location: /pb/index.php');
 	}
+	require_once('php/connect.php');
+
+	$languages = '';
+	if (!empty($con)) {
+		$result = mysqli_query($con, "SELECT languages.* FROM languages");
+		while ($language = $result->fetch_object()) {
+			$languages .= '<option value="' . $language->prefix . '">    ' . $language->name . '</option>';
+		}
+		$result->close();
+	}
+	$con->close();
  ?>
 
 <!DOCTYPE html>
@@ -29,6 +40,15 @@
 				<div class="col s12 m8 l8 offset-m2 offset-l2"><br>
 
 					<h4 class="left" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">ADAUGATI GRUPA</h4><br><br><br>
+
+					<div class="input-field col s12">
+						<span style="color: red; position: absolute; margin-top: 13px;">*</span> 
+						<select name="language">
+							<option value="" disabled selected>    LIMBA</option>
+							<?php print $languages; ?>
+						</select>
+					</div>
+					<br><br><br><br>
 
 	  		        <div class="input-field">
 	          			<input id="content" type="text" name="name"/>

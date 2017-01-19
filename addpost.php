@@ -7,14 +7,14 @@
 
 	if (!empty($con)) {
 		$result = mysqli_query($con, "
-			SELECT g.id, g.name group_name, c.name category_name, c.id category_id FROM groups g
+			SELECT g.id, g.name group_name, g.language , c.name category_name, c.id category_id FROM groups g
 			LEFT JOIN categories c ON c.id_group = g.id
 		");
 
 		$groups = array();
 		if ($result) {
 			while ($row = $result->fetch_object()) {
-				$groups[$row->id]['group_name'] = $row->group_name;
+				$groups[$row->id]['group_name'] = $row->group_name . ' : ' . $row->language;
 				$groups[$row->id]['categories'][] = array('category_name' => $row->category_name,
 				'category_id' => $row->category_id);
 			}

@@ -2,6 +2,14 @@
 	// last  5 posts
 	include "php/connect.php";
 
+	$language_query = mysqli_query($con, "SELECT prefix FROM languages WHERE is_default = 1");
+	$language = $language_query->fetch_object();
+	$language = $language->prefix;
+
+	if (empty($_GET['language'])) {
+		header('Location: /pb/index.php?language=' . $language);
+	}
+
 	$result = mysqli_query($con, "
 		SELECT p.* FROM posts p
 		ORDER BY id DESC
@@ -88,7 +96,7 @@
 		}
 		$resultimp->close();
 	}
-
+	$con->close();
 ?>
 <!DOCTYPE HTML>
 <html>

@@ -4,19 +4,12 @@
 	if (!empty($con)) {
 		$result = mysqli_query($con, "SELECT g.* FROM groups g");
 
-		$groups = array();
+		$group_options = '';
 		if ($result) {
 			while ($row = $result->fetch_object()) {
-				$groups[$row->id] = $row->name;
+				$group_options .= '<option value="' . $row->id . '">   ' . $row->name . ' : ' . $row->language . '</option>';
 			}
 			$result->close();
-		}
-
-		if (!empty($groups)) {
-			$group_options = '';
-			foreach ($groups as $id => $group) {
-				$group_options .= '<option value="' . $id . '">' . $group . '</option>';
-			}
 		}
 	}
 	$con->close();

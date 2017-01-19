@@ -6,7 +6,11 @@
 <?php 
 	include "php/connect.php";
 
-	$result = mysqli_query($con, "SELECT g.* FROM groups g");
+	$language = $_GET['language'];
+	if (strlen($language) > 2) {
+		$language = '';
+	}
+	$result = mysqli_query($con, "SELECT g.* FROM groups g WHERE g.language = '$language'");
 
 	if ($result) {
 		while ($row = $result->fetch_object()) {
