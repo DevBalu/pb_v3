@@ -5,6 +5,11 @@
 	$language_query = mysqli_query($con, "SELECT prefix FROM languages WHERE is_default = 1");
 	$language = $language_query->fetch_object();
 	$language = $language->prefix;
+	
+	$implanguage = $_GET['language'];
+	if (strlen($implanguage) > 2) {
+		$implanguage = '';
+	}
 
 	if (empty($_GET['language'])) {
 		header('Location: /pb/index.php?language=' . $language);
@@ -12,6 +17,8 @@
 
 	$result = mysqli_query($con, "
 		SELECT p.* FROM posts p
+		JOIN groups g on g.language = '$implanguage'
+		WHERE p.id_group = g.id
 		ORDER BY id DESC
 		LIMIT 5
 		");
@@ -30,9 +37,9 @@
 			$dtlfpc = $row->created;
 			$dtlfpup = $row->updated;
 			if(isset($dtlfpup)){
-				$datetimelp .= date("l j.m / h:i", $dtlfpup);
+				$datetimelp .= date("Y-m-d / h:i:s", $dtlfpup);
 			}else{
-				$datetimelp .= date("l j.m / h:i", $dtlfpc);
+				$datetimelp .= date("Y-m-d / h:i:s", $dtlfpc);
 			}
 
 			$image .= '
@@ -54,7 +61,8 @@
 	// last 3 posts important
 	$resultimp = mysqli_query($con, "
 		SELECT p.* FROM posts p
-		WHERE important = 1
+		JOIN groups g on g.language = '$implanguage'
+		WHERE p.id_group = g.id and p.important = 1
 		ORDER BY id DESC
 		LIMIT 3
 		");
@@ -72,9 +80,9 @@
 			$dtimpup = $row->updated;
 			$datetime = '';
 			if(isset($dtimpup)){
-				$datetime .= date("jS \of F Y", $dtimpup);
+				$datetime .= date("Y-m-d / h:i:s", $dtimpup);
 			}else{
-				$datetime .= date("jS \of F Y", $dtimpc) ;
+				$datetime .= date("Y-m-d / h:i:s", $dtimpc) ;
 			}
 			$posimp .= '
 				<section class="4u">
@@ -119,14 +127,14 @@
 					<a href="logout.php" class="button">LOG OUT</a>
 				</div>
 
-				<div id="search" style="padding-left: 0;">
+				<!--<div id="search" style="padding-left: 0;">
 					<form action="search.php" method="POST">
 						<div>
 							<input name="search" type="text" placeholder="CAUTARE"><br>
 						</div>
 						<button class="cbut"></button>
 					</form>
-				</div>
+				</div>-->
 
 			</div>';
 		}else{
@@ -141,14 +149,14 @@
 						<a href="auth.php" class="button">LOG IN</a>
 					 </div>
 
-					<div id="search" style="padding-left: 0;">
+					<!--<div id="search" style="padding-left: 0;">
 						<form action="search.php" method="POST">
 							<div>
 								<input name="search" type="text" placeholder="CAUTARE"><br>
 							</div>
 							<button class="cbut"></button>
 						</form>
-					</div>
+					</div>-->
 				
 				</div>';
 		}
@@ -175,12 +183,15 @@
 						<section>
 						<?php 
 
+					
+
 						$resimp = mysqli_query($con, "
 							SELECT p.* FROM posts p
-							WHERE important = 1
+							JOIN groups g on g.language = '$implanguage'
+							WHERE p.id_group = g.id and p.important = 1
 							ORDER BY id DESC
 							LIMIT 1
-							");
+						");
 
 						if ($resimp) {
 							while ($row = $resimp->fetch_object()) {
@@ -208,9 +219,9 @@
 										$dtc = $row->created;
 										$dtup = $row->updated;
 										if(isset($dtup)){
-											print '<p style="padding-top: 10px;">' . date("l jS \of F Y h:i:s A", $dtup) . ' </p>';
+											print '<p style="padding-top: 10px;">' . date("Y-m-d  / h:i:s", $dtup) . ' </p>';
 										}else{
-											print '<p style="padding-top: 10px;">' . date("l jS \of F Y h:i:s A", $dtc) . ' </p>';
+											print '<p style="padding-top: 10px;">' . date("Y-m-d / h:i:s", $dtc) . ' </p>';
 										}
 										//END date/time created
 									?>

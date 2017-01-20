@@ -248,7 +248,7 @@
 
 					<div class="input-field">
 						<input id="searchteg" type="text" value="<?php print $post['teg']; ?>" name="searchteg"></input>
-						<label for="searchteg">Video : "YouTube"</label>
+						<label for="searchteg">Cuvinte cheie</label>
 					</div><br>
 
 					<div class="row">

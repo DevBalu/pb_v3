@@ -11,13 +11,17 @@
 				<?php 
 					include "php/connect.php";
 
-						$result = mysqli_query($con, "SELECT g.* FROM groups g");
-						if ($result) {
-							while ($row = $result->fetch_object()) {
-								print '<li><a href="group.php?id=' . $row->id .'">'. $row->name .'</a></li>';
-							}
-							$result->close();
+					$language = $_GET['language'];
+					if (strlen($language) > 2) {
+						$language = '';
+					}
+					$result = mysqli_query($con, "SELECT g.* FROM groups g WHERE g.language = '$language'");
+					if ($result) {
+						while ($row = $result->fetch_object()) {
+							print '<li><a href="group.php?id=' . $row->id .'">'. $row->name .'</a></li>';
 						}
+						$result->close();
+					}
 				?>
 					<!-- <li><p class="tel">(+373) 247 2 24 40</p></li> -->
 				</ul>
