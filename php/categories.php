@@ -13,7 +13,7 @@
 		if ($result) {
 			while ($row = $result->fetch_object()) {
 				$categories_posts[$row->category_id]['name'] = $row->name;
-	    		$categories_posts[$row->category_id]['posts'][] = array('post_id' => $row->post_id, 'title' => $row->title);
+				$categories_posts[$row->category_id]['posts'][] = array('post_id' => $row->post_id, 'title' => $row->title);
 			}
 			$result->close();
 		}

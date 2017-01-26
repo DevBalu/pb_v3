@@ -1,37 +1,22 @@
-<script src="js/groups.js"></script>
-<div id="banner">
-	<!-- Extra -->
-	<div id="marketing" class="container">
-		<div class="row">
-<?php 
-	include "php/connect.php";
 
-	$language = $_GET['language'];
-	if (strlen($language) > 2) {
-		$language = '';
-	}
-	$result = mysqli_query($con, "SELECT g.* FROM groups g WHERE g.language = '$language'");
-
-	if ($result) {
-		while ($row = $result->fetch_object()) {
-			print '<div class="box 3u">
-				<div class="menu">
-					<a href="group.php?id=' . $row->id .'">
-						<div class="sectop">
-							<img src="'. $row->thumbnail . '">
-						</div>
-						<div class="secbottom g'. $row->id .'" id="groupid g'. $row->id .'" onclick="getGid(this)">
-							<h2>' . $row->name . '</h2>
-						</div>
-					</a>
-				</div>
-			</div>';
-		}
-		$result->close();
-	}
-?>
-		</div>
-	</div>
-
-	<!-- /Extra -->
-</div>
+<div class="carousel carousel-slider center" data-indicators="true">
+    <div class="carousel-fixed-item center">
+      <a class="btn waves-effect white grey-text darken-text-2">button</a>
+    </div>
+    <div class="carousel-item red white-text" href="#one!">
+      <h2>First Panel</h2>
+      <p class="white-text">This is your first panel</p>
+    </div>
+    <div class="carousel-item amber white-text" href="#two!">
+      <h2>Second Panel</h2>
+      <p class="white-text">This is your second panel</p>
+    </div>
+    <div class="carousel-item green white-text" href="#three!">
+      <h2>Third Panel</h2>
+      <p class="white-text">This is your third panel</p>
+    </div>
+    <div class="carousel-item blue white-text" href="#four!">
+      <h2>Fourth Panel</h2>
+      <p class="white-text">This is your fourth panel</p>
+    </div>
+  </div>

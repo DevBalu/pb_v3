@@ -172,70 +172,79 @@
 
 	<!-- Page -->
 		<div id="page">
-
-
 			<!-- Main -->
 			<div id="main" class="container indexsidebar">
 				<div class="row">
-				<!-- info section -->
-					<!-- section important post  -->
-					<div class="6u">
-						<section>
-						<?php 
+					<div class="3u">
+						<?php
+								// get languaage page
+								$language = $_GET['language'];
+								if (strlen($language) > 2) {
+									$language = '';
+								}
+								//query groups 
+								$resultgroup = mysqli_query($con, "SELECT g.* FROM groups g WHERE g.language = '$language'");
 
-					
-
-						$resimp = mysqli_query($con, "
-							SELECT p.* FROM posts p
-							JOIN groups g on g.language = '$implanguage'
-							WHERE p.id_group = g.id and p.important = 1
-							ORDER BY id DESC
-							LIMIT 1
-						");
-
-						if ($resimp) {
-							while ($row = $resimp->fetch_object()) {
-							$img = $row->image_url;
-							if(!empty($img)){
-								$imageteg = '<img src="'. $img .'"  style="width: 100%;">';
-							}else{
-								$imageteg = '';
-							}
-									?>
-									<header>
-										<h2 style="text-align:center; margin-top: 5px;"><?php print $row->title ?></h2>
-										<span class="byline" style="text-align:center;"><?php print $row->subtitle ?></span>
-									<div style="width: 60%; margin:auto;">
-										<?php print $imageteg;?>
-									</div>
-									</header>
-									<p><?php print $row->content ?></p>
-								<!-- divider -->
-								<div class="divider" style="width: 100%; border-bottom: 1px solid #ddd; margin: 20px 0px;"></div>
-								<!--  /divider -->
-									<?php  
-										print '<a class="button" style="float:right;" href="post.php?id=' . $row->id .'">Mai multe</a>';
-										//date/time created
-										$dtc = $row->created;
-										$dtup = $row->updated;
-										if(isset($dtup)){
-											print '<p style="padding-top: 10px;">' . date("Y-m-d  / h:i:s", $dtup) . ' </p>';
-										}else{
-											print '<p style="padding-top: 10px;">' . date("Y-m-d / h:i:s", $dtc) . ' </p>';
-										}
-										//END date/time created
-									?>
-
-						</section>
-								<?php
-								;}
-							$resimp->close();
-						} ?>
+								$menuallres = '';
+								//show content query result groups
+								if ($resultgroup) {
+									while ($row = $resultgroup->fetch_object()) {
+											$id_group = $row->id;
+											$gr_name = $row->name;
+											// query categories and post 
+											$resultcat = mysqli_query($con, "
+												SELECT c.name, c.id category_id, p.title, p.id post_id FROM categories c
+												LEFT JOIN posts p ON p.id_category = c.id
+												WHERE c.id_group = '$id_group'
+											");
+											//array that contains category post
+											$categories_posts = array();
+											//filtering query resultcat content 
+											if ($resultcat) {
+												while ($row = $resultcat->fetch_object()) {
+													$categories_posts[$row->category_id]['name'] = $row->name;
+													$categories_posts[$row->category_id]['posts'][] = array('post_id' => $row->post_id, 'title' => $row->title);
+												}
+											}
+											// work with category & post
+											$rescatpos = '';
+											foreach ($categories_posts as $posts) {
+												$postname = '';
+												foreach ($posts['posts'] as $post) {
+												$rescatpos .= '
+													<ul class="collapsible" data-collapsible="expandable" style="margin: 0;">
+														<li>
+															<div class="collapsible-header" style="padding: 0rem 0rem 0rem 4rem;"><p style="margin: 0; padding: 0 0 0 10px;line-height: 26px;">' . $posts['name'] . '</p></div>
+															<div class="collapsible-body" style="padding: 0 0 0 70px;">
+																<span>
+																	<a href="post.php?id=' . $post['post_id'] . '">' . $post['title'] . '</a>
+																</span>
+																<br>
+															</div>
+														</li>
+													</ul>';
+												}
+											}
+										//finaly form group / category / posts
+										$menuallres .= '
+											<ul class="collapsible" data-collapsible="expandable" style="margin: 0;">
+												<li>
+													<div class="collapsible-header"><p style="margin: 0; padding: 0;">' .$gr_name . '</p></div>
+													<div class="collapsible-body">' . $rescatpos . '</div>
+												</li>
+											</ul>
+										';
+									}
+								}
+// print '<pre>';
+print_r($menuallres);
+// print '</pre>';
+							// $result->close();
+						?>
 					</div>
-					<!-- END section important post  -->
 
 					<!-- section last post -->
-					<div class="3u">
+					<div class="9u">
 						<section class="sidebar">
 							<header>
 								<h2>ultimile știri</h2>
@@ -246,37 +255,9 @@
 						</section>
 					</div>
 					<!-- END section last post -->
-					
-					<div class="3u">
-						<section class="sidebar">
-							<header>
-								<h2>Feugiat Tempus</h2>
-							</header>
-							<ul class="style1">
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-								<li><a href="#">Etiam rhoncus volutpat erat</a></li>
-								<li><a href="#">Donec dictum metus in sapien</a></li>
-								<li><a href="#">Nulla luctus eleifend purus</a></li>
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-							</ul>
-						</section>
-						<section class="sidebar">
-							<header>
-								<h2>Nulla luctus eleifend</h2>
-							</header>
-							<ul class="style1">
-								<li><a href="#">Maecenas luctus lectus at sapien</a></li>
-								<li><a href="#">Donec dictum metus in sapien</a></li>
-								<li><a href="#">Integer gravida nibh quis urna</a></li>
-								<li><a href="#">Etiam posuere augue sit amet nisl</a></li>
-								<li><a href="#">Mauris vulputate dolor sit amet nibh</a></li>
-							</ul>
-						</section>
-					</div>
-				</div>
+
 			</div>
 			<!-- END Main -->
-
 		</div>
 	<!-- END Pge -->
 

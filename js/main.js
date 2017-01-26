@@ -1,6 +1,8 @@
 $(document).ready(function() {
 	$('select').material_select();
 	$('.collapsible').collapsible();
+	$('.carousel.carousel-slider').carousel({fullWidth: true});
+	 $('.carousel').carousel();
 
 	$('select[name="group"]').change(function() {
 		insertParam('group', $(this).val());
