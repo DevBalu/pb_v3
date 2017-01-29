@@ -23,20 +23,6 @@
 						<li style="min-width: 50px; text-align: center;"><a href="index.php?language=ru" style="color: #333 !important;">RU</a></li>
 						<li style="min-width: 50px; text-align: center;"><a href="index.php?language=ro" style="color: #333 !important;">RO</a></li>
 						<li style="min-width: 50px; text-align: center;"><a href="index.php?language=en" style="color: #333 !important;">EN</a></li>
-					<?php 
-						include "php/connect.php";
-
-						if (strlen($language) > 2) {
-							$language = '';
-						}
-						$result = mysqli_query($con, "SELECT g.* FROM groups g WHERE g.language = '$language'");
-						if ($result) {
-							while ($row = $result->fetch_object()) {
-								//print '<li><a href="group.php?id=' . $row->id .'">'. $row->name .'</a></li>';
-							}
-							$result->close();
-						}
-					?>
 					</ul>
 				</nav>
 			</div>

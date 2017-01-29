@@ -46,7 +46,7 @@
 				<li style="background: rgba(255, 255, 255, 0.77);">
 					' . $datetimelp . '
 					<div style="height: 135px; overflow: hidden;">
-						<a href="post.php?id=' . $row->id .'">' .
+						<a href="post.php?id=' . $row->id . '&language=' . $language .'">' .
 							$imageteg . '
 							<p style="margin-bottom: 0.3rem;">'. $row->title.'</p>
 							<p style="margin-bottom: 0.3rem;">'. $row->subtitle.'</p>

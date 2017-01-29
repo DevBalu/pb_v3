@@ -1,9 +1,11 @@
 <?php 
-	// last  5 posts
+	// last  5 posts in dependence 
 	include "php/connect.php";
-
+	$language = $_GET['language'];
 	$result = mysqli_query($con, "
 		SELECT p.* FROM posts p
+		JOIN groups g on g.language = '$language'
+		WHERE p.id_group = g.id
 		ORDER BY id DESC
 		LIMIT 5
 		");
@@ -42,70 +44,50 @@
 		$result->close();
 	}
 	// END last 5 posts
+
+	// Search result
+	if (!empty($_POST['tags'])) {
+		header('Location: /pb/search.php?language=' . $_GET['language'] . '&tags=' . $_POST['tags']);
+	}
+
+		//get value from href 
+	$tags = $_GET['tags'];
+		//divide word from string in array, decode %20 from url transform in space
+	$tags_array = explode(' ', urldecode($tags));
+	$i = 0;
+	$sql = 'SELECT p.* FROM posts p WHERE p.teg';
+	foreach($tags_array as $row){
+		if ($i == 0) {
+			$sql .= " " . "LIKE" . " " . "'%" . $row . "%'";
+		}
+		else {
+			$sql .= " " . "OR p.teg LIKE" . " " . "'%" . '' . $row . "%'" . ' ';
+		}
+		$i++;
+	}
+		//request from table post , in order to compare filedt tags with value from input user
+	$reqteg = mysqli_query($con, "$sql");
+	// END Search result
+
  ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
 		<?php include "components/head.php"; ?>
 	</head>
-	<body class="homepage">
-	<?php 
-		session_start();
-		// authorization how administrator
-		if(!empty($_SESSION['auth'])){
-		print '
-			<div class="row">
-				<div style="float:left; margin: 30px 0 0 30px;">
-					<p class="tel" style="padding-left: 20px; font-size: 25px; margin-bottom: 0;">(+373) 247 2 24 40</p>
-				</div>
-
-				<div style="float:right; margin-right:20px;">
-					<a href="admin.php" class="button">ADMIN</a>
-					<a href="logout.php" class="button">LOG OUT</a>
-				</div>
-
-				<div id="search" style="padding-left: 0;">
-					<form action="php/search.php" method="POST">
-						<div>
-							<input name="search" type="text" placeholder="CAUTARE"><br>
-						</div>
-						<button class="cbut"></button>
-					</form>
-				</div>
-
-			</div>';
-		}else{
-			// authorization how guest
-			print '
-				<div class="row">
-					<div style="float:left; margin: 30px 0 0 30px;">
-						<p class="tel" style="padding-left: 20px; font-size: 25px; margin-bottom: 0;">(+373) 247 2 24 40</p>
-					</div>
-				
-					<div style="float:right; margin-right: 20px;">
-						<a href="auth.php" class="button">LOG IN</a>
-					 </div>
-
-					<div id="search" style="padding-left: 0;">
-						<form action="php/search.php" method="POST">
-							<div>
-								<input name="search" type="text" placeholder="CAUTARE"><br>
-							</div>
-							<button class="cbut"></button>
-						</form>
-					</div>
-				
-				</div>';
-		}
-	?>
+	<body class="homepage" >
+	<!-- bar -->
+		<?php include "components/littlemenu.php"; ?>
+	<!-- END bar -->
 
 	<!-- Header -->
-		<?php include "components/navbar.php"; ?>
+		<div style="padding-top: 77px;">
+			<?php include "components/navbar.php"; ?>
+		</div>
 	<!-- END Header -->
 
 	<!-- Page -->
-		<div id="page">
-
+		<div id="page" >
 			<!-- Main -->
 			<div id="main" class="container indexsidebar">
 				<div class="row">
@@ -113,60 +95,43 @@
 					<!-- section important post  -->
 					<div class="9u">
 						<section style="margin-bottom: 0px;">
-						<?php 
-
-						$resimp = mysqli_query($con, "
-							SELECT p.* FROM posts p
-							WHERE important = 1
-							ORDER BY id DESC
-							LIMIT 1
-							");
-
-						if ($resimp) {
-							while ($row = $resimp->fetch_object()) {
-							$img = $row->image_url;
-							if(!empty($img)){
-								$imageteg = '<img src="'. $img .'"  style="width: 100%;">';
-							}else{
-								$imageteg = '';
-							}
-									?>
-									<header style="margin-bottom: 5px;">
-										<a href="post.php?id=<?php $row->id?> ">
-											<h2 style="margin-top: 5px; text-transform: none; text-decoration: none !important;"><?php print $row->title ?></h2>
-											<span class="byline" style="font-size: 15px;"><?php print $row->subtitle ?></span>
-										</a>
-									</header>
-									<p style="height: 70px; overflow: hidden; margin-bottom: 0;"><?php print $row->content ?></p>
-									<?php  
-										//date/time created
-										$dtc = $row->created;
-										$dtup = $row->updated;
-										if(isset($dtup)){
-											print '<p style="padding-top: 5px; float: right;">' . date("l jS \of F Y h:i:s A", $dtup) . ' </p>';
-										}else{
-											print '<p style="padding-top: 5px; float: right;">' . date("l jS \of F Y h:i:s A", $dtc) . ' </p>';
-										}
-										//END date/time created
-									?>
+							<?php 
+							if ($reqteg) {
+								while ($row = $reqteg->fetch_object()) {
+										?>
+										<header style="margin-bottom: 5px;">
+											<a href="post.php?id=<?php $row->id?> ">
+												<h2 style="margin-top: 5px; text-transform: none; text-decoration: none !important;"><?php print $row->title ?></h2>
+												<span class="byline" style="font-size: 15px;"><?php print $row->subtitle ?></span>
+											</a>
+										</header>
+										<p style="height: 70px; overflow: hidden; margin-bottom: 0;"><?php print $row->content ?></p>
+										<?php  
+											//date/time created
+											$dtc = $row->created;
+											$dtup = $row->updated;
+											if(isset($dtup)){
+												print '<p style="padding-top: 5px; float: right;">' . date("Y-m-d / h:i:s", $dtup) . ' </p>';
+											}else{
+												print '<p style="padding-top: 5px; float: right;">' . date("Y-m-d / h:i:s", $dtc) . ' </p>';
+											}
+											//END date/time created
+										?>
 
 						</section>
+						<!-- divider -->
+						<div class="divider" style="width: 100%; border-bottom: 1px solid #ddd; margin: 20px 0px;"></div>
+						<!--  /divider -->
 								<?php
-								;}
-							$resimp->close();
-						} ?>
-								<!-- divider -->
-								<div class="divider" style="width: 100%; border-bottom: 1px solid #ddd; margin: 2px 0px;"></div>
-								<!--  /divider -->
+									;}
+									$reqteg->close();
+								} ?>
 					</div>
 					<!-- END section important post  -->
 
 					<!-- section last post -->
 					<div class="3u" >
 						<section class="sidebar">
-							<header>
-								<h2>ultimile știri</h2>
-							</header>
 							<ul class="style2">
 							<?php print $image; ?>
 							</ul>
