@@ -110,16 +110,9 @@
 				</div>';
 		}
 	?>
-	<!-- HEADER -->
+	<!-- Header -->
 		<?php include "components/navbar.php"; ?>
-	<!-- /HEADER -->
-		
-	<!-- BANNER -->
-		<div id="banner2">
-			<div class="container">
-			</div>
-		</div>
-	<!--  /BANNER -->
+	<!-- END Header -->
 
 	<!-- PAGE -->
 		<div id="page">

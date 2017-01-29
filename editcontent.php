@@ -279,5 +279,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 	<!-- Main custum file js -->
 	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/verimgsize.js"></script>
+	
 </body>
 </html>

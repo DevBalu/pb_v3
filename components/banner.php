@@ -1,22 +1,10 @@
-
-<div class="carousel carousel-slider center" data-indicators="true">
-    <div class="carousel-fixed-item center">
-      <a class="btn waves-effect white grey-text darken-text-2">button</a>
-    </div>
-    <div class="carousel-item red white-text" href="#one!">
-      <h2>First Panel</h2>
-      <p class="white-text">This is your first panel</p>
-    </div>
-    <div class="carousel-item amber white-text" href="#two!">
-      <h2>Second Panel</h2>
-      <p class="white-text">This is your second panel</p>
-    </div>
-    <div class="carousel-item green white-text" href="#three!">
-      <h2>Third Panel</h2>
-      <p class="white-text">This is your third panel</p>
-    </div>
-    <div class="carousel-item blue white-text" href="#four!">
-      <h2>Fourth Panel</h2>
-      <p class="white-text">This is your fourth panel</p>
-    </div>
-  </div>
+<div class="banner" style="width: 100%; padding-top: 77px; background: #f7f7f7;">
+	<div class="container">
+		<div data-flickity="{ &quot;groupCells&quot;: true, &quot;autoPlay&quot;: true}" class="carousel" style="height: 347px;">
+			<div class="carousel-cell"><img src="images/slshow/sl1.JPG" class="carousel-cell-image"></div>
+			<div class="carousel-cell"><img src="images/slshow/sl2.JPG" class="carousel-cell-image"></div>
+			<div class="carousel-cell"><img src="images/slshow/sl3.JPG" class="carousel-cell-image"></div>
+			<div class="carousel-cell"><img src="images/slshow/sl4.JPG" class="carousel-cell-image"></div>
+		</div>
+	</div>
+</div>
