@@ -80,7 +80,6 @@
 		$subtitle = $_POST['subtitle'];
 		$content = $_POST['content'];
 		$updated = time();
-		$important = !empty($_POST['important']) ? 1 : 0;
 		$searchteg = $_POST['searchteg'];
 
 		// get res from video field
@@ -119,10 +118,13 @@
 		
 		//END get res from image field
 
-		$update_string = "UPDATE posts p SET p.id_category=$category, p.title='$title', p.subtitle='$subtitle', p.content='$content', p.video='$href', p.image_url='$image_url', important='$important', p.updated='$updated', p.teg='$searchteg'  WHERE id = '$id'";
+		$update_string = "UPDATE posts p SET p.id_category=$category, p.title='$title', p.subtitle='$subtitle', p.content='$content', p.video='$href', p.image_url='$image_url', p.updated='$updated', p.teg='$searchteg'  WHERE id = '$id'";
 
 		mysqli_query($con, $update_string);
-		header('Location: /pb/editcontent.php?id_post=' . $id);
+		print '<pre>';
+		print_r($con);
+		print '</pre>';
+		// header('Location: /pb/editcontent.php?id_post=' . $id);
 	}
 	$con->close();
  ?>

@@ -251,12 +251,6 @@
 						<label for="searchteg">Cuvinte cheie</label>
 					</div><br>
 
-					<div class="row">
-						<div class="col m3"> 	
-							<input name="important" <?php print $post['important'] ? 'checked=checked' : ''; ?> type="checkbox" class="filled-in" id="important"/>
-							<label for="important">IMPORTANT</label>
-						</div>
-					</div>
 					<input type="hidden" value="<?php print $_GET['id_post'] ?>" name="post" />
 					<div class="row">
 						<div class="col m4"><a class="btn" href="editcontent.php?id_post=<?php print $_GET['id_post']; ?>&delete=1" style="background:#e95d3c" >STERGE POSTUL</a></div>

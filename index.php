@@ -136,7 +136,7 @@
 															<div class="collapsible-header" style="padding: 0rem 0rem 0rem 2rem; background: rgba(255, 255, 255, 0.77);"><p style="margin: 0; padding: 10px 0 10px 0px;line-height: 26px;">' . $posts['name'] . '</p></div>
 															<div class="collapsible-body" style="padding: 10px 0px 10px 60px;">
 																<span>
-																	<a href="post.php?id=' . $post['post_id'] . '">' . $post['title'] . '</a>
+																	<a href="post.php?id=' . $post['post_id'] . '&language=' . $implanguage . '">' . $post['title'] . '</a>
 																</span>
 																<br>
 															</div>
@@ -164,7 +164,7 @@ print_r($menuallres);
 
 					<!-- section last post -->
 					<div class="col s12 m9 l9">
-						<section class="sidebar">
+						<section class="sidebar" style="width: 100%;">
 							<ul class="style2">
 							<?php print $image; ?>
 							</ul>

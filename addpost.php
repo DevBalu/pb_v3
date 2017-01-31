@@ -88,11 +88,6 @@
 						</select>
 					</div><br><br>
 
-					<div class="input-field col s12">
-						<input name="important" type="checkbox" class="filled-in" id="filled-in-box"/>
-						<label for="filled-in-box">IMPORTANT</label>
-					</div><br><br><br><br><br>
-					
 					<div class="file-field input-field">
 						<div class="btn" style="background:#e95d3c">
 							<span>File</span>

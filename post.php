@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	//logic for post field
 	require_once('php/connect.php');
 	if (!empty($_GET['id'])) {

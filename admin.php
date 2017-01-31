@@ -16,7 +16,6 @@
 	if ($languages_list) {
 		foreach ($languages_list as $language) {
 			$languages .= '<div><p>' . $language[1] . ', ' . $language[2] . ':</p>
-			<a href="removelanguage.php?id_language=' . $language[0] . '" class="btn" style="background:#e95d3c">STERGE</a>
 			<a href="php/languagedefault.php?id_language=' . $language[0] . '" class="btn" style="background:#e95d3c">SETEAZA IMPLICIT</a></div>';
 		}
 	}
@@ -68,6 +67,7 @@
 					<a href="addpost.php" class="btn left" style="background:#e95d3c">POST</a><br><br>
 					<a href="addgroup.php" class="btn left" style="background:#e95d3c">GRUPA</a><br><br>
 					<a href="addcategory.php" class="btn left" style="background:#e95d3c">CATEGORIE</a><br><br>
+					<a href="addlanguage.php" class="btn left" style="background:#e95d3c">LIMBA</a><br><br>
 					<!-- <div class="divider"></div> -->
 
 					<ul class="collapsible" data-collapsible="expandable" style="box-shadow: none; border-left:none; border-right: none;">

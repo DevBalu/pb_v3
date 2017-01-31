@@ -2,12 +2,39 @@
 	if(!empty($_SESSION['auth'])){
 		$indicator = '<p style="color: #000;">ADMIN</p>';
 		$href = 'admin.php';
-		$logout = '<a class="btn-floating btn-large waves-effect waves-light white right" href="logout.php" style="margin: 10px 10px 0 0px; box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.11), 0 1px 0px 0 rgba(0, 0, 0, 0), 0 3px 1px -2px rgba(0, 0, 0, 0); color: #000;">Log Out</a>';
+		$logout = '<a class="btn-floating btn-large waves-effect waves-light white right" href="logout.php" style="margin: 10px 10px 0 0px; box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 0.11), 0 1px 0px 0 rgba(0, 0, 0, 0), 0 3px 1px -2px rgba(0, 0, 0, 0); color: #000;">Esire</a>';
 	}else{
 		$href = "auth.php";
-		$indicator = 'AUTH';
+		$indicator = '';
 		$logout = '';
 	} 
+	$ru = $ro = $en = $acasa = $contacte ='';
+	switch ($_GET['language']) {
+	case "ru":
+		$ru = "РУ";
+		$ro = "РО";
+		$en = "ЕН";
+		$acasa = "ДОМОЙ";
+		$contacte = "КОНТАКТЫ";
+		$cautare = "поиск";
+		break;
+	case "ro":
+		$ru = "RU";
+		$ro = "RO";
+		$en = "EN";
+		$acasa = "ACASA";
+		$contacte = "CONTACTE";
+		$cautare = "CAUTARE";
+		break;
+	case "en":
+		$ru = "RU";
+		$ro = "RO";
+		$en = "EN";
+		$acasa = "HOME";
+		$contacte = "CONTACTS";
+		$cautare = "SEARCH";
+		break;
+}
 ?>
 <div id="littlemenu" style="position: fixed; z-index: 2000; width: 100%; background: #fff;">
 		<a class="btn-floating btn-large waves-effect waves-light white left" href="<?php print $href; ?>" style="margin: 10px 0 0 10px; box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.11), 0 1px 0px 0 rgba(0, 0, 0, 0), 0 3px 1px -2px rgba(0, 0, 0, 0); color: #fff;"><?php print $indicator;?></a>
@@ -20,9 +47,9 @@
 				<!-- Nav -->
 				<nav class="col s12 s5 m2" style="background: #fff; !important; box-shadow:none; float: right; display:flex; align-items: center; ">
 					<ul >
-						<li style="min-width: 50px; text-align: center;"><a href="index.php?language=ru" style="color: #333 !important;">RU</a></li>
-						<li style="min-width: 50px; text-align: center;"><a href="index.php?language=ro" style="color: #333 !important;">RO</a></li>
-						<li style="min-width: 50px; text-align: center;"><a href="index.php?language=en" style="color: #333 !important;">EN</a></li>
+						<li style="min-width: 50px; text-align: center;"><a href="index.php?language=ru" style="color: #333 !important;"><?php print $ru; ?></a></li>
+						<li style="min-width: 50px; text-align: center;"><a href="index.php?language=ro" style="color: #333 !important;"><?php print $ro; ?></a></li>
+						<li style="min-width: 50px; text-align: center;"><a href="index.php?language=en" style="color: #333 !important;"><?php print $en; ?></a></li>
 					</ul>
 				</nav>
 			</div>

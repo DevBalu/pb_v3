@@ -26,7 +26,7 @@
 	<!--Import Google Icon Font-->
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!-- Compiled and minified CSS -->
-  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 </head>
 <body>
 
@@ -50,22 +50,14 @@
 					</div>
 					<br><br><br><br>
 
-	  		        <div class="input-field">
-	          			<input id="content" type="text" name="name"/>
-	         			<label for="content">NUME</label>
-	       			 </div><br>
-          			<div class="file-field input-field">
-				      <div class="btn" style="background:#e95d3c">
-				        <span>File</span>
-				        <input type="file" name="image">
-				      </div>
-				      <div class="file-path-wrapper">
-				        <input class="file-path validate" type="text" placeholder="Alege Imaginea">
-				      </div>
-				    </div>
-          			<input value="1" type="hidden" name="addgroup"/>
-   					<a class="btn left" href="admin.php" style="background:#e95d3c">PAGINA ADMIN</a>	
-   					<button class="btn right" type="submit" style="background:#e95d3c">SALVEAZA</button>
+					<div class="input-field">
+						<input id="content" type="text" name="name"/>
+						<label for="content">NUME</label>
+					</div><br>
+
+					<input value="1" type="hidden" name="addgroup"/>
+					<a class="btn left" href="admin.php" style="background:#e95d3c">PAGINA ADMIN</a>	
+					<button class="btn right" type="submit" style="background:#e95d3c">SALVEAZA</button>
 				</div>
 			</form>
 		</div>
@@ -74,8 +66,8 @@
 	<!--Import jQuery before materialize.js-->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<!-- Compiled and minified JavaScript -->
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-  	<!-- Main custum file js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+	<!-- Main custum file js -->
 	<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
