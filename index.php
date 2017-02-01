@@ -91,8 +91,8 @@
 	<!-- Page -->
 		<div id="page">
 			<!-- Main -->
-			<div id="main" class="container indexsidebar" style="border-bottom: 1px solid #9c9898;">
-				<div class="row" style="margin-right: auto;">
+			<div id="main" class="container indexsidebar">
+				<div class="row" style="margin-bottom: 0px; border-bottom: 1px solid #9c9898;">
 					<div class="col s12 m3 l3">
 						<?php
 								// get languaage page
@@ -127,28 +127,29 @@
 											// work with category & post
 											$rescatpos = '';
 											foreach ($categories_posts as $posts) {
-												$postname = '';
+												$postitle = '';
 												foreach ($posts['posts'] as $post) {
-												
+													$postitle .= '<a href="post.php?id=' . $post['post_id']. '&language=' . $implanguage . '" style="color:red;font-size: 16px;">' . $post['title'] . '</a><div class="divider" style="width: 100%; border-bottom: 1px solid #ddd; margin: 2px 0px;"></div>';
+												}
 												$rescatpos .= '
 													<ul class="collapsible" data-collapsible="expandable" style="margin: 0;">
 														<li>
-															<div class="collapsible-header" style="padding: 0rem 0rem 0rem 2rem; background: rgba(255, 255, 255, 0.77);"><p style="margin: 0; padding: 10px 0 10px 0px;line-height: 26px;">' . $posts['name'] . '</p></div>
+															<div class="collapsible-header" style="padding: 0rem 0rem 0rem 2rem; background: rgba(255, 255, 255, 0.77);"><p style="margin: 0; padding: 10px 0 10px 0px;line-height: 26px; color: #2F4F4F;font-size: 18px;"><span style="font-size: 25px;">\ </span>' . $posts['name'] . '</p></div>
 															<div class="collapsible-body" style="padding: 10px 0px 10px 60px;">
 																<span>
-																	<a href="post.php?id=' . $post['post_id'] . '&language=' . $implanguage . '">' . $post['title'] . '</a>
+																	'. $postitle .'
 																</span>
-																<br>
 															</div>
 														</li>
 													</ul>';
-												}
+
 											}
-										//finaly form group / category / posts
+
+										// finaly form group / category / posts
 										$menuallres .= '
 											<ul class="collapsible" data-collapsible="expandable" style="margin: 0;">
 												<li style="margin-bottom: 10px;">
-													<div class="collapsible-header" style="background: rgba(255, 255, 255, 0.77);"><p style="margin: 0; padding: 0; ">' .$gr_name . '</p></div>
+													<div class="collapsible-header" style="background: rgba(255, 255, 255, 0.77);"><p style="margin: 0; padding: 0; font-size: 19px;">' .$gr_name . '</p></div>
 													<div class="collapsible-body">' . $rescatpos . '</div>
 												</li>
 											</ul>
@@ -173,9 +174,53 @@ print_r($menuallres);
 					<!-- END section last post -->
 
 			</div>
-			<!-- END Main -->
+			<!-- END row -->
+			<!-- map -->
+			<div class="row">
+				<div class="col m6">
+					<div id="map" style="width: 100%;height: 400px"></div>
+					<script>
+						function initMap() {
+							var uluru = {lat: 48.364373, lng: 27.074627};
+							var map = new google.maps.Map(document.getElementById('map'), {
+								zoom: 12,
+								center: uluru
+							});
+							var marker = new google.maps.Marker({
+								position: uluru,
+							 	map: map
+							});
+						}
+					</script>
+					<script async defer
+						src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEGHul3kUlgGuBrr5MMJRPcSg2WvsNxJg&callback=initMap">
+					</script>
+				</div>
+
+				<div class="col m3">
+					<section>
+						<h2>Datele de Contact ale primăriei</h2>
+						<ul class="default">
+							<li>
+								<h3>Email: </h3><br>
+								<p>infobriceni@gmail.com</p>
+							</li>
+							<li>
+								<h3>Fanticamera Primăriei </h3><br>
+								<p>(+373) 247 2 24 40</p>
+							</li>
+							<li>
+								<h3>Fax: </h3><br>
+								<p>(+373) 247 2 21 95</p>
+							</li>
+						</ul>
+				</div>
+			</div>
+			<!-- END map -->
 		</div>
-	<!-- END Pge -->
+		<!-- END Main -->
+	</div>
+	<!-- END Page -->
 
 	<!-- Featured -->
 	<!-- 	<div id="featured">

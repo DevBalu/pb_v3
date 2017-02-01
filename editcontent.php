@@ -3,6 +3,7 @@
 	if(!$_SESSION['auth']){
 		header('Location: /pb/index.php');
 	}
+	$language = $_GET['language'];
 	require_once('php/connect.php');
 	//  logic for edit group
 	if (!empty($_GET['id_group'])) {
@@ -92,7 +93,7 @@
 			<div class="col m3 offset-m4">
 				<a href="index.php"><img src="images/logo.jpg" style="width: 100%"></a>
 			</div>
-			<form action="php/editcontent_action.php" method="POST" enctype="multipart/form-data">
+			<form action="php/editcontent_action.php?language=<?php print $language;?>" method="POST" enctype="multipart/form-data">
 				<div class="col s12 m8 l8 offset-m2 offset-l2">
 					<!-- edit category -->
 					<?php 
@@ -254,7 +255,7 @@
 					<input type="hidden" value="<?php print $_GET['id_post'] ?>" name="post" />
 					<div class="row">
 						<div class="col m4"><a class="btn" href="editcontent.php?id_post=<?php print $_GET['id_post']; ?>&delete=1" style="background:#e95d3c" >STERGE POSTUL</a></div>
-						<div class="col m4"><a class="btn" href="post.php?id=<?php print $_GET['id_post'] . '&viewpage=1';?>" style="background:#e95d3c;" >VIZUALIZARE POSTULUI</a></div>
+						<div class="col m4"><a class="btn" href="post.php?id=<?php print $_GET['id_post'] . '&viewpage=1' . '&language=' . $language;?>" style="background:#e95d3c;" >VIZUALIZARE POSTULUI</a></div>
 						<div class="col m4"><button class="btn" type="submit" name="save" style="background:#e95d3c">SALVEAZA</button></div>
 					</div>
 					<?php 

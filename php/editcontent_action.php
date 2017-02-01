@@ -3,9 +3,11 @@
 	if(!$_SESSION['auth']){
 		header('Location: /pb/index.php');
 	}
+	$language = $_GET['language'];
 	include "connect.php";
+
 	include "videoexists.php";
-	
+
 	// Edit category logic.
 	if (!empty($_POST['category']) && !empty($_POST['name']) && !empty($_POST['select_group'])) {
 		$id = $_POST['category'];
@@ -73,7 +75,7 @@
 	}
 
 	// Edit post logic.
-	if (!empty($_POST['post'])&& !empty($_POST['category']) && !empty($_POST['title']) && !empty($_POST['subtitle']) && !empty($_POST['content']) && $searchteg = $_POST['searchteg']) {
+	if (!empty($_POST['post'])&& !empty($_POST['category']) && !empty($_POST['title']) && !empty($_POST['content']) && $searchteg = $_POST['searchteg']) {
 		$id = $_POST['post'];
 		$category = $_POST['category'];
 		$title = $_POST['title'];
@@ -121,10 +123,10 @@
 		$update_string = "UPDATE posts p SET p.id_category=$category, p.title='$title', p.subtitle='$subtitle', p.content='$content', p.video='$href', p.image_url='$image_url', p.updated='$updated', p.teg='$searchteg'  WHERE id = '$id'";
 
 		mysqli_query($con, $update_string);
-		print '<pre>';
-		print_r($con);
-		print '</pre>';
-		// header('Location: /pb/editcontent.php?id_post=' . $id);
+		// print '<pre>';
+		// print_r($update_string);
+		// print '</pre>';
+		header('Location: /pb/editcontent.php?id_post=' . $id . '&language=' . $language);
 	}
 	$con->close();
  ?>

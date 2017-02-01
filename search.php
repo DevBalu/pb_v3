@@ -9,7 +9,6 @@
 		ORDER BY id DESC
 		LIMIT 5
 		");
-
 	if ($result) {
 		$image = '';
 		while ($row = $result->fetch_object()) {
@@ -33,7 +32,7 @@
 				<li>
 					' . $datetimelp . '
 					<div>
-						<a href="post.php?id=' . $row->id .'">' .
+						<a href="post.php?id=' . $row->id .'&language=' . $language .'">' .
 							$imageteg . '
 						<p style="margin-bottom: 0.3rem;">'. $row->title.'</p>
 						</a>
@@ -93,17 +92,16 @@
 				<div class="row">
 				<!-- info section -->
 					<!-- section important post  -->
-					<div class="9u">
-						<section style="margin-bottom: 0px;">
+					<div class="col m9">
 							<?php 
 							if ($reqteg) {
 								while ($row = $reqteg->fetch_object()) {
 										?>
+						<section style="margin-bottom: 0px;">
+							<a href="post.php?id=<?php print $row->id?>&language=<?php print $language ?>">
 										<header style="margin-bottom: 5px;">
-											<a href="post.php?id=<?php $row->id?> ">
 												<h2 style="margin-top: 5px; text-transform: none; text-decoration: none !important;"><?php print $row->title ?></h2>
 												<span class="byline" style="font-size: 15px;"><?php print $row->subtitle ?></span>
-											</a>
 										</header>
 										<p style="height: 70px; overflow: hidden; margin-bottom: 0;"><?php print $row->content ?></p>
 										<?php  
@@ -118,6 +116,7 @@
 											//END date/time created
 										?>
 
+							</a>
 						</section>
 						<!-- divider -->
 						<div class="divider" style="width: 100%; border-bottom: 1px solid #ddd; margin: 20px 0px;"></div>

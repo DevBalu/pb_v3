@@ -2,6 +2,7 @@
 	session_start();
 	//logic for post field
 	require_once('php/connect.php');
+	$language = $_GET['language'];
 	if (!empty($_GET['id'])) {
 		$id = $_GET['id'];
 		$result = mysqli_query($con, "SELECT p.* FROM posts p WHERE p.id = '$id'");
@@ -42,9 +43,6 @@
 					<div class="12u">
 						<section>
 							<header>
-								<!-- divider -->
-								<div class="divider" style="width: 100%; border-bottom: 1px solid #ddd; margin: 20px 0px;"></div>
-								<!--  /divider -->
 
 								<!-- date/time created/updated -->
 								<?php
@@ -57,7 +55,11 @@
 									}
 								?>
 								<!-- END date/time created/updated -->
-								
+
+								<!-- divider -->
+								<div class="divider" style="width: 100%; border-bottom: 1px solid #ddd; margin: 20px 0px;"></div>
+								<!--  /divider -->
+
 								<!-- title -->
 								<h2 style="text-align:center; line-height: 50px;"><?php print $post->title; ?></h2>
 								<!--  /title -->
@@ -107,7 +109,7 @@
 						</section>
 						<?php 
 							if(!empty($_SESSION['auth'])){
-								print '<a href="editcontent.php?id_post='.$_GET['id'].'" class="button" style="margin-right:0px;"">EDITEAZA</a>';
+								print '<a href="editcontent.php?id_post=' . $_GET['id'] . '&language=' . $language .'" class="button" style="margin-right:0px;"">EDITEAZA</a>';
 							}
 						?>
 					</div>

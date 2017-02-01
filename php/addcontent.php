@@ -48,6 +48,7 @@
 
 	// Add post logic.
 	if (!empty($_POST['addpost']) &&!empty($_POST['group']) && !empty($_POST['category']) && !empty($_POST['title']) && !empty($_POST['content']) && !empty($_POST['searchteg'])) {
+
 		$group = $_POST['group'];
 		$category = $_POST['category'];
 		// get res from image field
@@ -82,7 +83,6 @@
 		mysqli_query($con, "
 			INSERT INTO posts (id_group, id_category, image_url, title, subtitle, content, video, created, updated, teg)
 			VALUES ('$group', '$category', '$image_url', '$title', '$subtitle', '$content', '$href', '$created', '$updated', '$searchteg')");
-		
 		header('Location: /pb/addpost.php');
 	}
 	else {
