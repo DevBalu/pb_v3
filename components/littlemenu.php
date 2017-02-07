@@ -16,7 +16,11 @@
 		$en = "ЕН";
 		$acasa = "ДОМОЙ";
 		$contacte = "КОНТАКТЫ";
-		$cautare = "поиск";
+		$cautare = "ПОИСК";
+		$harta = "КАРТА";
+		$email = "МАИЛ";
+		$ap  = "ЗАЛ ПРЕДДВЕРИЕ";
+		$fax = "ФАКС";
 		break;
 	case "ro":
 		$ru = "RU";
@@ -25,6 +29,10 @@
 		$acasa = "ACASA";
 		$contacte = "CONTACTE";
 		$cautare = "CAUTARE";
+		$harta = "HARTA";
+		$ap  = "ANTICAMERA PRIMĂRIEI";
+		$email = "MAIL";
+		$fax = "FAX";
 		break;
 	case "en":
 		$ru = "RU";
@@ -32,7 +40,11 @@
 		$en = "EN";
 		$acasa = "HOME";
 		$contacte = "CONTACTS";
+		$harta = "MAP";
 		$cautare = "SEARCH";
+		$ap  = "CALL CENTER";
+		$email = "MAIL :";
+		$fax = "FAX :";
 		break;
 }
 ?>

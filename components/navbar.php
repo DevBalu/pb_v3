@@ -16,7 +16,7 @@
 				$contacts .= '<li><a href="post.php?id=' . $row->id . '&language=' . $language . '">'. $row->title .'</a></li>';
 			}
 			$result->close();
-		}
+		} 
 ?>
 <div id="header" style="background: #f7f7f7;">
 		<div class="container" style=" padding: 0 0; background: #f7f7f7; border-bottom: 1px solid #9c9898;">
@@ -32,7 +32,7 @@
 							<!-- Dropdown Structure -->
 							<ul id='dropdown1' class='dropdown-content'>
 								<?php print $contacts; ?>
-								<li><a href="/pb/index.php?#map">Harta</a></li>
+								<li><a href="/pb/index.php?#map"><?php print $harta; ?></a></li>
 							</ul>
 						</li>
 

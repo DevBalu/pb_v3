@@ -50,7 +50,11 @@
 	}
 
 		//get value from href 
-	$tags = $_GET['tags'];
+	if (!empty($_GET['tags'])) {
+		$tags = $_GET['tags'];
+	} else {
+		$tags = '';
+	}
 		//divide word from string in array, decode %20 from url transform in space
 	$tags_array = explode(' ', urldecode($tags));
 	$i = 0;

@@ -199,18 +199,18 @@ print_r($menuallres);
 
 				<div class="col m3">
 					<section>
-						<h2>Datele de Contact ale primăriei</h2>
+						<h2 style="text-align: center;"><?php print $contacte; ?></h2>
 						<ul class="default">
 							<li>
-								<h3>Email: </h3><br>
+								<h3><?php print $email; ?></h3><br>
 								<p>infobriceni@gmail.com</p>
 							</li>
 							<li>
-								<h3>Fanticamera Primăriei </h3><br>
+								<h3><?php print $ap; ?></h3><br>
 								<p>(+373) 247 2 24 40</p>
 							</li>
 							<li>
-								<h3>Fax: </h3><br>
+								<h3><?php print $fax; ?></h3><br>
 								<p>(+373) 247 2 21 95</p>
 							</li>
 						</ul>
