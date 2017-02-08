@@ -121,13 +121,9 @@
 		</div>
 	<!--  /PAGE -->
 
-	<!-- COPYRIGHT -->
-		<div id="copyright" >
-			<div class="container">
-				Developer: <a href="#">DevBalu</a>
-			</div>
-		</div>
-	<!--  /COPYRIGHT -->
+	<!-- Copyright -->
+		<?php include "components/copyright.php"; ?>
+	<!-- /Copyright -->
 
 
 	</body>

@@ -47,21 +47,8 @@
 	if (!empty($_POST['group']) && !empty($_POST['name'])) {
 		$id = $_POST['group'];
 		$name = $_POST['name'];
-		
-		if (!empty($_FILES['image']['name'])) {
-			if ($_FILES['image']['error']) {
-				echo 'Sunt erori in adaugarea imaginii!';
-				return;
-			}
-			$filename = $_FILES['image']['tmp_name'];
-			$plain = fread(fopen($filename, "r"), filesize($filename));
-			$base64_encoded = 'data:image/' . $_FILES['image']['type'] . ';base64,' . base64_encode($plain);
-		}
 
 		$update_string = "UPDATE groups SET name='$name' WHERE id = '$id'";
-		if ($base64_encoded) {
-			$update_string = "UPDATE groups SET name='$name', thumbnail='$base64_encoded' WHERE id = '$id'";
-		}
 		mysqli_query($con, $update_string);
 		header('Location: /pb/editcontent.php?id_group=' . $id);
 	}

@@ -43,14 +43,14 @@
 			}
 
 			$image .= '
-				<li style="background: rgba(255, 255, 255, 0.77);">
+				<li style="background: rgb(255, 255, 255);box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);">
 					' . $datetimelp . '
 					<div style="height: 135px; overflow: hidden;">
-						<a href="post.php?id=' . $row->id . '&language=' . $language .'">' .
+						<a href="post.php?id=' . $row->id . '&language=' . $language .'" style="font-size: 17px;font-weight: 300;">' .
 							$imageteg . '
 							<p style="margin-bottom: 0.3rem;">'. $row->title.'</p>
 							<p style="margin-bottom: 0.3rem;">'. $row->subtitle.'</p>
-							<p style="margin-bottom: 0.3rem;">'. $row->content.'</p>
+							<p style="margin-bottom: 0.3rem; font-size: 16px;">'. $row->content.'</p>
 						</a>
 					</div>
 				</li>
@@ -134,7 +134,7 @@
 												$rescatpos .= '
 													<ul class="collapsible" data-collapsible="expandable" style="margin: 0;">
 														<li>
-															<div class="collapsible-header" style="padding: 0rem 0rem 0rem 2rem; background: rgba(255, 255, 255, 0.77);"><p style="margin: 0; padding: 10px 0 10px 0px;line-height: 26px; color: #2F4F4F;font-size: 18px;"><span style="font-size: 25px;">\ </span>' . $posts['name'] . '</p></div>
+															<div class="collapsible-header" style="padding: 0rem 0rem 0rem 2rem; background: rgba(255, 255, 255, 0.77);"><p style="margin: 0; padding: 10px 0 10px 0px;line-height: 26px; color: #2F4F4F;font-size: 18px; font-weight: 500;"><span style="font-size: 25px;">\ </span>' . $posts['name'] . '</p></div>
 															<div class="collapsible-body" style="padding: 10px 0px 10px 60px;">
 																<span>
 																	'. $postitle .'
@@ -149,7 +149,7 @@
 										$menuallres .= '
 											<ul class="collapsible" data-collapsible="expandable" style="margin: 0;">
 												<li style="margin-bottom: 10px;">
-													<div class="collapsible-header" style="background: rgba(255, 255, 255, 0.77);"><p style="margin: 0; padding: 0; font-size: 19px;">' .$gr_name . '</p></div>
+													<div class="collapsible-header" style="background: rgb(255, 255, 255);"><p style="margin: 0; padding: 0; font-size: 20px;color: rgb(55, 44, 82); font-weight: 500;">' .$gr_name . '</p></div>
 													<div class="collapsible-body">' . $rescatpos . '</div>
 												</li>
 											</ul>
@@ -198,7 +198,7 @@ print_r($menuallres);
 				</div>
 
 				<div class="col m3">
-					<section>
+					<section style="font-size: 17px;">
 						<h2 style="text-align: center;"><?php print $contacte; ?></h2>
 						<ul class="default">
 							<li>
@@ -221,20 +221,6 @@ print_r($menuallres);
 		<!-- END Main -->
 	</div>
 	<!-- END Page -->
-
-	<!-- Featured -->
-	<!-- 	<div id="featured">
-			<div class="container" style="height: 400px;">
-				<p style="text-align:center; color:#fff; font-size:35px; line-height: 2rem;">ULTIMILE STIRI IMPORTANTE</p>
-				<div class="row">
-				</div>
-			</div>
-		</div> -->
-	<!-- END Featured -->
-
-	<!-- Footer -->
-		<?php //include "components/footer.php"; ?>
-	<!-- /Footer -->
 
 	<!-- Copyright -->
 		<?php include "components/copyright.php"; ?>

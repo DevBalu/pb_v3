@@ -18,17 +18,17 @@
 			$result->close();
 		} 
 ?>
-<div id="header" style="background: #f7f7f7;">
-		<div class="container" style=" padding: 0 0; background: #f7f7f7; border-bottom: 1px solid #9c9898;">
+<div id="header" style="background:rgba(221, 221, 221, 0.45);">
+		<div class="container" style=" padding: 0 0; border-bottom: 1px solid #9c9898;">
 			<div class="row" style="margin-bottom: 0;">
 				<!-- Nav -->
-				<nav id="nav" class="col m12" style="background: #f7f7f7; !important; box-shadow:none; display:flex; align-items: center;">
+				<nav id="nav" class="col m12" style="background: rgba(221, 221, 221, 0) !important; box-shadow:none; display:flex; align-items: center;">
 					<ul style="width: 100%;">
-						<li><a href="index.php?language=<?php print $language;?>"><?php print $acasa; ?></a></li>
+						<li><a href="index.php?language=<?php print $language;?>" style=" color: rgb(55, 44, 82); font-weight: 500;"><?php print $acasa; ?></a></li>
 
 						<li>
 							<!-- Dropdown Trigger -->
-							<a class='dropdown-button btn' href='#' data-activates='dropdown1' style="background: none; box-shadow:none;margin: 0 0 0 0.7em;padding: 0.5em 0.2em;"><?php print $contacte; ?></a>
+							<a class='dropdown-button btn' href='#' data-activates='dropdown1' style="background: none; box-shadow:none;margin: 0 0 0 0.7em; padding: 0.5em 0.2em; color: rgb(55, 44, 82); font-weight: 500;"><?php print $contacte; ?></a>
 							<!-- Dropdown Structure -->
 							<ul id='dropdown1' class='dropdown-content'>
 								<?php print $contacts; ?>
@@ -38,7 +38,7 @@
 
 						<li class="col m4" style="color: #000; padding-top: 5px;">
 							<form action="search.php?language=<?php print $language;?>" method="POST">
-								<div class="row" style="border: 1px solid #ddd; margin: 0 0 0 5px; ">
+								<div class="row" style="border: 1px solid #ddd; margin: 0 0 0 5px; background: #fff;">
 									<div class="input-field col m10" style="margin-top: 3px; height: 32px; overflow: hidden; padding: 0 5px;">
 										<input id="input_text" name="tags" type="text" placeholder="<?php print $cautare;?>" style="margin: 0; padding: 0;">
 									</div>

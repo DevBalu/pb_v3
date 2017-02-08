@@ -3,7 +3,7 @@
 	if(!$_SESSION['auth']){
 		header('Location: /pb/index.php');
 	}
-	$language = $_GET['language'];
+	// $language = $_GET['language'];
 	require_once('php/connect.php');
 	//  logic for edit group
 	if (!empty($_GET['id_group'])) {
@@ -132,7 +132,7 @@
 					<!-- edit group -->
 					<?php 
 					if (!empty($_GET['id_group'])) {
-						// confirmation for delete category
+						// confirmation for delete group
 						if (!empty($_GET['delete'])) {
 							print '
 							<h2 class="center">Sunteti sigur ?</h2>
@@ -148,20 +148,7 @@
 							<input value="<?php print $group['name']; ?>" id="content" type="text" name="name"/>
 							<label for="content">NUME</label>
 						</div><br>
-						<?php 
-							if ($group['thumbnail']) {
-								print '<img src="' . $group['thumbnail'] . '" />';
-							}
-						?>
-						<div class="file-field input-field">
-							<div class="btn" style="background:#e95d3c">
-								<span>File</span>
-								<input type="file" name="image">
-							</div>
-							<div class="file-path-wrapper">
-								<input class="file-path validate" type="text" placeholder="Alege Imaginea">
-							</div>
-						</div>
+
 						<input value="<?php print $_GET['id_group']; ?>" type="hidden" name="group"/>
 						<a href="admin.php" class="btn left" style="background:#e95d3c">PAGINA ADMIN</a>
 						<button class="btn right" type="submit" style="background:#e95d3c">SALVEAZA</button>
