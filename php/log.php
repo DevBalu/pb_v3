@@ -12,9 +12,11 @@
 			$_SESSION['auth'] = true;
 			header('Location: /pb');
 		}else{
-			header('Location: /pb/admin.php');
+			$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/admin.php';
+			header('Location: ' . $server);
 		}
 	}else{
-		header('Location: /pb');
-	}	
+		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/index.php';
+		header('Location: ' . $server);
+	}
  ?>

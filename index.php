@@ -12,7 +12,8 @@
 	}
 
 	if (empty($_GET['language'])) {
-		header('Location: /pb/index.php?language=' . $language);
+		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/index.php?language=' . $language;
+		header('Location: ' . $server);
 	}
 
 	$result = mysqli_query($con, "

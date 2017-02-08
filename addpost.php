@@ -1,7 +1,8 @@
 <?php 
 	session_start();
 	if(!$_SESSION['auth']){
-		header('Location: /pb/index.php');
+		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/index.php';
+		header('Location: ' . $server);
 	}
 	require_once('php/connect.php');
 

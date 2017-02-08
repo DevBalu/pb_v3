@@ -1,7 +1,8 @@
 <?php
 	session_start();
 	if(!$_SESSION['auth']){
-		header('Location: /pb/index.php');
+		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/index.php';
+		header('Location: ' . $server);
 	}
 	// 
 	// 
@@ -16,7 +17,8 @@
 		$select_group = $_POST['select_group'];
 		
 		mysqli_query($con, "INSERT INTO categories (id_group, name) VALUES ('$select_group', '$name')");
-		header('Location: /pb/addcategory.php');
+		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/addcategory.php';
+		header('Location: ' . $server);
 	}
 	else {
 		echo 'Cimpurile sunt goale!';
@@ -28,7 +30,8 @@
 		$language = $_POST['language'];
 
 		mysqli_query($con, "INSERT INTO groups (name, language) VALUES ('$name', '$language')");
-		header('Location: /pb/addgroup.php');
+		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/addgroup.php';
+		header('Location: ' . $server);
 	}
 	else {
 		echo 'Cimpurile sunt goale!';
@@ -40,7 +43,8 @@
 		$prefix = $_POST['prefix'];
 		
 		mysqli_query($con, "INSERT INTO languages (name, prefix) VALUES ('$name', '$prefix')");
-		header('Location: /pb/addlanguage.php');
+		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/addlanguage.php';
+		header('Location: ' . $server);
 	}
 	else {
 		echo 'Cimpurile sunt goale!';
@@ -83,7 +87,9 @@
 		mysqli_query($con, "
 			INSERT INTO posts (id_group, id_category, image_url, title, subtitle, content, video, created, updated, teg)
 			VALUES ('$group', '$category', '$image_url', '$title', '$subtitle', '$content', '$href', '$created', '$updated', '$searchteg')");
-		header('Location: /pb/addpost.php');
+		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/addpost.php';
+		header('Location: ' . $server);
+
 	}
 	else {
 		print "Cimpurile sunt goale.";

@@ -1,7 +1,8 @@
 <?php
 	session_start();
 	if(!$_SESSION['auth']){
-		header('Location: /pb/index.php');
+		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/index.php';
+		header('Location: ' . $server);
 	}
 	$language = $_GET['language'];
 	include "connect.php";
@@ -15,14 +16,16 @@
 		$id_group = $_POST['select_group'];
 
 		mysqli_query($con, "UPDATE categories SET name='$name', id_group='$id_group' WHERE id = '$id'");
-		header('Location: /pb/editcontent.php?id_category=' . $id);
+		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/editcontent.php?id_category=' . $id;
+		header('Location: ' . $server);
 	}
 
 	// Remove category logic.
 	if (!empty($_POST['deletecategory'])) {
 		$id = $_POST['deletecategory'];
 		if (mysqli_query($con, "DELETE c.* FROM categories c WHERE c.id = '$id'")) {
-			header('Location: /pb/admin.php');
+			$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/admin.php';
+			header('Location: ' . $server);
 		}
 	}
 
@@ -30,7 +33,8 @@
 	if (!empty($_POST['delmessage'])) {
 		$id = $_POST['delmessage'];
 		if (mysqli_query($con, "DELETE m.* FROM message m WHERE m.id = '$id'")) {
-			header('Location: /pb/message.php');
+			$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/message.php';
+			header('Location: ' . $server);
 		}
 
 	}
@@ -39,7 +43,8 @@
 	if (!empty($_POST['deletegroup'])) {
 		$id = $_POST['deletegroup'];
 		if (mysqli_query($con, "DELETE g.* FROM groups g WHERE g.id = '$id'")) {
-			header('Location: /pb/admin.php');
+			$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/admin.php';
+			header('Location: ' . $server);
 		}
 	}
 
@@ -63,7 +68,8 @@
 			$update_string = "UPDATE groups SET name='$name', thumbnail='$base64_encoded' WHERE id = '$id'";
 		}
 		mysqli_query($con, $update_string);
-		header('Location: /pb/editcontent.php?id_group=' . $id);
+		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/editcontent.php?id_group=' . $id;
+		header('Location: ' . $server);
 	}
 
 	// Remove post logic.
@@ -71,6 +77,8 @@
 		$id = $_POST['deletepost'];
 		if (mysqli_query($con, "DELETE p.* FROM posts p WHERE p.id = '$id'")) {
 			header('Location: /pb/index.php');
+			$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/index.php';
+			header('Location: ' . $server);
 		}
 	}
 
@@ -123,10 +131,9 @@
 		$update_string = "UPDATE posts p SET p.id_category=$category, p.title='$title', p.subtitle='$subtitle', p.content='$content', p.video='$href', p.image_url='$image_url', p.updated='$updated', p.teg='$searchteg'  WHERE id = '$id'";
 
 		mysqli_query($con, $update_string);
-		// print '<pre>';
-		// print_r($update_string);
-		// print '</pre>';
-		header('Location: /pb/editcontent.php?id_post=' . $id . '&language=' . $language);
+
+		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/editcontent.php?id_post=' . $id . '&language=' . $language;
+		header('Location: ' . $server);
 	}
 	$con->close();
  ?>

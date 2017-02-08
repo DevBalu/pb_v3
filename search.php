@@ -46,7 +46,8 @@
 
 	// Search result
 	if (!empty($_POST['tags'])) {
-		header('Location: /pb/search.php?language=' . $_GET['language'] . '&tags=' . $_POST['tags']);
+		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/search.php?language=' . $_GET['language'] . '&tags=' . $_POST['tags'];
+		header('Location: ' . $server);
 	}
 
 		//get value from href 
