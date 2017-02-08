@@ -94,7 +94,7 @@
 			<div class="col m3 offset-m4">
 				<a href="index.php"><img src="images/logo.jpg" style="width: 100%"></a>
 			</div>
-			<form action="php/editcontent_action.php?language=<?php print $language;?>" method="POST" enctype="multipart/form-data">
+			<form action="php/editcontent_action.php" method="POST" enctype="multipart/form-data">
 				<div class="col s12 m8 l8 offset-m2 offset-l2">
 					<!-- edit category -->
 					<?php 
