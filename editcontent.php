@@ -26,25 +26,25 @@
 		}
 		$id = $_GET['id_category'];
 		$query_category = mysqli_query($con, "SELECT c.* FROM categories c WHERE c.id = '$id'");
-		$query_groups = mysqli_query($con, "SELECT g.* FROM groups g");
+		// $query_groups = mysqli_query($con, "SELECT g.* FROM groups g");
 		$category = $query_category->fetch_assoc();
-		$groups = $query_groups->fetch_all();
+		// $groups = $query_groups->fetch_all();
 		if (!$category) {
 			print 'Categoria nu a fost gasita!';
 			return;
 		}
 	//logic for edit category
 
-		if (!empty($groups)) {
-			$group_options = '';
-			foreach ($groups as $group) {
-				$selected = '';
-				if ($category['id_group'] == $group[0]) {
-					$selected = 'selected="selected"';
-				}
-				$group_options .= '<option ' . $selected . ' value="' . $group[0] . '">' . $group[1] . '</option>';
-			}
-		}
+		// if (!empty($groups)) {
+		// 	$group_options = '';
+		// 	foreach ($groups as $group) {
+		// 		$selected = '';
+		// 		if ($category['id_group'] == $group[0]) {
+		// 			$selected = 'selected="selected"';
+		// 		}
+		// 		$group_options .= '<option ' . $selected . ' value="' . $group[0] . '">' . $group[1] . '</option>';
+		// 	}
+		// }
 	}
 
 	if (!empty($_GET['id_post'])) {
@@ -58,16 +58,16 @@
 		$id_group = $post['id_group'];
 		
 		$query_categories = mysqli_query($con, "SELECT c.* FROM categories c WHERE c.id_group = '$id_group'");
-		$categories = $query_categories->fetch_all();
+		$categories = $query_categories->fetch_assoc();
 
 		if (!empty($categories)) {
 			$categories_options = '';
 			foreach ($categories as $category) {
 				$selected = '';
-				if ($post['id_category'] == $category[0]) {
+				if ($post['id_category'] == $category['id']) {
 					$selected = 'selected="selected"';
 				}
-				$categories_options .= '<option ' . $selected . ' value="' . $category[0] . '">' . $category[2] . '</option>';
+				$categories_options .= '<option ' . $selected . ' value="' . $category['id'] . '">' . $category['name'] . '</option>';
 			}
 		}
 
@@ -110,13 +110,6 @@
 						}
 					?>
 						<h4 class="left" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">EDITEAZA CATEGORIA</h4><br><br><br>
-
-						<div class="input-field col s12">
-							<select name="select_group">
-								<option value="" disabled selected>GRUPE</option>
-								<?php print $group_options; ?>
-							</select>
-						</div><br><br><br><br>
 
 						<div class="input-field">
 							<input value="<?php print $category['name']; ?>" id="content" type="text" name="name"/>
