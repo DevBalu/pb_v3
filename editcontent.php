@@ -4,7 +4,7 @@
 		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/index.php';
 		header('Location: ' . $server);
 	}
-	$language = $_GET['language'];
+	// $language = $_GET['language'];
 	require_once('php/connect.php');
 	//  logic for edit group
 	if (!empty($_GET['id_group'])) {
@@ -28,7 +28,7 @@
 		$query_category = mysqli_query($con, "SELECT c.* FROM categories c WHERE c.id = '$id'");
 		// $query_groups = mysqli_query($con, "SELECT g.* FROM groups g");
 		$category = $query_category->fetch_assoc();
-		// $groups = $query_groups->fetch_all();
+		// $groups = $query_groups->fetch_assoc();
 		if (!$category) {
 			print 'Categoria nu a fost gasita!';
 			return;
@@ -39,10 +39,10 @@
 		// 	$group_options = '';
 		// 	foreach ($groups as $group) {
 		// 		$selected = '';
-		// 		if ($category['id_group'] == $group[0]) {
+		// 		if ($category['id_group'] == $group['id']) {
 		// 			$selected = 'selected="selected"';
 		// 		}
-		// 		$group_options .= '<option ' . $selected . ' value="' . $group[0] . '">' . $group[1] . '</option>';
+		// 		$group_options .= '<option ' . $selected . ' value="' . $group['id'] . '">' . $group['name'] . '</option>';
 		// 	}
 		// }
 	}
@@ -58,17 +58,14 @@
 		$id_group = $post['id_group'];
 		
 		$query_categories = mysqli_query($con, "SELECT c.* FROM categories c WHERE c.id_group = '$id_group'");
-		$categories = $query_categories->fetch_assoc();
 
-		if (!empty($categories)) {
-			$categories_options = '';
-			foreach ($categories as $category) {
-				$selected = '';
-				if ($post['id_category'] == $category['id']) {
-					$selected = 'selected="selected"';
-				}
-				$categories_options .= '<option ' . $selected . ' value="' . $category['id'] . '">' . $category['name'] . '</option>';
+		$categories_options = '';
+		while ($category = $query_categories->fetch_assoc()) {
+			$selected = '';
+			if ($post['id_category'] == $category['id']) {
+				$selected = 'selected="selected"';
 			}
+			$categories_options .= '<option ' . $selected . ' value="' . $category['id'] . '">' . $category['name'] . '</option>';
 		}
 
 	}
@@ -94,7 +91,7 @@
 			<div class="col m3 offset-m4">
 				<a href="index.php"><img src="images/logo.jpg" style="width: 100%"></a>
 			</div>
-			<form action="php/editcontent_action.php" method="POST" enctype="multipart/form-data">
+			<form action="php/editcontent_action.php?language=<?php print $language;?>" method="POST" enctype="multipart/form-data">
 				<div class="col s12 m8 l8 offset-m2 offset-l2">
 					<!-- edit category -->
 					<?php 
@@ -111,6 +108,13 @@
 					?>
 						<h4 class="left" style="color:#ff0000;  font-weight: 200; margin-bottom: 30px;">EDITEAZA CATEGORIA</h4><br><br><br>
 
+		<!-- 				<div class="input-field col s12">
+							<select name="select_group">
+								<option value="" disabled selected>GRUPE</option>
+								<?php //print $group_options; ?>
+							</select>
+						</div><br><br><br><br>
+ -->
 						<div class="input-field">
 							<input value="<?php print $category['name']; ?>" id="content" type="text" name="name"/>
 							<label for="content">NUME</label>
@@ -126,7 +130,7 @@
 					<!-- edit group -->
 					<?php 
 					if (!empty($_GET['id_group'])) {
-						// confirmation for delete category
+						// confirmation for delete group
 						if (!empty($_GET['delete'])) {
 							print '
 							<h2 class="center">Sunteti sigur ?</h2>
@@ -142,20 +146,7 @@
 							<input value="<?php print $group['name']; ?>" id="content" type="text" name="name"/>
 							<label for="content">NUME</label>
 						</div><br>
-						<?php 
-							if ($group['thumbnail']) {
-								print '<img src="' . $group['thumbnail'] . '" />';
-							}
-						?>
-						<div class="file-field input-field">
-							<div class="btn" style="background:#e95d3c">
-								<span>File</span>
-								<input type="file" name="image">
-							</div>
-							<div class="file-path-wrapper">
-								<input class="file-path validate" type="text" placeholder="Alege Imaginea">
-							</div>
-						</div>
+
 						<input value="<?php print $_GET['id_group']; ?>" type="hidden" name="group"/>
 						<a href="admin.php" class="btn left" style="background:#e95d3c">PAGINA ADMIN</a>
 						<button class="btn right" type="submit" style="background:#e95d3c">SALVEAZA</button>

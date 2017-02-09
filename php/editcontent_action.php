@@ -10,12 +10,11 @@
 	include "videoexists.php";
 
 	// Edit category logic.
-	if (!empty($_POST['category']) && !empty($_POST['name']) && !empty($_POST['select_group'])) {
+	if (!empty($_POST['category']) && !empty($_POST['name'])) {
 		$id = $_POST['category'];
 		$name = $_POST['name'];
-		$id_group = $_POST['select_group'];
 
-		mysqli_query($con, "UPDATE categories SET name='$name', id_group='$id_group' WHERE id = '$id'");
+		mysqli_query($con, "UPDATE categories SET name='$name' WHERE id = '$id'");
 		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/editcontent.php?id_category=' . $id;
 		header('Location: ' . $server);
 	}
@@ -52,21 +51,8 @@
 	if (!empty($_POST['group']) && !empty($_POST['name'])) {
 		$id = $_POST['group'];
 		$name = $_POST['name'];
-		
-		if (!empty($_FILES['image']['name'])) {
-			if ($_FILES['image']['error']) {
-				echo 'Sunt erori in adaugarea imaginii!';
-				return;
-			}
-			$filename = $_FILES['image']['tmp_name'];
-			$plain = fread(fopen($filename, "r"), filesize($filename));
-			$base64_encoded = 'data:image/' . $_FILES['image']['type'] . ';base64,' . base64_encode($plain);
-		}
 
 		$update_string = "UPDATE groups SET name='$name' WHERE id = '$id'";
-		if ($base64_encoded) {
-			$update_string = "UPDATE groups SET name='$name', thumbnail='$base64_encoded' WHERE id = '$id'";
-		}
 		mysqli_query($con, $update_string);
 		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/editcontent.php?id_group=' . $id;
 		header('Location: ' . $server);
