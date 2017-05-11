@@ -30,7 +30,7 @@
 	<!-- END bar -->
 
 	<!-- Header -->
-		<div style="padding-top: 77px;">
+		<div style="padding-top: 115px;">
 			<?php include "components/navbar.php"; ?>
 		</div>
 	<!-- END Header -->
@@ -122,13 +122,9 @@
 		</div>
 	<!--  /PAGE -->
 
-	<!-- COPYRIGHT -->
-		<div id="copyright" >
-			<div class="container">
-				Developer: <a href="#">DevBalu</a>
-			</div>
-		</div>
-	<!--  /COPYRIGHT -->
+	<!-- Copyright -->
+		<?php include "components/copyright.php"; ?>
+	<!-- /Copyright -->
 
 
 	</body>

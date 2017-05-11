@@ -47,7 +47,7 @@
 				<li style="background: rgb(255, 255, 255);box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);">
 					' . $datetimelp . '
 					<div style="height: 135px; overflow: hidden;">
-						<a href="post.php?id=' . $row->id . '&language=' . $language .'" style="font-size: 17px;font-weight: 300;">' .
+						<a href="post.php?id=' . $row->id . '&language=' . $implanguage .'" style="font-size: 17px;font-weight: 300;">' .
 							$imageteg . '
 							<p style="margin-bottom: 0.3rem;">'. $row->title.'</p>
 							<p style="margin-bottom: 0.3rem;">'. $row->subtitle.'</p>
@@ -102,7 +102,7 @@
 									$language = '';
 								}
 								//query groups 
-								$resultgroup = mysqli_query($con, "SELECT g.* FROM groups g WHERE g.language = '$language'");
+								$resultgroup = mysqli_query($con, "SELECT g.* FROM groups g WHERE g.language = '$language' ORDER BY id ASC");
 
 								$menuallres = '';
 								//show content query result groups
@@ -200,7 +200,7 @@ print_r($menuallres);
 
 				<div class="col m3">
 					<section style="font-size: 17px;">
-						<h2 style="text-align: center;"><?php print $contacte; ?></h2>
+						<h2 style="text-align: center; font-weight: 500;"><?php print $contacte; ?></h2>
 						<ul class="default">
 							<li>
 								<h3><?php print $email; ?></h3><br>

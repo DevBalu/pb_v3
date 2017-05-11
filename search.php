@@ -85,7 +85,7 @@
 	<!-- END bar -->
 
 	<!-- Header -->
-		<div style="padding-top: 77px;">
+		<div style="padding-top: 115px;">
 			<?php include "components/navbar.php"; ?>
 		</div>
 	<!-- END Header -->

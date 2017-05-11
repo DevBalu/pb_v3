@@ -5,18 +5,18 @@
 		if (strlen($language) > 2) {
 			$language = '';
 		}
-		$result = mysqli_query($con, "
-			SELECT p.* FROM posts p
-			JOIN categories c ON c.name = 'Contacte'
-			WHERE p.id_category = c.id
-		");
-		$contacts = '';
-		if ($result) {
-			while ($row = $result->fetch_object()) {
-				$contacts .= '<li><a href="post.php?id=' . $row->id . '&language=' . $language . '">'. $row->title .'</a></li>';
-			}
-			$result->close();
-		} 
+		// $result = mysqli_query($con, "
+		// 	SELECT p.* FROM posts p
+		// 	JOIN categories c ON c.name = 'Contacte'
+		// 	WHERE p.id_category = c.id
+		// ");
+		// $contacts = '';
+		// if ($result) {
+		// 	while ($row = $result->fetch_object()) {
+		// 		$contacts .= '<li><a href="post.php?id=' . $row->id . '&language=' . $language . '">'. $row->title .'</a></li>';
+		// 	}
+		// 	$result->close();
+		// } 
 ?>
 <div id="header" style="background: url('images/bg.png');">
 		<div class="container" style=" padding: 0 0; background: #f7f7f7; border-bottom: 1px solid #9c9898;">
@@ -28,11 +28,14 @@
 
 						<li>
 							<!-- Dropdown Trigger -->
-							<a class='dropdown-button btn' href='#' data-activates='dropdown1' style="background: none; box-shadow:none;margin: 0 0 0 0.7em;padding: 0.5em 0.2em;"><?php print $contacte; ?></a>
+							<a class='dropdown-button btn' href='#' data-activates='dropdown1' style="background: none; box-shadow:none;margin: 0 0 0 0.7em;padding: 0.5em 0.2em; min-width: 120px;"><?php print $contacte; ?></a>
 							<!-- Dropdown Structure -->
 							<ul id='dropdown1' class='dropdown-content'>
-								<?php print $contacts; ?>
-								<li><a href="/pb/index.php?#map"><?php print $harta; ?></a></li>
+								<?php //print $contacts; ?>
+								<li><a href="/post.php?id=70&language=<?php print $language;?>"><?php print $email; ?></a></li>
+								<li><a href="/post.php?id=71&language=<?php print $language;?>"><?php print $tel; ?></a></li>
+								<li><a href="/post.php?id=74&language=<?php print $language;?>"><?php print $address; ?></a></li>
+								<li><a href="/index.php?#map"><?php print $harta; ?></a></li>
 							</ul>
 						</li>
 

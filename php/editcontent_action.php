@@ -102,7 +102,7 @@
 				unlink($image_name);
 			}
 			move_uploaded_file($_FILES['image']['tmp_name'], $image_name);
-			$image_url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/pb/post_images/' . $_FILES['image']['name'];
+			$image_url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/post_images/' . $_FILES['image']['name'];
 		}
 
 		//check at touch checkbox delimg
