@@ -44,7 +44,7 @@
 	/* Don't forget to set this to something that matches the design */
 	a
 	{
-		color: #ff0000;
+		color: #000;
 	}
 
 	sub
@@ -250,7 +250,7 @@
 
 			ul.style2 li
 			{
-				padding: 0.4em 0em 0.4em 0em;
+				padding: 0.4em 0em 0.4em 1em;
 				border-top: 1px solid;
 				border-color: rgba(0,0,0,.1);
 				min-height: 160px;
@@ -816,7 +816,7 @@
 				display: none;
 			}
 			#nav > ul > li > a:hover {
-				border-bottom: 1px solid rgba(233, 93, 60, 0.38);
+				/*border-bottom: 1px solid rgba(233, 93, 60, 0.38);*/
 			}
 			#nav > ul > li > p {
 				font-size: 1.2rem;
@@ -854,7 +854,8 @@
 	#page
 	{
 		position: relative;
-		background: rgba(221, 221, 221, 0.23);
+		/*background: rgba(221, 221, 221, 0.23);*/
+		background: url(images/bg.png);
 	}
 
 	#main
@@ -931,12 +932,12 @@
 	}
 	#copyright .container
 	{
-		display: -webkit-flex;
+	/*	display: -webkit-flex;
 		display: -moz-flex;
 		display: -ms-flex;
 		display: -o-flex;
 		display: flex;
-		justify-content: center;
+		justify-content: center;*/
 	}
 	#copyright > .container > div {
 		width: 170px;

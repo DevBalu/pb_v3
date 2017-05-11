@@ -1,7 +1,8 @@
 <?php 
 	session_start();
 	if(!empty($_SESSION['auth'])){
-		header('Location: /pb/admin.php');
+		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/admin.php';
+		header('Location: ' . $server);
 	}
  ?>
 

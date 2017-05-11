@@ -1,7 +1,8 @@
 <?php 
 	session_start();
 	if(!$_SESSION['auth']){
-		header('Location: /pb/index.php');
+		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/index.php';
+		header('Location: ' . $server);
 	}
 	require_once('php/connect.php');
 
@@ -88,11 +89,6 @@
 						</select>
 					</div><br><br>
 
-					<div class="input-field col s12">
-						<input name="important" type="checkbox" class="filled-in" id="filled-in-box"/>
-						<label for="filled-in-box">IMPORTANT</label>
-					</div><br><br><br><br><br>
-					
 					<div class="file-field input-field">
 						<div class="btn" style="background:#e95d3c">
 							<span>File</span>
@@ -138,6 +134,7 @@
 	<!-- Compiled and minified JavaScript -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
 	<!-- Main custum file js -->
+	<script type="text/javascript" src="js/verimgsize.js"></script>
 	<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>

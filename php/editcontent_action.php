@@ -1,26 +1,30 @@
 <?php
 	session_start();
 	if(!$_SESSION['auth']){
-		header('Location: /pb/index.php');
+		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/index.php';
+		header('Location: ' . $server);
 	}
+	$language = $_GET['language'];
 	include "connect.php";
+
 	include "videoexists.php";
-	
+
 	// Edit category logic.
-	if (!empty($_POST['category']) && !empty($_POST['name']) && !empty($_POST['select_group'])) {
+	if (!empty($_POST['category']) && !empty($_POST['name'])) {
 		$id = $_POST['category'];
 		$name = $_POST['name'];
-		$id_group = $_POST['select_group'];
 
-		mysqli_query($con, "UPDATE categories SET name='$name', id_group='$id_group' WHERE id = '$id'");
-		header('Location: /pb/editcontent.php?id_category=' . $id);
+		mysqli_query($con, "UPDATE categories SET name='$name' WHERE id = '$id'");
+		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/editcontent.php?id_category=' . $id;
+		header('Location: ' . $server);
 	}
 
 	// Remove category logic.
 	if (!empty($_POST['deletecategory'])) {
 		$id = $_POST['deletecategory'];
 		if (mysqli_query($con, "DELETE c.* FROM categories c WHERE c.id = '$id'")) {
-			header('Location: /pb/admin.php');
+			$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/admin.php';
+			header('Location: ' . $server);
 		}
 	}
 
@@ -28,7 +32,8 @@
 	if (!empty($_POST['delmessage'])) {
 		$id = $_POST['delmessage'];
 		if (mysqli_query($con, "DELETE m.* FROM message m WHERE m.id = '$id'")) {
-			header('Location: /pb/message.php');
+			$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/message.php';
+			header('Location: ' . $server);
 		}
 
 	}
@@ -37,7 +42,8 @@
 	if (!empty($_POST['deletegroup'])) {
 		$id = $_POST['deletegroup'];
 		if (mysqli_query($con, "DELETE g.* FROM groups g WHERE g.id = '$id'")) {
-			header('Location: /pb/admin.php');
+			$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/admin.php';
+			header('Location: ' . $server);
 		}
 	}
 
@@ -45,23 +51,11 @@
 	if (!empty($_POST['group']) && !empty($_POST['name'])) {
 		$id = $_POST['group'];
 		$name = $_POST['name'];
-		
-		if (!empty($_FILES['image']['name'])) {
-			if ($_FILES['image']['error']) {
-				echo 'Sunt erori in adaugarea imaginii!';
-				return;
-			}
-			$filename = $_FILES['image']['tmp_name'];
-			$plain = fread(fopen($filename, "r"), filesize($filename));
-			$base64_encoded = 'data:image/' . $_FILES['image']['type'] . ';base64,' . base64_encode($plain);
-		}
 
 		$update_string = "UPDATE groups SET name='$name' WHERE id = '$id'";
-		if ($base64_encoded) {
-			$update_string = "UPDATE groups SET name='$name', thumbnail='$base64_encoded' WHERE id = '$id'";
-		}
 		mysqli_query($con, $update_string);
-		header('Location: /pb/editcontent.php?id_group=' . $id);
+		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/editcontent.php?id_group=' . $id;
+		header('Location: ' . $server);
 	}
 
 	// Remove post logic.
@@ -69,18 +63,19 @@
 		$id = $_POST['deletepost'];
 		if (mysqli_query($con, "DELETE p.* FROM posts p WHERE p.id = '$id'")) {
 			header('Location: /pb/index.php');
+			$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/index.php';
+			header('Location: ' . $server);
 		}
 	}
 
 	// Edit post logic.
-	if (!empty($_POST['post'])&& !empty($_POST['category']) && !empty($_POST['title']) && !empty($_POST['subtitle']) && !empty($_POST['content']) && $searchteg = $_POST['searchteg']) {
+	if (!empty($_POST['post'])&& !empty($_POST['category']) && !empty($_POST['title']) && !empty($_POST['content']) && $searchteg = $_POST['searchteg']) {
 		$id = $_POST['post'];
 		$category = $_POST['category'];
 		$title = $_POST['title'];
 		$subtitle = $_POST['subtitle'];
 		$content = $_POST['content'];
 		$updated = time();
-		$important = !empty($_POST['important']) ? 1 : 0;
 		$searchteg = $_POST['searchteg'];
 
 		// get res from video field
@@ -107,7 +102,7 @@
 				unlink($image_name);
 			}
 			move_uploaded_file($_FILES['image']['tmp_name'], $image_name);
-			$image_url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/pb/post_images/' . $_FILES['image']['name'];
+			$image_url = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/post_images/' . $_FILES['image']['name'];
 		}
 
 		//check at touch checkbox delimg
@@ -119,10 +114,12 @@
 		
 		//END get res from image field
 
-		$update_string = "UPDATE posts p SET p.id_category=$category, p.title='$title', p.subtitle='$subtitle', p.content='$content', p.video='$href', p.image_url='$image_url', important='$important', p.updated='$updated', p.teg='$searchteg'  WHERE id = '$id'";
+		$update_string = "UPDATE posts p SET p.id_category=$category, p.title='$title', p.subtitle='$subtitle', p.content='$content', p.video='$href', p.image_url='$image_url', p.updated='$updated', p.teg='$searchteg'  WHERE id = '$id'";
 
 		mysqli_query($con, $update_string);
-		header('Location: /pb/editcontent.php?id_post=' . $id);
+
+		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/editcontent.php?id_post=' . $id . '&language=' . $language;
+		header('Location: ' . $server);
 	}
 	$con->close();
  ?>

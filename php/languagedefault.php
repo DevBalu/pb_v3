@@ -1,7 +1,8 @@
 <?php 
 	session_start();
 	if(!$_SESSION['auth']){
-		header('Location: /pb/index.php');
+		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/index.php';
+		header('Location: ' . $server);
 	}
 	require_once('connect.php');
 
@@ -14,7 +15,8 @@
 		$id = $_GET['id_language'];
 		if (mysqli_query($con, "UPDATE languages SET is_default = 0 WHERE is_default = 1")) {
 			mysqli_query($con, "UPDATE languages SET is_default = 1 WHERE id = $id");
-			header('Location: /pb/admin.php');
+			$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/admin.php';
+			header('Location: ' . $server);
 		}
 		else {
 			print 'Nu s-a putut actualiza limba!';
