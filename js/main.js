@@ -12,7 +12,38 @@ $(document).ready(function() {
 		alert("clicked");
 	});
 
-});
+	// slider
+	$("#slide_wrapper > div:gt(0)").hide();
+
+	setInterval(function() {
+		$('#slide_wrapper > div:first')
+		.fadeOut(1000)
+		.next()
+		.fadeIn(1000)
+		.end()
+		.appendTo('#slide_wrapper');
+	}, 10000);
+	// END slider
+
+	// btn auth
+	if ($(window).width() < 960) {
+		$("#auth_btn")
+		.prop({
+			style: "display: none !important;"
+		});
+	}
+	// END btn auth
+
+	//after scroll show never menu
+	// $(window).scroll(function(){
+	// 	if($(window).scrollTop() > 200){
+	// 		$("#logo").attr("class", "col l2;")
+	// 	}else{
+	// 		$("#logo").attr("class", "col l3;")
+	// 	}
+	// });
+	//END after scroll show never menu
+})
 
 function insertParam(key, value) {
 	key = escape(key); value = escape(value);

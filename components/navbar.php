@@ -5,18 +5,6 @@
 		if (strlen($language) > 2) {
 			$language = '';
 		}
-		// $result = mysqli_query($con, "
-		// 	SELECT p.* FROM posts p
-		// 	JOIN categories c ON c.name = 'Contacte'
-		// 	WHERE p.id_category = c.id
-		// ");
-		// $contacts = '';
-		// if ($result) {
-		// 	while ($row = $result->fetch_object()) {
-		// 		$contacts .= '<li><a href="post.php?id=' . $row->id . '&language=' . $language . '">'. $row->title .'</a></li>';
-		// 	}
-		// 	$result->close();
-		// } 
 ?>
 <div id="header" style="background: url('images/bg.png');">
 		<div class="container" style=" padding: 0 0; background: #f7f7f7; border-bottom: 1px solid #9c9898;">
@@ -54,9 +42,8 @@
 						</li>
 
 					</ul>
-				</nav>
-			</div>
-		</div>
+				</nav><!-- END nav -->
+			</div><!-- END row -->
+		</div><!-- END container -->
 
-	<!-- </div> -->
-</div>
+</div><!-- END header -->
