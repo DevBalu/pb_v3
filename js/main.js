@@ -35,13 +35,15 @@ $(document).ready(function() {
 	// END btn auth
 
 	//after scroll show never menu
-	// $(window).scroll(function(){
-	// 	if($(window).scrollTop() > 200){
-	// 		$("#logo").attr("class", "col l2;")
-	// 	}else{
-	// 		$("#logo").attr("class", "col l3;")
-	// 	}
-	// });
+	setInterval(function() {
+		$(window).scroll(function(){
+			if($(window).scrollTop() > 200){
+				$("#logo").attr("class", "col l2")
+			}else{
+				$("#logo").attr("class", "col l3")
+			}
+		});
+	}, 1000);
 	//END after scroll show never menu
 })
 
