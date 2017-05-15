@@ -69,12 +69,12 @@
 	}
 
 	// Edit post logic.
-	if (!empty($_POST['post'])&& !empty($_POST['category']) && !empty($_POST['title']) && !empty($_POST['content']) && $searchteg = $_POST['searchteg']) {
+	if (!empty($_POST['post'])&& !empty($_POST['category']) && !empty($_POST['title']) && !empty($_POST['txt']) && $searchteg = $_POST['searchteg']) {
 		$id = $_POST['post'];
 		$category = $_POST['category'];
 		$title = $_POST['title'];
 		$subtitle = $_POST['subtitle'];
-		$content = $_POST['content'];
+		$content = $_POST['txt'];
 		$updated = time();
 		$searchteg = $_POST['searchteg'];
 

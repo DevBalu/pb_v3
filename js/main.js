@@ -19,10 +19,11 @@ $(document).ready(function() {
 		$('#slide_wrapper > div:first')
 		.fadeOut(1000)
 		.next()
+		.delay( 800 )
 		.fadeIn(1000)
 		.end()
 		.appendTo('#slide_wrapper');
-	}, 10000);
+	}, 2000);
 	// END slider
 
 	// btn auth
@@ -35,16 +36,26 @@ $(document).ready(function() {
 	// END btn auth
 
 	//after scroll show never menu
-	setInterval(function() {
-		$(window).scroll(function(){
-			if($(window).scrollTop() > 200){
-				$("#logo").attr("class", "col l2")
-			}else{
-				$("#logo").attr("class", "col l3")
-			}
-		});
-	}, 1000);
+	$(window).scroll(function(){
+		if($(window).scrollTop() > 120){
+			$("#logo").attr("style", "width: 16.6%; padding-top: 10px !important;");
+			$(".prefix").attr("style", "padding-top: 10px;");
+			$("#btn-to-top").attr("style", "display: block;");
+		}else{
+			$("#logo").attr("style", "width: 25%;");
+			$(".prefix").attr("style", "padding-top: 30px;");
+			$("#btn-to-top").attr("style", "display: none;");
+		}
+	});
 	//END after scroll show never menu
+
+	//btn to top
+	$("#btn-to-top").click(function(){
+		$('body').animate({
+				scrollTop:0 ,
+				}, 1000);
+	});
+	//END btn to top
 })
 
 function insertParam(key, value) {

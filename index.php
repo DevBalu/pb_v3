@@ -80,6 +80,9 @@
 	<!-- bar -->
 		<?php include "components/littlemenu.php"; ?>
 	<!-- END bar -->
+	<!-- btn-to-top -->
+		<div id="btn-to-top"></div>
+	<!-- END btn-to-top -->
 
 	<!-- Banner -->
 		<?php include "components/banner.php"; ?>

@@ -61,10 +61,10 @@
 			<div class="row" style="margin-bottom: 0;">
 				<!-- Logo -->
 				<?php $language = $_GET['language']; ?>
-				<div id="logo" class="col l3"><a href="index.php?language=<?php $language;?>"><img src="images/logo.jpg"></a></div>
+				<div id="logo" class=""><a href="index.php?language=<?php $language;?>"><img src="images/logo.jpg"></a></div>
 				<!-- Nav -->
 				<nav class="col s12 s5 m3" style="background: #fff; !important; box-shadow:none; float: right; display:flex; align-items: center; ">
-					<ul style="padding-top: 30px;">
+					<ul class="prefix" style="padding-top: 30px;">
 						<li style="min-width: 50px; text-align: center;"><a href="index.php?language=ro" style="color: #333 !important;"><?php print $ro; ?></a></li>
 						<li style="min-width: 50px; text-align: center;"><a href="index.php?language=ru" style="color: #333 !important;"><?php print $ru; ?></a></li>
 						<li style="min-width: 50px; text-align: center;"><a href="index.php?language=en" style="color: #333 !important;"><?php print $en; ?></a></li>

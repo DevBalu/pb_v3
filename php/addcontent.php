@@ -51,7 +51,7 @@
 	}
 
 	// Add post logic.
-	if (!empty($_POST['addpost']) &&!empty($_POST['group']) && !empty($_POST['category']) && !empty($_POST['title']) && !empty($_POST['content']) && !empty($_POST['searchteg'])) {
+	if (!empty($_POST['addpost']) &&!empty($_POST['group']) && !empty($_POST['category']) && !empty($_POST['title']) && !empty($_POST['txt']) && !empty($_POST['searchteg'])) {
 
 		$group = $_POST['group'];
 		$category = $_POST['category'];
@@ -70,7 +70,7 @@
 		
 		$title = $_POST['title'];
 		$subtitle = $_POST['subtitle'];
-		$content = $_POST['content'];
+		$content = $_POST['txt'];
 		
 		// get res from video field
 		$video = $_POST['video'];

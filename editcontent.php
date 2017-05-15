@@ -83,6 +83,7 @@
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!-- Compiled and minified CSS -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+	<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
 </head>
 <body>
 
@@ -212,10 +213,21 @@
 						<label for="subtit">Subtitlu</label>
 					</div><br>
 
-					<div class="input-field">
-						<textarea id="content1" type="text" class="materialize-textarea" name="content"><?php print $post['content']; ?></textarea>
+<!-- 					<div class="input-field">
+						<textarea id="content1" type="text" class="materialize-textarea" name="content"><?php //print $post['content']; ?></textarea>
 						<label for="content1">Content</label>
-					 </div><br>
+					 </div><br> -->
+					<div id="text-editor">
+						<textarea id="editor1" name="txt" cols="100" rows="20"><?php echo $txt[0]['text'] ?><?php print $post['content']; ?></textarea>
+						<script type="text/javascript">
+							CKEDITOR.replace( 'editor1' );
+							AjexFileManager.init({
+								returnTo: 'ckeditor',
+								editor: ckeditor1
+							});
+						</script>
+					</div><br>
+
 					<!-- show current post video -->
 					<?php 
 						if ($post['video']) {
