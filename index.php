@@ -44,7 +44,7 @@
 			}
 
 			$image .= '
-				<li style="background: rgb(255, 255, 255);box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);">
+				<li style="background: rgba(255, 255, 255, 0.31);box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);">
 					' . $datetimelp . '
 					<div style="height: 135px; overflow: hidden;">
 						<a href="post.php?id=' . $row->id . '&language=' . $implanguage .'" style="font-size: 17px;font-weight: 300;">' .
@@ -138,7 +138,7 @@
 												$rescatpos .= '
 													<ul class="collapsible" data-collapsible="expandable" style="margin: 0;">
 														<li>
-															<div class="collapsible-header" style="padding: 0rem 0rem 0rem 2rem; background: rgba(255, 255, 255, 0.77);"><p style="margin: 0; padding: 10px 0 10px 0px;line-height: 26px; color: #2F4F4F;font-size: 18px; font-weight: 500;"><span style="font-size: 25px;">\ </span>' . $posts['name'] . '</p></div>
+															<div class="collapsible-header"><p style="margin: 0; padding: 10px 0 10px 0px;line-height: 26px; color: #2F4F4F;font-size: 18px;s"><span style="font-size: 25px;">\ </span>' . $posts['name'] . '</p></div>
 															<div class="collapsible-body" style="padding: 10px 0px 10px 60px;">
 																<span>
 																	'. $postitle .'
@@ -151,9 +151,9 @@
 
 										// finaly form group / category / posts
 										$menuallres .= '
-											<ul class="collapsible" data-collapsible="expandable" style="margin: 0;">
-												<li style="margin-bottom: 10px;">
-													<div class="collapsible-header" style="background: rgb(255, 255, 255);"><p style="margin: 0; padding: 0; font-size: 20px;color: rgb(55, 44, 82); font-weight: 500;">' .$gr_name . '</p></div>
+											<ul class="collapsible" data-collapsible="expandable">
+												<li>
+													<div class="collapsible-header"><p>' .$gr_name . '</p></div>
 													<div class="collapsible-body">' . $rescatpos . '</div>
 												</li>
 											</ul>

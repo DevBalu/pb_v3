@@ -6,6 +6,7 @@
 
 	<!-- fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:700italic,400,300,700' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css?family=Marcellus+SC" rel="stylesheet">
 	<!-- Icons -->
 	 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="css/fontawesome.css">

@@ -10,7 +10,7 @@
 <?php $sl7 = /*$_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].*/"images/slshow/7.png"; ?>
 <?php $sl8 = /*$_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].*/"images/slshow/8.png"; ?>
 
-<div class="banner" style="width: 100%; padding-top: 106px; background: url('images/bg.png');">
+<div class="banner" style="width: 100%; padding-top: 106px;/* background: url('images/bg.png');*/ background-color: rgba(0, 0, 0, 0.15);">
 	<!-- <div class="container"> -->
 		<div id="slide_wrapper" style="height: 347px;overflow: hidden;">
 			<div><img src="<?php print $sl1;?>"></div>

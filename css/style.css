@@ -1209,3 +1209,21 @@
 	cursor: pointer;
 }
 /* --------END btn_ to top-------- */
+.collapsible-header {
+	background: rgba(255, 255, 255, 0.77);
+	font-family: "Marcellus SC", serif;
+	padding: 0rem 0rem 0rem 2rem; 
+}
+.collapsible-header p {
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	color: rgb(55, 44, 82);
+	font-weight: 500;
+}
+.collapsible {
+	margin: 0;
+}
+.collapsible li {
+	margin-bottom: 10px;
+}
