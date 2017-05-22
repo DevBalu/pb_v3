@@ -181,13 +181,13 @@ print_r($menuallres);
 			<!-- END row -->
 			<!-- map -->
 			<div class="row">
-				<div class="col m6">
-					<div id="map" style="width: 100%;height: 400px"></div>
+				<div class="col m5 s6 padd-none">
+					<div id="map" style=""></div>
 					<script>
 						function initMap() {
 							var uluru = {lat: 48.364373, lng: 27.074627};
 							var map = new google.maps.Map(document.getElementById('map'), {
-								zoom: 12,
+								zoom: 9,
 								center: uluru
 							});
 							var marker = new google.maps.Marker({
@@ -201,7 +201,7 @@ print_r($menuallres);
 					</script>
 				</div>
 
-				<div class="col m3">
+				<div class="col l3 s12 padd-none">
 					<section style="font-size: 17px;">
 						<h2 style="text-align: center; font-weight: 500;"><?php print $contacte; ?></h2>
 						<ul class="default">
@@ -219,10 +219,64 @@ print_r($menuallres);
 							</li>
 						</ul>
 				</div>
+				<div class="col l4 s12 padd-none">
+					<h2>Scrieți-ne un mesaj</h2>
+					<form id="am" class="message"  action="php/messagereq.php" method="POST"><!--access message-->
+						<div>
+							<input name="fname" type="text" placeholder="Nume"><br>
+							<input name="lname" type="text" placeholder="Prenume"><br>
+							<input name="email" type="text" placeholder="Email"><br>
+							<textarea name="message" placeholder="Mesaj"></textarea>
+							<button class="btn" type="submit">TRIMITE</button>
+						</div>
+					</form>
+				</div>
 			</div>
 			<!-- END map -->
 		</div>
 		<!-- END Main -->
+
+		<div class="divider"></div>
+
+		<!-- useful links -->
+		<div id="useful_links">
+			<div class="container">
+				<div class="row">
+					<div class="col l2 s2 padd-none">
+						<a href="http://presedinte.md/">
+							<img src="images/ban_presedinte_md.jpg">
+						</a>
+					</div>
+					<div class="col l2 s2 padd-none">
+						<a href="http://parlament.md/">
+							<img src="images/ban_parlament_md.jpg">
+						</a>
+					</div>
+					<div class="col l2 s2 padd-none">
+						<a href="http://gov.md/">
+							<img src="images/ban_guvern_md.jpg">
+						</a>
+					</div>
+					<div class="col l2 s2 padd-none">
+						<a href="http://www.moldova.md/">
+							<img src="images/ban_moldova_md.jpg">
+						</a>
+					</div>
+					<div class="col l2 s2 padd-none">
+						<a href="/images/uploade/energie-electrica-atentie.pdf">
+							<img src="images/energie-util.jpg">
+						</a>
+					</div>
+					<div class="col l2 s2 padd-none	reg_actelor">
+						<a href="http://businessportal.md/ro/">
+							<img src="images/bussines_portal.png">
+						</a>
+					</div>
+				</div><!-- END row -->
+			</div><!-- END container -->
+		</div>
+		<!-- END useful links -->
+
 	</div>
 	<!-- END Page -->
 
@@ -230,4 +284,41 @@ print_r($menuallres);
 		<?php include "components/copyright.php"; ?>
 	<!-- /Copyright -->
 	</body>
+	<style>
+		/*map*/
+		#map {
+			width: 100%;
+			height: 400px;
+		}
+		/*ENDmap*/
+		.padd-none {
+			padding: 20px 10px 10px 10px!important;
+		}
+		.divider {
+			width: 100%;
+			border-bottom: 1px solid #9c9898;
+			margin: 2px 0px;
+		}
+		/*usefull links*/
+		#useful_links {
+			width: 100%;
+			background: url('images/bg.png');
+		}
+		#useful_links .row {
+			margin-bottom: 0;
+		}
+		/*END usefull links*/
+		/*banner*/
+		.banner {
+			width: 100%;
+			padding-top: 106px;
+			background: url('images/bg.png');
+		}
+		#slide_wrapper {
+			height: 347px;overflow: hidden;
+		}
+		/*END banner*/
+
+
+	</style>
 </html>

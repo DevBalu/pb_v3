@@ -196,7 +196,7 @@
 			{
 				display: block;
 				padding: 2em 0em 1.25em 0em;
-				border-top: 1px solid #303030;
+				border-top: 1px solid #3669b7;
 			}
 			
 			ul.default li:first-child
@@ -788,7 +788,7 @@
 		
 			#nav > ul > li:last-child
 			{
-				padding-right: 0;
+				/*padding-right: 0;*/
 			}
 
 			#nav > ul > li > a,
@@ -1082,7 +1082,7 @@
 	width: calc(100% - 3rem);
 	background-color: transparent;
 	border: none;
-	border-bottom: 1px solid #9e9e9e;
+	border-bottom: 1px solid #3669b7;
 	border-radius: 0;
 	outline: none;
 	height: 3rem;
@@ -1092,7 +1092,8 @@
 	padding: 0;
 	box-shadow: none;
 	box-sizing: content-box;
-	 transition: all 0.3s; 
+	transition: all 0.3s;
+	color: #000 !important;
 }
 #am div input:hover
 {
@@ -1107,7 +1108,7 @@
 	min-height: 3rem;
 	background-color: transparent;
 	border: none;
-	border-bottom: 1px solid #9e9e9e;
+	border-bottom: 1px solid #3669b7;
 	border-radius: 0;
 	outline: none;
 	height: 7rem;
@@ -1227,3 +1228,4 @@
 .collapsible li {
 	margin-bottom: 10px;
 }
+/*padd-none*/
