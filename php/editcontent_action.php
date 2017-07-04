@@ -62,7 +62,7 @@
 	if (!empty($_POST['deletepost'])) {
 		$id = $_POST['deletepost'];
 		if (mysqli_query($con, "DELETE p.* FROM posts p WHERE p.id = '$id'")) {
-			header('Location: /pb/index.php');
+			// header('Location: /pb/index.php');
 			$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/index.php';
 			header('Location: ' . $server);
 		}

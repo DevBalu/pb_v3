@@ -13,7 +13,7 @@
 
 	if (empty($_GET['language'])) {
 		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/index.php?language=' . $language;
-		// header('Location: ' . $server);
+		header('Location: ' . $server);
 	}
 
 	$result = mysqli_query($con, "
@@ -240,6 +240,7 @@ print_r($menuallres);
 
 		<!-- useful links -->
 		<div id="useful_links">
+			<img class="stema" src="images/stema_small.png">
 			<div class="container">
 				<div class="row">
 					<div class="col l2 s2 padd-none">
@@ -302,7 +303,10 @@ print_r($menuallres);
 		/*usefull links*/
 		#useful_links {
 			width: 100%;
-			background: url('images/bg.png');
+			background: url('images/bottom_repeater.gif');
+			padding-top: 34px;
+			height: 140px;
+			position: relative;
 		}
 		#useful_links .row {
 			margin-bottom: 0;
@@ -316,6 +320,11 @@ print_r($menuallres);
 		}
 		#slide_wrapper {
 			height: 347px;overflow: hidden;
+		}
+		.stema {
+			left: 253px;
+			position: absolute;
+			top: -25px;
 		}
 		/*END banner*/
 

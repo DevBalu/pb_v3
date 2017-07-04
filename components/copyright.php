@@ -2,15 +2,15 @@
 	switch ($_GET['language']) {
 	case "ru":
 		$dev = "Разработано";
-		$pers = "Пержу Вячеслав, Генов Андрей";
+		$pers = "Генов Андрей";
 		break;
 	case "ro":
 		$dev = "Elaborat de";
-		$pers = "Perju Veaceslav, Ghenov Andrei";
+		$pers = "Ghenov Andrei";
 		break;
 	case "en":
 		$dev = "Developed by";
-		$pers = "Perju Veaceslav, Ghenov Andrei";
+		$pers = "Ghenov Andrei";
 		break;
 }
 ?>

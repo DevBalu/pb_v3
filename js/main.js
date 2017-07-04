@@ -17,13 +17,13 @@ $(document).ready(function() {
 
 	setInterval(function() {
 		$('#slide_wrapper > div:first')
-		.fadeOut(1000)
+		.fadeOut(2000)
 		.next()
 		.delay( 800 )
-		.fadeIn(1000)
+		.fadeIn(2000)
 		.end()
 		.appendTo('#slide_wrapper');
-	}, 2000);
+	}, 4000);
 	// END slider
 
 	// btn auth

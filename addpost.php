@@ -111,7 +111,7 @@
 					 </div><br>
 
 					<div id="text-editor">
-						<textarea id="editor1" name="txt" cols="100" rows="20"><?php echo $txt[0]['text'] ?></textarea>
+						<textarea id="editor1" name="txt" cols="100" rows="20"><?php //echo $txt[0]['text'] ?></textarea>
 						<script type="text/javascript">
 							CKEDITOR.replace( 'editor1' );
 							AjexFileManager.init({
