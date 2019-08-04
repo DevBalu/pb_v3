@@ -1,7 +1,8 @@
 <?php 
 	session_start();
 	if(!empty($_SESSION['auth'])){
-		header('Location: /pb/admin.php');
+		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/admin.php';
+		header('Location: ' . $server);
 	}
  ?>
 
@@ -39,9 +40,6 @@
 			</form>
 		</div>
 	</div>
-
-
-
 
 	<!--Import jQuery before materialize.js-->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

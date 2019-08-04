@@ -1,22 +1,16 @@
+<!-- 
+	Do not forget to put in font of word image "/"
+ -->
+<?php $sl1 = /*$_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].*/"images/slshow/sl/1.jpg"; ?>
+<?php $sl2 = /*$_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].*/"images/slshow/sl/2.jpg"; ?>
+<?php $sl3 = /*$_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].*/"images/slshow/sl/3.jpg"; ?>
 
-<div class="carousel carousel-slider center" data-indicators="true">
-    <div class="carousel-fixed-item center">
-      <a class="btn waves-effect white grey-text darken-text-2">button</a>
-    </div>
-    <div class="carousel-item red white-text" href="#one!">
-      <h2>First Panel</h2>
-      <p class="white-text">This is your first panel</p>
-    </div>
-    <div class="carousel-item amber white-text" href="#two!">
-      <h2>Second Panel</h2>
-      <p class="white-text">This is your second panel</p>
-    </div>
-    <div class="carousel-item green white-text" href="#three!">
-      <h2>Third Panel</h2>
-      <p class="white-text">This is your third panel</p>
-    </div>
-    <div class="carousel-item blue white-text" href="#four!">
-      <h2>Fourth Panel</h2>
-      <p class="white-text">This is your fourth panel</p>
-    </div>
-  </div>
+<div class="banner" style=" /*background: linear-gradient(to bottom, rgba(255,255,255,0) 2%,rgba(255,255,255,0.07) 12%,rgba(165,165,165,0.48) 74%,rgba(165,165,165,0.65) 100%);*/">
+	<div class="container">
+		<div id="slide_wrapper" style="/*height: 347px;overflow: hidden;*/">
+			<div><img src="<?php print $sl1;?>"></div>
+			<div><img src="<?php print $sl2;?>"></div>
+			<div><img src="<?php print $sl3;?>"></div> 
+		</div>
+	</div>
+</div>

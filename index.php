@@ -12,7 +12,8 @@
 	}
 
 	if (empty($_GET['language'])) {
-		header('Location: /pb/index.php?language=' . $language);
+		$server = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].'/index.php?language=' . $language;
+		header('Location: ' . $server);
 	}
 
 	$result = mysqli_query($con, "
@@ -43,12 +44,14 @@
 			}
 
 			$image .= '
-				<li>
+				<li style="background: rgba(255, 255, 255, 0.31);box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);">
 					' . $datetimelp . '
-					<div>
-						<a href="post.php?id=' . $row->id .'">' .
+					<div style="height: 135px; overflow: hidden;">
+						<a href="post.php?id=' . $row->id . '&language=' . $implanguage .'" style="font-size: 17px;font-weight: 300;">' .
 							$imageteg . '
-						<p style="margin-bottom: 0.3rem;">'. $row->title.'</p>
+							<p style="margin-bottom: 0.3rem;">'. $row->title.'</p>
+							<p style="margin-bottom: 0.3rem;">'. $row->subtitle.'</p>
+							<p style="margin-bottom: 0.3rem; font-size: 16px;">'. $row->content.'</p>
 						</a>
 					</div>
 				</li>
@@ -58,52 +61,6 @@
 	}
 	// END last 5 posts
 
-	// last 3 posts important
-	$resultimp = mysqli_query($con, "
-		SELECT p.* FROM posts p
-		JOIN groups g on g.language = '$implanguage'
-		WHERE p.id_group = g.id and p.important = 1
-		ORDER BY id DESC
-		LIMIT 3
-		");
-
-	$posimp = '';
-	if ($resultimp) {
-		while ($row = $resultimp->fetch_object()) {
-			$img = $row->image_url;
-			if(!empty($img)){
-				$imageteg = '<img src="'. $img .'" style="height:100%;">';
-			}else{
-				$imageteg = '';
-			}
-			$dtimpc = $row->created;
-			$dtimpup = $row->updated;
-			$datetime = '';
-			if(isset($dtimpup)){
-				$datetime .= date("Y-m-d / h:i:s", $dtimpup);
-			}else{
-				$datetime .= date("Y-m-d / h:i:s", $dtimpc) ;
-			}
-			$posimp .= '
-				<section class="4u">
-					<div class="box" style="height: 300px; padding: 5px; border-radius: 5px;">
-						<div style="height: 250px; overflow: hidden; border-bottom: 1px solid #ddd;">
-							<a href="post.php?id=' . $row->id .'" style="color: #000; text-decoration:none;">
-								<div style="width: 75%; height: 60%; margin:auto; display:flex; justify-content: center;"> 
-										' . $imageteg. '
-								</div>
-							</a>
-							<p style="text-align:center; font-size: 20px">'.$row->title.'</p>
-							<p>'.$row->subtitle.'</p>
-						</div>
-						<a href="post.php?id=' . $row->id . '&important" class="button" style="margin-right:0; padding:2px 5px; float: right;">Mai multe</a>
-						<p style="padding-top: 10px;">' . $datetime . '</p>
-					</div>
-				</section>
-			';
-		}
-		$resultimp->close();
-	}
 	$con->close();
 ?>
 <!DOCTYPE HTML>
@@ -116,66 +73,31 @@
 		session_start();
 		// authorization how administrator
 		if(!empty($_SESSION['auth'])){
-		print '
-			<div class="row">
-				<div style="float:left; margin: 30px 0 0 30px;">
-					<p class="tel" style="padding-left: 20px; font-size: 25px; margin-bottom: 0;">(+373) 247 2 24 40</p>
-				</div>
-
-				<div style="float:right; margin-right:20px;">
-					<a href="admin.php" class="button">ADMIN</a>
-					<a href="logout.php" class="button">LOG OUT</a>
-				</div>
-
-				<!--<div id="search" style="padding-left: 0;">
-					<form action="search.php" method="POST">
-						<div>
-							<input name="search" type="text" placeholder="CAUTARE"><br>
-						</div>
-						<button class="cbut"></button>
-					</form>
-				</div>-->
-
-			</div>';
-		}else{
-			// authorization how guest
-			print '
-				<div class="row">
-					<div style="float:left; margin: 30px 0 0 30px;">
-						<p class="tel" style="padding-left: 20px; font-size: 25px; margin-bottom: 0;">(+373) 247 2 24 40</p>
-					</div>
-				
-					<div style="float:right; margin-right: 20px;">
-						<a href="auth.php" class="button">LOG IN</a>
-					 </div>
-
-					<!--<div id="search" style="padding-left: 0;">
-						<form action="search.php" method="POST">
-							<div>
-								<input name="search" type="text" placeholder="CAUTARE"><br>
-							</div>
-							<button class="cbut"></button>
-						</form>
-					</div>-->
-				
-				</div>';
 		}
 	?>
 
-	<!-- Header -->
-		<?php include "components/navbar.php"; ?>
-	<!-- END Header -->
+
+	<!-- bar -->
+		<?php include "components/littlemenu.php"; ?>
+	<!-- END bar -->
+	<!-- btn-to-top -->
+		<div id="btn-to-top"></div>
+	<!-- END btn-to-top -->
 
 	<!-- Banner -->
 		<?php include "components/banner.php"; ?>
 	<!-- END Banner -->
 
+	<!-- Header -->
+		<?php include "components/navbar.php"; ?>
+	<!-- END Header -->
+
 	<!-- Page -->
 		<div id="page">
 			<!-- Main -->
 			<div id="main" class="container indexsidebar">
-				<div class="row">
-					<div class="3u">
+				<div class="row" style="margin-bottom: 0px; border-bottom: 1px solid #9c9898;">
+					<div class="col s12 m3 l3">
 						<?php
 								// get languaage page
 								$language = $_GET['language'];
@@ -183,7 +105,7 @@
 									$language = '';
 								}
 								//query groups 
-								$resultgroup = mysqli_query($con, "SELECT g.* FROM groups g WHERE g.language = '$language'");
+								$resultgroup = mysqli_query($con, "SELECT g.* FROM groups g WHERE g.language = '$language' ORDER BY id ASC");
 
 								$menuallres = '';
 								//show content query result groups
@@ -209,27 +131,29 @@
 											// work with category & post
 											$rescatpos = '';
 											foreach ($categories_posts as $posts) {
-												$postname = '';
+												$postitle = '';
 												foreach ($posts['posts'] as $post) {
+													$postitle .= '<a href="post.php?id=' . $post['post_id']. '&language=' . $implanguage . '" style="color:red;font-size: 16px;">' . $post['title'] . '</a><div class="divider" style="width: 100%; border-bottom: 1px solid #ddd; margin: 2px 0px;"></div>';
+												}
 												$rescatpos .= '
 													<ul class="collapsible" data-collapsible="expandable" style="margin: 0;">
 														<li>
-															<div class="collapsible-header" style="padding: 0rem 0rem 0rem 4rem;"><p style="margin: 0; padding: 0 0 0 10px;line-height: 26px;">' . $posts['name'] . '</p></div>
-															<div class="collapsible-body" style="padding: 0 0 0 70px;">
+															<div class="collapsible-header"><p style="margin: 0; padding: 10px 0 10px 0px;line-height: 26px; color: #2F4F4F;font-size: 18px;s"><span style="font-size: 25px;">\ </span>' . $posts['name'] . '</p></div>
+															<div class="collapsible-body" style="padding: 10px 0px 10px 60px;">
 																<span>
-																	<a href="post.php?id=' . $post['post_id'] . '">' . $post['title'] . '</a>
+																	'. $postitle .'
 																</span>
-																<br>
 															</div>
 														</li>
 													</ul>';
-												}
+
 											}
-										//finaly form group / category / posts
+
+										// finaly form group / category / posts
 										$menuallres .= '
-											<ul class="collapsible" data-collapsible="expandable" style="margin: 0;">
+											<ul class="collapsible" data-collapsible="expandable">
 												<li>
-													<div class="collapsible-header"><p style="margin: 0; padding: 0;">' .$gr_name . '</p></div>
+													<div class="collapsible-header"><p>' .$gr_name . '</p></div>
 													<div class="collapsible-body">' . $rescatpos . '</div>
 												</li>
 											</ul>
@@ -244,11 +168,8 @@ print_r($menuallres);
 					</div>
 
 					<!-- section last post -->
-					<div class="9u">
-						<section class="sidebar">
-							<header>
-								<h2>ultimile știri</h2>
-							</header>
+					<div class="col s12 m9 l9">
+						<section class="sidebar" style="width: 100%;">
 							<ul class="style2">
 							<?php print $image; ?>
 							</ul>
@@ -257,27 +178,156 @@ print_r($menuallres);
 					<!-- END section last post -->
 
 			</div>
-			<!-- END Main -->
-		</div>
-	<!-- END Pge -->
+			<!-- END row -->
+			<!-- map -->
+			<div class="row">
+				<div class="col m5 s6 padd-none">
+					<div id="map" style=""></div>
+					<script>
+						function initMap() {
+							var uluru = {lat: 48.364373, lng: 27.074627};
+							var map = new google.maps.Map(document.getElementById('map'), {
+								zoom: 9,
+								center: uluru
+							});
+							var marker = new google.maps.Marker({
+								position: uluru,
+							 	map: map
+							});
+						}
+					</script>
+					<script async defer
+						src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEGHul3kUlgGuBrr5MMJRPcSg2WvsNxJg&callback=initMap">
+					</script>
+				</div>
 
-	<!-- Featured -->
-		<div id="featured">
-			<div class="container">
-				<p style="text-align:center; color:#fff; font-size:35px; line-height: 2rem;">ULTIMILE STIRI IMPORTANTE</p>
-				<div class="row">
-				<?php print $posimp; ?>
+				<div class="col l3 s12 padd-none">
+					<section style="font-size: 17px;">
+						<h2 style="text-align: center; font-weight: 500;"><?php print $contacte; ?></h2>
+						<ul class="default">
+							<li>
+								<h3><?php print $email; ?></h3><br>
+								<p>infobriceni@gmail.com</p>
+							</li>
+							<li>
+								<h3><?php print $ap; ?></h3><br>
+								<p>(+373) 247 2 24 40</p>
+							</li>
+							<li>
+								<h3><?php print $fax; ?></h3><br>
+								<p>(+373) 247 2 21 95</p>
+							</li>
+						</ul>
+				</div>
+				<div class="col l4 s12 padd-none">
+					<h2>Scrieți-ne un mesaj</h2>
+					<form id="am" class="message"  action="php/messagereq.php" method="POST"><!--access message-->
+						<div>
+							<input name="fname" type="text" placeholder="Nume"><br>
+							<input name="lname" type="text" placeholder="Prenume"><br>
+							<input name="email" type="text" placeholder="Email"><br>
+							<textarea name="message" placeholder="Mesaj"></textarea>
+							<button class="btn" type="submit">TRIMITE</button>
+						</div>
+					</form>
 				</div>
 			</div>
+			<!-- END map -->
 		</div>
-	<!-- END Featured -->
+		<!-- END Main -->
 
-	<!-- Footer -->
-		<?php include "components/footer.php"; ?>
-	<!-- /Footer -->
+		<div class="divider"></div>
+
+		<!-- useful links -->
+		<div id="useful_links">
+			<img class="stema" src="images/stema_small.png">
+			<div class="container">
+				<div class="row">
+					<div class="col l2 s2 padd-none">
+						<a href="http://presedinte.md/">
+							<img src="images/ban_presedinte_md.jpg">
+						</a>
+					</div>
+					<div class="col l2 s2 padd-none">
+						<a href="http://parlament.md/">
+							<img src="images/ban_parlament_md.jpg">
+						</a>
+					</div>
+					<div class="col l2 s2 padd-none">
+						<a href="http://gov.md/">
+							<img src="images/ban_guvern_md.jpg">
+						</a>
+					</div>
+					<div class="col l2 s2 padd-none">
+						<a href="http://www.moldova.md/">
+							<img src="images/ban_moldova_md.jpg">
+						</a>
+					</div>
+					<div class="col l2 s2 padd-none">
+						<a href="/images/uploade/energie-electrica-atentie.pdf">
+							<img src="images/energie-util.jpg">
+						</a>
+					</div>
+					<div class="col l2 s2 padd-none	reg_actelor">
+						<a href="http://businessportal.md/ro/">
+							<img src="images/bussines_portal.png">
+						</a>
+					</div>
+				</div><!-- END row -->
+			</div><!-- END container -->
+		</div>
+		<!-- END useful links -->
+
+	</div>
+	<!-- END Page -->
 
 	<!-- Copyright -->
 		<?php include "components/copyright.php"; ?>
 	<!-- /Copyright -->
 	</body>
+	<style>
+		/*map*/
+		#map {
+			width: 100%;
+			height: 400px;
+		}
+		/*ENDmap*/
+		.padd-none {
+			padding: 20px 10px 10px 10px!important;
+		}
+		.divider {
+			width: 100%;
+			border-bottom: 1px solid #9c9898;
+			margin: 2px 0px;
+		}
+		/*usefull links*/
+		#useful_links {
+			width: 100%;
+			background: url('images/bottom_repeater.gif');
+			padding-top: 34px;
+			height: 140px;
+			position: relative;
+		}
+		#useful_links .row {
+			margin-bottom: 0;
+		}
+		/*END usefull links*/
+		/*banner*/
+		.banner {
+			width: 100%;
+			padding-top: 106px;
+			background: url('images/bg.png');
+		}
+		#slide_wrapper {
+			height: 347px;overflow: hidden;
+		}
+		.stema {
+			left: 253px;
+			position: absolute;
+			top: -25px;
+		}
+		/*END banner*/
+
+
+	</style>
 </html>

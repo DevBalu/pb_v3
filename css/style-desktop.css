@@ -36,7 +36,7 @@
 	
 	.homepage #page
 	{
-		padding: 1em 0em;
+		padding: 1em 0em 1px 0em;
 	}
 
 	#main
@@ -75,4 +75,3 @@
 	{
 		padding: 2em 0em;
 	}
-	

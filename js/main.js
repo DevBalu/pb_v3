@@ -2,7 +2,6 @@ $(document).ready(function() {
 	$('select').material_select();
 	$('.collapsible').collapsible();
 	$('.carousel.carousel-slider').carousel({fullWidth: true});
-	 $('.carousel').carousel();
 
 	$('select[name="group"]').change(function() {
 		insertParam('group', $(this).val());
@@ -13,7 +12,51 @@ $(document).ready(function() {
 		alert("clicked");
 	});
 
-});
+	// slider
+	$("#slide_wrapper > div:gt(0)").hide();
+
+	setInterval(function() {
+		$('#slide_wrapper > div:first')
+		.fadeOut(2000)
+		.next()
+		.delay( 800 )
+		.fadeIn(2000)
+		.end()
+		.appendTo('#slide_wrapper');
+	}, 4000);
+	// END slider
+
+	// btn auth
+	if ($(window).width() < 960) {
+		$("#auth_btn")
+		.prop({
+			style: "display: none !important;"
+		});
+	}
+	// END btn auth
+
+	//after scroll show never menu
+	$(window).scroll(function(){
+		if($(window).scrollTop() > 120){
+			$("#logo").attr("style", "width: 16.6%; padding-top: 10px !important;");
+			$(".prefix").attr("style", "padding-top: 10px;");
+			$("#btn-to-top").attr("style", "display: block;");
+		}else{
+			$("#logo").attr("style", "width: 25%;");
+			$(".prefix").attr("style", "padding-top: 30px;");
+			$("#btn-to-top").attr("style", "display: none;");
+		}
+	});
+	//END after scroll show never menu
+
+	//btn to top
+	$("#btn-to-top").click(function(){
+		$('body').animate({
+				scrollTop:0 ,
+				}, 1000);
+	});
+	//END btn to top
+})
 
 function insertParam(key, value) {
 	key = escape(key); value = escape(value);
@@ -40,27 +83,5 @@ function insertParam(key, value) {
 	}
 }
 
-// check image size in file addpost.php & editcontent.php  
-var img = document.getElementById("uimage");
 
-var errmsg = document.createElement("div");
-document.getElementById("file-wrapper").appendChild(errmsg);
-var validation = document.getElementById("uimager");
-
-img.addEventListener("change", function() {
-	var file = img.files;
-	if (file[0].size > 5000000) {
-		validation.style.borderBottom = "2px solid red";
-		validation.style.boxShadow = "none";
-		errmsg.setAttribute("class", "card-panel red darken-1");
-		errmsg.innerHTML = '<span class="white-text" style="font-size: 20px;">Dimensiunea imaginii trebuie sa fie mai mica de 5mb.</span>';
-		img.value = null;
-	} else {
-		validation.style.borderBottom = "2px solid #4CAF50";
-		validation.style.boxShadow = "none";
-		errmsg.removeAttribute("class");
-		errmsg.innerHTML = '';
-	}
-});
-// END check image size in file addpost.php & editcontent.php  
 
